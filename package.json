@@ -10,6 +10,7 @@
     "release": "sh scripts/release.sh"
   },
   "dependencies": {
+    "at-js-sdk": "^2.2.2",
     "axios": "^0.18.0",
     "qs": "^6.5.2",
     "weixin-js-sdk": "^1.4.0-test"
