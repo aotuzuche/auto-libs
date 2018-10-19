@@ -1,4 +1,4 @@
-# AUTO-lib
+# AUTO-libs
 
 凹凸公用库
 
@@ -7,7 +7,7 @@
 http 请求
 
 ```js
-import { http } from 'auto-lib'
+import { http } from 'auto-libs'
 
 http.request({
   method: 'get',
@@ -20,7 +20,7 @@ http.request({
 ```js
 http.js
 
-import { http } from 'auto-lib'
+import { http } from 'auto-libs'
 
 http.interceptors.request.use(config => {
   if (config.method === 'get') {
@@ -46,7 +46,7 @@ export default http
 统计埋点
 
 ```js
-import { AS } from 'auto-lib'
+import { AS } from 'auto-libs'
 
 AS()
 ```
@@ -68,7 +68,7 @@ AS({
 微信相关
 
 ```js
-import { WX } from 'auto-lib'
+import { WX } from 'auto-libs'
 
 // 微信分享
 WX.share()
