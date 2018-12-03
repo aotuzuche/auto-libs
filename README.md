@@ -84,3 +84,82 @@ WX.share({
   text: '凹凸租车 共享' // 分享详情
 })
 ```
+
+## token 相关
+
+```js
+import {
+  getToken,
+  setToken,
+  clearToken,
+  initToken,
+  toLogin,
+  getOpenId,
+  setOpenId,
+  clearOpenId,
+  getUnionId,
+  setUnionId,
+  clearUnionId,
+  getVirtualNo,
+  setVirtualNo,
+  clearVirtualNo,
+  getMemNo,
+  setMemNo,
+  clearMemNo
+  } from 'auto-libs/lib/token.js'
+
+// 获取 token
+getToken()
+
+// 设置 token
+setToken()
+
+// 清空 token
+clearToken()
+
+// 初始化 token
+initToken()
+
+// 或者
+await initToken()
+
+// 登录，params 可选，为携带到 URL 上的参数
+toLogin(?params)
+
+// 获取 openId
+getOpenId()
+
+// 设置 openId
+setOpenId()
+
+// 清空 openId
+clearOpenId()
+
+// 获取 unionId
+getUnionId()
+
+// 设置 unionId
+setUnionId()
+
+// 清空 unionId
+clearUnionId()
+
+// 获取虚拟会员号
+getVirtualNo()
+
+// 设置虚拟会员号
+setVirtualNo()
+
+// 清空虚拟会员号
+clearVirtualNo()
+
+// 获取 memNo
+getMemNo()
+
+// 设置 memNo
+setMemNo()
+
+// 清空 memNo
+clearMemNo()
+
+```
