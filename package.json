@@ -1,6 +1,6 @@
 {
   "name": "auto-libs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "凹凸 公用组件",
   "main": "index.js",
   "repository": "git@github.com:shaodahong/auto-lib.git",
