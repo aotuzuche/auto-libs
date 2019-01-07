@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { clearToken, toLogin, getToken } from './token'
 
-type Config = {
+type HttpConfig = {
   resCode?: string
   resMsg?: string
   data?: any
@@ -16,7 +16,7 @@ class HttpError extends Error {
   name: string = 'HttpError'
   data: any
   code?: string = '0'
-  constructor(message: string, data?: Config) {
+  constructor(message: string, data?: HttpConfig) {
     super(message)
 
     this.msg = message
@@ -37,14 +37,16 @@ const config = {
  * 获取config配置中的请求前置路径
  */
 
-process.env.PACKAGE = process.env.PACKAGE || 'development'
+if (!process.env.PACKAGE) {
+  process.env.PACKAGE = 'development'
+}
 
 const baseURL = config[process.env.PACKAGE]
 
 /**
  * 配置axios
  */
-const http = axios.create({
+export const http = axios.create({
   baseURL,
   headers: {
     Accept: 'application/json;version=3.0;compress=false',
@@ -117,5 +119,3 @@ http.interceptors.response.use(
     return Promise.reject(new HttpError('系统错误'))
   }
 )
-
-export default http

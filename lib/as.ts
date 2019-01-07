@@ -6,7 +6,7 @@ export interface Data {
   eventContent?: object | string
 }
 
-async function AS(data: Data = {}) {
+export async function AS(data: Data = {}) {
   if (typeof data.eventContent === 'object') {
     let params: string[] = []
     ;(<any>Object)
@@ -29,5 +29,3 @@ async function AS(data: Data = {}) {
   // 可以利用 qs 来格式化参数
   img.src = currentOrigin + '/log.gif?' + qs.stringify(data)
 }
-
-export default AS

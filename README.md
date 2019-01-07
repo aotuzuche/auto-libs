@@ -106,7 +106,7 @@ import {
   getMemNo,
   setMemNo,
   clearMemNo
-  } from 'auto-libs/build/token.js'
+  } from 'auto-libs'
 
 // 获取 token
 getToken()

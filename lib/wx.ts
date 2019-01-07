@@ -1,15 +1,15 @@
-import http from './http'
+import { http } from './http'
 import wx from 'weixin-js-sdk'
 
-export interface Config {
+export interface WXConfig {
   url?: string
   sharePicUrl?: string
   shareTitle?: string
   text?: string
 }
 
-const WX = {
-  share: async (config: Config = {}) => {
+export const WX = {
+  share: async (config: WXConfig = {}) => {
     if (!(<any>window).isWX) {
       return
     }
@@ -70,5 +70,3 @@ async function _getTicket() {
 
   return result
 }
-
-export default WX
