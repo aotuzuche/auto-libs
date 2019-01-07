@@ -2,17 +2,27 @@
   "name": "auto-libs",
   "version": "0.0.4",
   "description": "凹凸 公用组件",
-  "main": "index.js",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
   "repository": "git@github.com:shaodahong/auto-lib.git",
   "author": "shaodahong <337097324@qq.com>",
   "license": "MIT",
   "scripts": {
+    "start": "tsc -p tsconfig.build.json -w",
+    "build": "rm -rf build/ && tsc -p tsconfig.build.json",
     "release": "sh scripts/release.sh"
   },
+  "files": [
+    "build"
+  ],
   "dependencies": {
     "at-js-sdk": "^2.2.2",
     "axios": "^0.18.0",
     "qs": "^6.5.2",
     "weixin-js-sdk": "^1.4.0-test"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.18",
+    "typescript": "^3.2.2"
   }
 }

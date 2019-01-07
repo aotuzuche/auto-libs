@@ -26,5 +26,6 @@ then
   git rebase master
   git push origin dev
 
+  npm run build
   npm publish
 fi

@@ -1,11 +1,19 @@
 import qs from 'qs'
 
-async function AS(data = {}) {
+export interface Data {
+  pageNo?: number
+  eventNo?: number
+  eventContent?: object | string
+}
+
+async function AS(data: Data = {}) {
   if (typeof data.eventContent === 'object') {
-    let params = []
-    Object.entries(data.eventContent).forEach(([key, value]) => {
-      params.push(`${key}=${value}`)
-    })
+    let params: string[] = []
+    ;(<any>Object)
+      .entries(data.eventContent)
+      .forEach((key: string, value: any) => {
+        params.push(`${key}=${value}`)
+      })
     data.eventContent = `{${params.join(',')}}`
   }
 

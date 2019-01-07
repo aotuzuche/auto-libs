@@ -78,7 +78,7 @@ WX.share()
 
 ```js
 WX.share({
-  title: '凹凸租车', // 分享标题
+  shareTitle: '凹凸租车', // 分享标题
   url: 'https://m.aotuzuche.com', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
   sharePicUrl: 'https://carphoto.aotuzuche.com/web/auto/assets/imgs/logo.png', // 分享图标
   text: '凹凸租车 共享' // 分享详情
@@ -106,7 +106,7 @@ import {
   getMemNo,
   setMemNo,
   clearMemNo
-  } from 'auto-libs/lib/token.js'
+  } from 'auto-libs/build/token.js'
 
 // 获取 token
 getToken()

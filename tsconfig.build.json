@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "lib",
+    "outDir": "build",
+    "declaration": true,
+    "jsx": "react",
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "types": ["node"]
+  },
+  "exclude": ["build", "node_modules", "scripts", "lib/_test"]
+}

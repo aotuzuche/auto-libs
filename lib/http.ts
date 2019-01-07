@@ -1,15 +1,31 @@
 import axios from 'axios'
 import { clearToken, toLogin, getToken } from './token'
 
-// type an error
-function HttpError(message, data) {
-  this.msg = message
-  this.name = 'HttpError'
-  this.data = data ? (data?.data ? data.data : data) : null
-  this.code = data?.resCode || 0
+type Config = {
+  resCode?: string
+  resMsg?: string
+  data?: any
 }
-HttpError.prototype = new Error()
-HttpError.prototype.constructor = HttpError
+
+export interface ProcessEnv {
+  [key: string]: string | undefined
+}
+
+class HttpError extends Error {
+  msg: string
+  name: string = 'HttpError'
+  data: any
+  code?: string = '0'
+  constructor(message: string, data?: Config) {
+    super(message)
+
+    this.msg = message
+    if (data) {
+      this.data = data ? (data.data ? data.data : data) : null
+      this.code = data.resCode
+    }
+  }
+}
 
 const config = {
   production: '/',
@@ -20,9 +36,10 @@ const config = {
 /**
  * 获取config配置中的请求前置路径
  */
+
+process.env.PACKAGE = process.env.PACKAGE || 'development'
+
 const baseURL = config[process.env.PACKAGE]
-  ? config[process.env.PACKAGE]
-  : config['development']
 
 /**
  * 配置axios

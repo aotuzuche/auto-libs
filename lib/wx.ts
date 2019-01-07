@@ -1,15 +1,22 @@
 import http from './http'
 import wx from 'weixin-js-sdk'
 
+export interface Config {
+  url?: string
+  sharePicUrl?: string
+  shareTitle?: string
+  text?: string
+}
+
 const WX = {
-  share: async (config = {}) => {
-    if (!window.isWX) {
+  share: async (config: Config = {}) => {
+    if (!(<any>window).isWX) {
       return
     }
 
     try {
       // 获取微信 sdk 初始化参数
-      const res = await _getTicket()
+      const res: any = await _getTicket()
       wx.config({
         debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
         signature: res.signature,
@@ -44,7 +51,7 @@ const WX = {
         wx.onMenuShareTimeline(result)
       })
 
-      wx.error(res => {
+      wx.error((res: any) => {
         console.log('wx-error', res)
       })
     } catch (e) {
