@@ -1,12 +1,12 @@
 import qs from 'qs'
 
-export interface Data {
+export interface ASData {
   pageNo?: number
   eventNo?: number
   eventContent?: object | string
 }
 
-export async function AS(data: Data = {}) {
+export async function AS(data: ASData = {}) {
   if (typeof data.eventContent === 'object') {
     let params: string[] = []
     ;(<any>Object)
