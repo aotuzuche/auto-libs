@@ -6,6 +6,7 @@ export interface WXConfig {
   sharePicUrl?: string
   shareTitle?: string
   text?: string
+  type?: boolean
 }
 
 export const WX = {
@@ -30,7 +31,7 @@ export const WX = {
         const currentOrigin = window.location.origin
         const protocol = window.location.protocol
         let shareLink =
-          `${currentOrigin}/weixinauth/authorize?type=base&redirectUri=` +
+          `${currentOrigin}/weixinauth/authorize?type=${config.type || 'base'}&redirectUri=` +
           encodeURIComponent(config.url || `${currentOrigin}/m/index`)
         const shareImg =
           config.sharePicUrl ||
