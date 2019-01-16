@@ -82,6 +82,7 @@ WX.share({
   url: 'https://m.aotuzuche.com', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
   sharePicUrl: 'https://carphoto.aotuzuche.com/web/auto/assets/imgs/logo.png', // 分享图标
   text: '凹凸租车 共享' // 分享详情
+  type?: "userinfo" | "base" // 弹窗授权或者静默授权，默认静默
 })
 ```
 
