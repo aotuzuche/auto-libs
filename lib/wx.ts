@@ -1,12 +1,15 @@
 import { http } from "./http";
 import wx from "weixin-js-sdk";
 
+export type jsApiListType = string;
 export interface WXConfig {
   url?: string;
   sharePicUrl?: string;
   shareTitle?: string;
   text?: string;
   type?: "userinfo" | "base";
+  jsApiList?: jsApiListType[];
+  callback?: (wx: any) => void;
 }
 
 export const WX = {
@@ -14,6 +17,10 @@ export const WX = {
     if (!(<any>window).isWX) {
       return;
     }
+    const {
+      jsApiList = ["onMenuShareTimeline", "onMenuShareAppMessage"],
+      callback
+    } = config;
 
     try {
       // 获取微信 sdk 初始化参数
@@ -24,33 +31,45 @@ export const WX = {
         appId: res.appId,
         timestamp: res.timestamp,
         nonceStr: res.nonceStr,
-        jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage"]
+        jsApiList: jsApiList
       });
 
       wx.ready(() => {
-        const currentOrigin = window.location.origin;
-        const protocol = window.location.protocol;
-        let shareLink =
-          `${currentOrigin}/weixinauth/authorize?type=${config.type ||
-            "base"}&redirectUri=` +
-          encodeURIComponent(config.url || `${currentOrigin}/m/index`);
-        const shareImg =
-          config.sharePicUrl ||
-          `${protocol}//carphoto.aotuzuche.com/web/auto/assets/imgs/logo.png`;
+        callback && callback(wx);
 
-        const result = {
-          title: config.shareTitle || "凹凸租车", // 分享标题
-          link: shareLink, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-          imgUrl: shareImg // 分享图标
-        };
+        if (
+          jsApiList.some(api => {
+            return (
+              api === "onMenuShareTimeline" || api === "onMenuShareAppMessage"
+            );
+          })
+        ) {
+          const currentOrigin = window.location.origin;
+          const protocol = window.location.protocol;
+          let shareLink =
+            `${currentOrigin}/weixinauth/authorize?type=${config.type ||
+              "base"}&redirectUri=` +
+            encodeURIComponent(config.url || `${currentOrigin}/m/index`);
+          const shareImg =
+            config.sharePicUrl ||
+            `${protocol}//carphoto.aotuzuche.com/web/auto/assets/imgs/logo.png`;
 
-        // 分享给朋友
-        wx.onMenuShareAppMessage(
-          Object.assign(result, { desc: config.text || "凹凸租车" })
-        );
+          const result = {
+            title: config.shareTitle || "凹凸租车", // 分享标题
+            link: shareLink, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: shareImg // 分享图标
+          };
 
-        // 分享到朋友圈
-        wx.onMenuShareTimeline(result);
+          // 分享给朋友
+          jsApiList.indexOf("onMenuShareAppMessage") !== -1 &&
+            wx.onMenuShareAppMessage(
+              Object.assign(result, { desc: config.text || "凹凸租车" })
+            );
+
+          // 分享到朋友圈
+          jsApiList.indexOf("onMenuShareTimeline") !== -1 &&
+            wx.onMenuShareTimeline(result);
+        }
       });
 
       wx.error((res: any) => {
