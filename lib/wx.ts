@@ -31,7 +31,7 @@ export const WX = {
         appId: res.appId,
         timestamp: res.timestamp,
         nonceStr: res.nonceStr,
-        jsApiList: jsApiList
+        jsApiList: [...jsApiList]
       });
 
       wx.ready(() => {
