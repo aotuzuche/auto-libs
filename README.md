@@ -10,6 +10,54 @@ import 'auto-libs/build/styles/reset.css'
 import 'auto-libs/build/scripts/flexible.js'
 ```
 
+## cdn
+
+cdn 地址
+
+```js
+import { cdn } from 'auto-libs'
+```
+
+## go
+
+跳转地址
+
+```js
+import { go } from 'auto-libs'
+
+const { address, pay } = go
+
+// 取还车地址
+address({
+  redirectUrl: string
+  redirectParam: string
+  locationInfo?: {
+    address?: string;
+    name?: string;
+    code?: string;
+    lat?: string;
+    ng?: string;
+    telPrefix?: string;
+  }
+  telPrefix?: string
+  cityCode?: string
+  keyword?: string
+  servicePoint?: 1 | 0
+  searchTip?: string
+  selectCity?: 1 | 0
+  selectCityTip?: string
+  isOnDoor?: 1 | 0
+})
+
+// 支付
+pay({
+  token: string
+  orderNo: string
+  payKind: string
+  redirect_url: string
+})
+```
+
 ## http
 
 http 请求
