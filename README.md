@@ -1,6 +1,14 @@
-# AUTO-libs
+# AUTO-libs 凹凸公用库
 
-凹凸公用库
+## 公用样式和脚本引入
+
+```js
+// reset 样式
+import 'auto-libs/build/styles/reset.css'
+
+// flexible 布局脚本
+import 'auto-libs/build/scripts/flexible.js'
+```
 
 ## http
 

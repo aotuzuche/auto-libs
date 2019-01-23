@@ -1,5 +1,6 @@
-import qs from 'qs'
+/* tslint:disable:no-magic-numbers */
 import at from 'at-js-sdk'
+import qs from 'qs'
 
 const token = '_app_token_'
 const openId = '_app_openId_'
@@ -35,13 +36,9 @@ const getMemNo = () => ss.getItem(memNo)
 const setMemNo = (e: string) => ss.setItem(memNo, e)
 const clearMemNo = () => ss.removeItem(memNo)
 
-/**
- * 初始化token
- * @returns {Promise<any>} resolve: 成功 reject: 失败
- */
 const initToken = async () => {
   return new Promise((resolve, reject) => {
-    if ((<any>window).isApp) {
+    if ((window as any).isApp) {
       at.getToken({
         callback(result: { token: string }) {
           if (result.token && String(result.token).length > 20) {
@@ -71,7 +68,7 @@ const initToken = async () => {
  * h5: 跳转到通用登录页面
  */
 const toLogin = (params?: object) => {
-  if ((<any>window).isApp) {
+  if ((window as any).isApp) {
     at.openLogin({
       success(res: any) {
         setToken(res.token)
@@ -87,7 +84,6 @@ const toLogin = (params?: object) => {
     const search = {
       redirect: window.location.href
     }
-    params && Object.assign(search, params)
     window.location.href = '/m/login/?' + qs.stringify(search)
   }
 }

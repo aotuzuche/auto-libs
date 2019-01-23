@@ -8,8 +8,8 @@ export interface ASData {
 
 export async function AS(data: ASData = {}) {
   if (typeof data.eventContent === 'object') {
-    let params: string[] = []
-    ;(<any>Object)
+    let params: string[] = [];
+    ( Object as any)
       .entries(data.eventContent)
       .forEach((key: string, value: any) => {
         params.push(`${key}=${value}`)

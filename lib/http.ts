@@ -1,22 +1,21 @@
 import axios from 'axios'
-import { clearToken, toLogin, getToken } from './token'
+import { clearToken, getToken, toLogin } from './token'
 
-type HttpConfig = {
+interface HttpConfig {
   resCode?: string
   resMsg?: string
   data?: any
 }
-
 export interface ProcessEnv {
   [key: string]: string | undefined
 }
 
 class HttpError extends Error {
-  msg: string
-  name: string = 'HttpError'
-  data: any
-  code?: string = '0'
-  constructor(message: string, data?: HttpConfig) {
+  public msg: string
+  public name = 'HttpError'
+  public data: any
+  public code ? = '0'
+  public constructor(message: string, data?: HttpConfig) {
     super(message)
 
     this.msg = message

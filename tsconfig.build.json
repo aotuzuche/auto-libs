@@ -10,5 +10,5 @@
     "moduleResolution": "node",
     "types": ["node"]
   },
-  "exclude": ["build", "node_modules", "scripts", "lib/_test"]
+  "exclude": ["build", "node_modules", "lib/_test"]
 }
