@@ -1,6 +1,11 @@
 ## [0.0.11](https://github.com/shaodahong/auto-lib/compare/v0.0.10...v0.0.11) (2019-01-23)
 
 
+### Features
+
+* 🎸 添加规范化的 changelog 辅助 ([b4dadba](https://github.com/shaodahong/auto-lib/commit/b4dadba))
+
+
 
 ## [0.0.10](https://github.com/shaodahong/auto-lib/compare/v0.0.9...v0.0.10) (2019-01-17)
 
