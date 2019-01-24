@@ -1,3 +1,12 @@
+## [0.1.1](https://github.com/shaodahong/auto-lib/compare/v0.1.0...v0.1.1) (2019-01-24)
+
+
+### Features
+
+* 🎸 添加 date 和 inputEvents 扩展 ([20a820d](https://github.com/shaodahong/auto-lib/commit/20a820d))
+
+
+
 # [0.1.0](https://github.com/shaodahong/auto-lib/compare/v0.0.10...v0.1.0) (2019-01-24)
 
 
