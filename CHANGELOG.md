@@ -1,8 +1,10 @@
-## [0.0.11](https://github.com/shaodahong/auto-lib/compare/v0.0.10...v0.0.11) (2019-01-23)
+# [0.1.0](https://github.com/shaodahong/auto-lib/compare/v0.0.10...v0.1.0) (2019-01-24)
 
 
 ### Features
 
+* 🎸 增加 cdn, go 文件 ([311c0be](https://github.com/shaodahong/auto-lib/commit/311c0be))
+* 🎸 添加 reset.scss ([e6102fa](https://github.com/shaodahong/auto-lib/commit/e6102fa))
 * 🎸 添加规范化的 changelog 辅助 ([b4dadba](https://github.com/shaodahong/auto-lib/commit/b4dadba))
 
 
