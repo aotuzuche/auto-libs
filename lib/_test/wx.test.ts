@@ -1,4 +1,3 @@
-import WX from '../wx'
-
+import { WX } from '../wx'
 
 WX.share()
