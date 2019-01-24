@@ -20,7 +20,8 @@
     }
   },
   "files": [
-    "build"
+    "build",
+    "types"
   ],
   "dependencies": {
     "at-js-sdk": "^2.2.2",

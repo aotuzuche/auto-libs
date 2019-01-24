@@ -1,13 +1,33 @@
 # AUTO-libs 凹凸公用库
 
+1. [公用样式和脚本引入](#公用样式和脚本引入)
+2. [cdn](#cdn)
+3. [go](#go)
+4. [http](#http)
+    + [http 请求](#http-请求)
+    + [自定义拦截器](#自定义拦截器)
+5. [AS](#as)
+    + [统计埋点](#统计埋点)
+    + [页面编号 事件号和携带参数](#页面编号-事件号和携带参数)
+6. [WX](#wx)
+    + [自定义参数](#自定义参数)
+    + [自定义按钮](#自定义按钮)
+7. [token 相关](#token-相关)
+
 ## 公用样式和脚本引入
 
 ```js
 // reset 样式
-import 'auto-libs/build/styles/reset.css'
+import 'auto-libs/build/styles/reset'
 
 // flexible 布局脚本
-import 'auto-libs/build/scripts/flexible.js'
+import 'auto-libs/build/scripts/flexible'
+
+// Date 扩展
+import 'auto-libs/build/scripts/date'
+
+// Input 扩展
+import 'auto-libs/build/scripts/inputEvents'
 ```
 
 ## cdn
@@ -60,7 +80,7 @@ pay({
 
 ## http
 
-http 请求
+### http 请求
 
 ```js
 import { http } from 'auto-libs'
@@ -99,7 +119,7 @@ export default http
 
 ## AS
 
-统计埋点
+### 统计埋点
 
 ```js
 import { AS } from 'auto-libs'
@@ -107,7 +127,7 @@ import { AS } from 'auto-libs'
 AS()
 ```
 
-### 页面编号，事件号和携带参数
+### 页面编号 事件号和携带参数
 
 ```js
 AS({
