@@ -1,53 +1,72 @@
 # AUTO-libs 凹凸公用库
 
 1. [公用样式和脚本引入](#公用样式和脚本引入)
-2. [cdn](#cdn)
-3. [go](#go)
+   - [reset 样式](#reset-样式)
+   - [flexible 布局脚本](#flexible-布局脚本)
+   - [Date 扩展](#date-扩展)
+   - [Input 扩展](#input-扩展)
+2. [cdn 地址](#cdn-地址)
+3. [go 跳转](#go-跳转)
+   - [取还车地址](#取还车地址)
+   - [支付](#支付)
 4. [http](#http)
-   - [http 请求](#http-请求)
    - [自定义拦截器](#自定义拦截器)
-5. [AS](#as)
-   - [统计埋点](#统计埋点)
+5. [AS 统计埋点](#as-统计埋点)
    - [页面编号 事件号和携带参数](#页面编号-事件号和携带参数)
 6. [WX](#wx)
    - [自定义参数](#自定义参数)
    - [自定义按钮](#自定义按钮)
 7. [token 相关](#token-相关)
+   - [token](#token)
+   - [登录](#登录)
+   - [openId](#openid)
+   - [unionId](#unionid)
+   - [virtualNo](#virtualno)
+   - [memNo](#memno)
 
 ## 公用样式和脚本引入
 
+### reset 样式
+
 ```js
-// reset 样式
 import 'auto-libs/build/styles/reset'
+```
 
-// flexible 布局脚本
+### flexible 布局脚本
+
+```js
 import 'auto-libs/build/scripts/flexible'
+```
 
-// Date 扩展
+### Date 扩展
+
+```js
 import 'auto-libs/build/scripts/date'
+```
 
-// Input 扩展
+### Input 扩展
+
+```js
 import 'auto-libs/build/scripts/inputEvents'
 ```
 
-## cdn
-
-cdn 地址
+## cdn 地址
 
 ```js
 import { cdn } from 'auto-libs'
 ```
 
-## go
-
-跳转地址
+## go 跳转
 
 ```js
 import { go } from 'auto-libs'
+```
 
-const { address, pay } = go
+### 取还车地址
 
-// 取还车地址
+```js
+const { address } = go
+
 address({
   redirectUrl: string
   redirectParam: string
@@ -68,19 +87,23 @@ address({
   selectCityTip?: string
   isOnDoor?: 1 | 0
 })
+```
 
-// 支付
+### 支付
+
+```js
+const { address, pay } = go
+
 pay({
-  token: string
-  orderNo: string
-  payKind: string
-  redirect_url: string
+token: string
+orderNo: string
+payKind: string
+redirect_url: string
 })
+
 ```
 
 ## http
-
-### http 请求
 
 ```js
 import { http } from 'auto-libs'
@@ -94,8 +117,6 @@ http.request({
 ### 自定义拦截器
 
 ```js
-http.js
-
 import { http } from 'auto-libs'
 
 http.interceptors.request.use(config => {
@@ -117,9 +138,7 @@ http.interceptors.request.use(config => {
 export default http
 ```
 
-## AS
-
-### 统计埋点
+## AS 统计埋点
 
 ```js
 import { AS } from 'auto-libs'
@@ -140,8 +159,6 @@ AS({
 ```
 
 ## WX
-
-微信相关
 
 ```js
 import { WX } from 'auto-libs'
@@ -178,26 +195,10 @@ WX.share({
 
 ## token 相关
 
+### token
+
 ```js
-import {
-  getToken,
-  setToken,
-  clearToken,
-  initToken,
-  toLogin,
-  getOpenId,
-  setOpenId,
-  clearOpenId,
-  getUnionId,
-  setUnionId,
-  clearUnionId,
-  getVirtualNo,
-  setVirtualNo,
-  clearVirtualNo,
-  getMemNo,
-  setMemNo,
-  clearMemNo
-  } from 'auto-libs'
+import { getToken, setToken, clearToken, initToken } from 'auto-libs'
 
 // 获取 token
 getToken()
@@ -213,9 +214,20 @@ initToken()
 
 // 或者
 await initToken()
+```
 
-// 登录，params 可选，为携带到 URL 上的参数
+### 登录
+
+```js
+import { toLogin } from 'auto-libs'
+
 toLogin(?params)
+```
+
+### openId
+
+```js
+import { getOpenId, setOpenId, clearOpenId } from 'auto-libs'
 
 // 获取 openId
 getOpenId()
@@ -225,6 +237,12 @@ setOpenId()
 
 // 清空 openId
 clearOpenId()
+```
+
+### unionId
+
+```js
+import { getUnionId, setUnionId, clearUnionId } from 'auto-libs'
 
 // 获取 unionId
 getUnionId()
@@ -234,6 +252,12 @@ setUnionId()
 
 // 清空 unionId
 clearUnionId()
+```
+
+### virtualNo
+
+```js
+import { getVirtualNo, setVirtualNo, clearVirtualNo } from 'auto-libs'
 
 // 获取虚拟会员号
 getVirtualNo()
@@ -243,6 +267,12 @@ setVirtualNo()
 
 // 清空虚拟会员号
 clearVirtualNo()
+```
+
+### memNo
+
+```js
+import { getMemNo, setMemNo, clearMemNo } from 'auto-libs'
 
 // 获取 memNo
 getMemNo()
@@ -252,5 +282,4 @@ setMemNo()
 
 // 清空 memNo
 clearMemNo()
-
 ```
