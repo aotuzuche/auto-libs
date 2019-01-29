@@ -59,18 +59,28 @@ export const http = axios.create({
  */
 http.interceptors.request.use(config => {
   const token = getToken()
+  const method = (config.method as string).toLocaleLowerCase()
   if (token) {
     config.headers['Atzuche-Token'] = token
   }
-  if (config.method === 'get') {
+  if (method === 'get') {
     if (typeof config.params !== 'object') {
       config.params = {}
+    }
+
+    // 兼容appserver的接口，appserver的接口token需要带在参数中，post请求也是一样
+    if (token) {
+      config.params.token = token
     }
 
     config.params.requestId = Number(new Date())
   }
 
-  if (Object.keys(config.data).length > 0) {
+  const methods: string[] = ['post', 'put', 'patch', 'delete']
+  if (methods.indexOf(method) > -1) {
+    if (token) {
+      config.data.token = token
+    }
     config.data.requestId = Number(new Date())
   }
 
