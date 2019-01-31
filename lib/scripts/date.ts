@@ -12,10 +12,7 @@ interface Date {
 }
 
 Date.prototype.format = function(fmt) {
-  // author: meizz
-
-  let result = ''
-  let o = {
+  const o = {
     'M+': this.getMonth() + 1, // 月份
     'd+': this.getDate(), // 日
     'h+': this.getHours(), // 小时
@@ -24,21 +21,23 @@ Date.prototype.format = function(fmt) {
     'q+': Math.floor((this.getMonth() + 3) / 3), // 季度
     S: this.getMilliseconds() // 毫秒
   }
+  let format = fmt
   if (/(y+)/.test(fmt)) {
-    result = fmt.replace(
-      RegExp.$1,
-      String(this.getFullYear()).substr(4 - RegExp.$1.length)
-    )
+    format = fmt.replace(RegExp.$1, String(this.getFullYear()).substr(4 - RegExp.$1.length))
   }
-  for (let k in o) {
-    if (new RegExp('(' + k + ')').test(fmt)) {
-      result = fmt.replace(
+  if (/(wk)/.test(fmt)) {
+    const wks = '日一二三四五六'.split('')
+    format = fmt.replace(RegExp.$1, wks[this.getDay()])
+  }
+  for (const k in o) {
+    if (new RegExp(`(${k})`).test(format)) {
+      format = format.replace(
         RegExp.$1,
-        RegExp.$1.length === 1
-          ? o[k]
-          : ('00' + o[k]).substr(String(o[k]).length)
+        RegExp.$1.length === 1 ? (o as any)[k] : `00${(o as any)[k]}`.substr(String((o as any)[k]).length)
       )
     }
   }
-  return result
+  return format
+
 }
+
