@@ -23,6 +23,10 @@
    - [unionId](#unionid)
    - [virtualNo](#virtualno)
    - [memNo](#memno)
+8. [时间转换](#时间转换)
+   - [offsetHours](#offsetHours)
+   - [offsetDays](#offsetDays)
+   - [stringToDate](#stringToDate)
 
 ## 公用样式和脚本引入
 
@@ -282,4 +286,23 @@ setMemNo()
 
 // 清空 memNo
 clearMemNo()
+```
+
+## 时间转换
+
+### offsetHours
+### offsetDays
+### stringToDate
+
+```js
+import { offsetHours, offsetDays, stringToDate } from 'auto-libs'
+
+// 时间差，单位为小时
+offsetHours()
+
+// 将时间差转为文字方式
+offsetDays()
+
+// 将字符串20190101093000 转换为时间格式
+stringToDate()
 ```
