@@ -1630,7 +1630,7 @@ getpass@^0.1.1:
 
 git-cz@^1.8.0:
   version "1.8.0"
-  resolved "https://registry.yarnpkg.com/git-cz/-/git-cz-1.8.0.tgz#b8a116d70e03f2fd8243444a788e75cf0001cdcc"
+  resolved "https://registry.npmjs.org/git-cz/-/git-cz-1.8.0.tgz#b8a116d70e03f2fd8243444a788e75cf0001cdcc"
   integrity sha512-DaQaTZhcFnTvEO1sPniGaEooKjOiwanzkYfbKgJhwZeeFjEfF5OfSSYiBhIVVxzsOYFdCekxZEqtA6FlMpSOiw==
 
 git-raw-commits@2.0.0:
