@@ -1,3 +1,12 @@
+## [0.1.8](https://github.com/shaodahong/auto-lib/compare/v0.1.7...v0.1.8) (2019-02-01)
+
+
+### Bug Fixes
+
+* 🐛 search.ts ([061838f](https://github.com/shaodahong/auto-lib/commit/061838f))
+
+
+
 ## [0.1.7](https://github.com/shaodahong/auto-lib/compare/v0.1.6...v0.1.7) (2019-02-01)
 
 
