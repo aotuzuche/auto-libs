@@ -1,3 +1,12 @@
+## [0.1.7](https://github.com/shaodahong/auto-lib/compare/v0.1.6...v0.1.7) (2019-02-01)
+
+
+### Features
+
+* 🎸 search.ts ([de91c80](https://github.com/shaodahong/auto-lib/commit/de91c80))
+
+
+
 ## [0.1.6](https://github.com/shaodahong/auto-lib/compare/v0.1.5...v0.1.6) (2019-01-31)
 
 
