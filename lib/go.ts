@@ -27,18 +27,34 @@ export interface PayParmas {
   payKind: string
   redirect_url: string
 }
+
+export interface IdentityAuthParams {
+  redirect?: string
+}
+
+export interface DirverAuthParams {
+  redirect?: string
+}
 const go = {
   address: (params: AddressParams) => {
     window.location.href = `/m/address/?${qs.stringify(params)}`
   },
 
   pay: (params: PayParmas) => {
-    const { token, orderNo, payKind, redirect_url } = params
-
     const baseurl =
       process.env.ENV_NAME === 'production' ? 'https://m.atzuche.com' : ''
 
-    window.location.href = `${baseurl}/m/pay/?orderNo=${orderNo}&payKind=${payKind}&token=${token}&redirect_url=${redirect_url}`
+    window.location.href = `${baseurl}/m/pay/?${qs.stringify(params)}`
+  },
+
+  identityAuth: (params: IdentityAuthParams) => {
+    window.location.href = `/m/identityAuth?${qs.stringify(params)}`
+  },
+
+  dirverAuth: (params: DirverAuthParams) => {
+    window.location.href = `/m/identityAuth/dirverLicense?${qs.stringify(
+      params
+    )}`
   }
 }
 
