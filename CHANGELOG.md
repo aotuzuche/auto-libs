@@ -1,3 +1,12 @@
+## [0.1.9](https://github.com/shaodahong/auto-lib/compare/v0.1.8...v0.1.9) (2019-02-02)
+
+
+### Features
+
+* 🎸 go.ts ([885621a](https://github.com/shaodahong/auto-lib/commit/885621a))
+
+
+
 ## [0.1.8](https://github.com/shaodahong/auto-lib/compare/v0.1.7...v0.1.8) (2019-02-01)
 
 
