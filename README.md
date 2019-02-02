@@ -101,10 +101,10 @@ address({
 const { pay } = go
 
 pay({
-token: string
-orderNo: string
-payKind: string
-redirect_url: string
+  token: string
+  orderNo: string
+  payKind: string
+  redirect_url: string
 })
 
 ```
@@ -115,7 +115,7 @@ redirect_url: string
 const { identityAuth } = go
 
 identityAuth({
-redirect?: string
+  redirect?: string
 })
 ```
 
@@ -125,7 +125,7 @@ redirect?: string
 const { dirverAuth } = go
 
 dirverAuth({
-redirect?: string
+  redirect?: string
 })
 ```
 
