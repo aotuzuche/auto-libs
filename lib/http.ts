@@ -77,7 +77,7 @@ http.interceptors.request.use(config => {
   }
 
   const methods: string[] = ['post', 'put', 'patch', 'delete']
-  if (methods.indexOf(method) > -1) {
+  if (methods.indexOf(method) > -1 && typeof config.data !== 'string') {
     if (token) {
       config.data.token = token
     }
@@ -124,6 +124,7 @@ http.interceptors.response.use(
     return Promise.reject(new HttpError(config.data.resMsg, config.data))
   },
   error => {
+    console.error('http:reject', error)
     // reject错误处理
     return Promise.reject(new HttpError('系统错误'))
   }
