@@ -1,4 +1,9 @@
-## [0.1.9](https://github.com/shaodahong/auto-lib/compare/v0.1.8...v0.1.9) (2019-02-02)
+## [0.1.10](https://github.com/shaodahong/auto-lib/compare/v0.1.8...v0.1.10) (2019-02-15)
+
+
+### Bug Fixes
+
+* 🐛 http ([86df42e](https://github.com/shaodahong/auto-lib/commit/86df42e))
 
 
 ### Features
