@@ -9,6 +9,8 @@
 3. [go 跳转](#go-跳转)
    - [取还车地址](#取还车地址)
    - [支付](#支付)
+   - [身份认证](#身份认证)
+   - [驾照认证](#驾照认证)
 4. [http](#http)
    - [自定义拦截器](#自定义拦截器)
 5. [AS 统计埋点](#as-统计埋点)
@@ -96,15 +98,35 @@ address({
 ### 支付
 
 ```js
-const { address, pay } = go
+const { pay } = go
 
 pay({
-token: string
-orderNo: string
-payKind: string
-redirect_url: string
+  token: string
+  orderNo: string
+  payKind: string
+  redirect_url: string
 })
 
+```
+
+### 身份认证
+
+```js
+const { identityAuth } = go
+
+identityAuth({
+  redirect?: string
+})
+```
+
+### 驾照认证
+
+```js
+const { dirverAuth } = go
+
+dirverAuth({
+  redirect?: string
+})
 ```
 
 ## http
@@ -291,7 +313,9 @@ clearMemNo()
 ## 时间转换
 
 ### offsetHours
+
 ### offsetDays
+
 ### stringToDate
 
 ```js
