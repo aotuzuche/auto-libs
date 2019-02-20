@@ -1,3 +1,16 @@
+## [0.1.16](https://github.com/shaodahong/auto-lib/compare/v0.0.11...v0.1.16) (2019-02-20)
+
+
+
+## [0.1.9](https://github.com/shaodahong/auto-lib/compare/v0.1.10...v0.1.9) (2019-02-20)
+
+
+### Features
+
+* 🎸 http.ts 新增toString ([6521437](https://github.com/shaodahong/auto-lib/commit/6521437))
+
+
+
 ## [0.1.10](https://github.com/shaodahong/auto-lib/compare/v0.1.8...v0.1.10) (2019-02-15)
 
 
