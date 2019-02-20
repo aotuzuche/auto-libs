@@ -1,9 +1,9 @@
 {
   "name": "auto-libs",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "凹凸 公用组件",
   "main": "build/index",
-  "types": "build/index",
+  "types": "build/index",    
   "repository": "git@github.com:shaodahong/auto-lib.git",
   "author": "shaodahong <337097324@qq.com>",
   "license": "MIT",
