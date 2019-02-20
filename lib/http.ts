@@ -24,6 +24,9 @@ class HttpError extends Error {
       this.code = data.resCode
     }
   }
+  public toString() {
+    return this.message
+  }
 }
 
 const config = {
