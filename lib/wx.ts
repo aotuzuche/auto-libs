@@ -69,7 +69,10 @@ export const WX = {
 
           // 分享到朋友圈
           jsApiList.indexOf('onMenuShareTimeline') !== -1 &&
-            wx.onMenuShareTimeline(result)
+            wx.onMenuShareTimeline({
+              ...result,
+              title: config.text || '凹凸租车'
+            })
         }
       })
 
