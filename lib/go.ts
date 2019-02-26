@@ -1,4 +1,5 @@
-import qs from 'qs'
+import isDev from './isDev';
+import qs from 'qs';
 
 export interface AddressParams {
   redirectUrl: string
@@ -41,9 +42,7 @@ const go = {
   },
 
   pay: (params: PayParmas) => {
-    const baseurl =
-      process.env.ENV_NAME === 'production' ? 'https://m.atzuche.com' : ''
-
+    const baseurl = !isDev ? 'https://m.atzuche.com' : ''
     window.location.href = `${baseurl}/m/pay/?${qs.stringify(params)}`
   },
 

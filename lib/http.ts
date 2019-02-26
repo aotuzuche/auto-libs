@@ -1,5 +1,5 @@
-import axios from 'axios'
-import { clearToken, getToken, toLogin } from './token'
+import axios from 'axios';
+import { clearToken, getToken, toLogin } from './token';
 
 interface HttpConfig {
   resCode?: string
@@ -29,27 +29,11 @@ class HttpError extends Error {
   }
 }
 
-const config = {
-  production: '/',
-  development: 'proxy',
-  test: '/'
-}
-
-/**
- * 获取config配置中的请求前置路径
- */
-
-if (!process.env.PACKAGE) {
-  process.env.PACKAGE = 'development'
-}
-
-const baseURL = config[process.env.PACKAGE]
-
 /**
  * 配置axios
  */
 export const http = axios.create({
-  baseURL,
+  baseURL: '/',
   headers: {
     Accept: 'application/json;version=3.0;compress=false',
     'Content-Type': 'application/json;charset=utf-8'

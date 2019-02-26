@@ -68,8 +68,9 @@ const initToken = async () => {
  * h5: 跳转到通用登录页面
  */
 interface ItoLogin {
-  success: () => void
-  cancel: () => void
+  success?: () => void
+  cancel?: () => void
+  isBind?: boolean
 }
 
 const toLogin = (appParams?: ItoLogin) => {
