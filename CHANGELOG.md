@@ -1,8 +1,36 @@
+## [0.1.22](https://github.com/shaodahong/auto-lib/compare/v0.1.21...v0.1.22) (2019-02-26)
+
+
+
+## [0.1.21](https://github.com/shaodahong/auto-lib/compare/v0.1.20...v0.1.21) (2019-02-26)
+
+
+
+## [0.1.20](https://github.com/shaodahong/auto-lib/compare/v0.1.17...v0.1.20) (2019-02-26)
+
+
+### Bug Fixes
+
+* **dev:** 修改环境判定方式，兼容新老版本脚手架 ([2305703](https://github.com/shaodahong/auto-lib/commit/2305703))
+* **isDev.ts:** 修改判定方式 ([2aaaabe](https://github.com/shaodahong/auto-lib/commit/2aaaabe))
+
+
+### Features
+
+* **token.ts:** 修改toLogin方法的参数，使其支持在app中可以重新定义success和cancel时的方法 ([be5ee46](https://github.com/shaodahong/auto-lib/commit/be5ee46))
+
+
+
+## [0.1.17](https://github.com/shaodahong/auto-lib/compare/v0.1.16...v0.1.17) (2019-02-25)
+
+
+### Performance Improvements
+
+* ⚡️ 分享微信朋友圈title 使用分享给朋友的描述，新增settitle 方法 ([4f8cc77](https://github.com/shaodahong/auto-lib/commit/4f8cc77))
+
+
+
 ## [0.1.16](https://github.com/shaodahong/auto-lib/compare/v0.0.11...v0.1.16) (2019-02-20)
-
-
-
-## [0.1.9](https://github.com/shaodahong/auto-lib/compare/v0.1.10...v0.1.9) (2019-02-20)
 
 
 ### Features
