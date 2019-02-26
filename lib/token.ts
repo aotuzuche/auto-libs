@@ -1,6 +1,6 @@
+import at from 'at-js-sdk';
+import qs from 'qs';
 /* tslint:disable:no-magic-numbers */
-import at from 'at-js-sdk'
-import qs from 'qs'
 
 const token = '_app_token_'
 const openId = '_app_openId_'
@@ -67,20 +67,26 @@ const initToken = async () => {
  * app: 打开原生登录模块
  * h5: 跳转到通用登录页面
  */
-const toLogin = (params?: object) => {
+interface ItoLogin {
+  success: () => void
+  cancel: () => void
+}
+
+const toLogin = (appParams?: ItoLogin) => {
+  clearToken()
   if ((window as any).isApp) {
     at.openLogin({
       success(res: any) {
         setToken(res.token)
-        window.location.reload()
+        if (appParams && appParams.success) appParams.success()
+        else window.location.reload()
       },
       cancel() {
-        clearToken()
-        at.closeWindow()
+        if (appParams && appParams.cancel) appParams.cancel()
+        else at.closeWindow()
       }
     })
   } else {
-    clearToken()
     const search = {
       redirect: window.location.href
     }
