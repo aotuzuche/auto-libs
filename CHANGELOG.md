@@ -1,3 +1,12 @@
+## [0.1.24](https://github.com/shaodahong/auto-lib/compare/v0.1.23...v0.1.24) (2019-02-27)
+
+
+### Features
+
+* 🎸 date format ([9314336](https://github.com/shaodahong/auto-lib/commit/9314336))
+
+
+
 ## [0.1.23](https://github.com/shaodahong/auto-lib/compare/v0.1.22...v0.1.23) (2019-02-27)
 
 
