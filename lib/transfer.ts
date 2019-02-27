@@ -56,15 +56,15 @@ const offsetDays = (date1: Date, date2: Date): string => {
 
 // 将字符串20190101093000 转换为时间格式
 const stringToDate = (val: string): Date => {
-  const LEN = 12
-  if (/^\d+$/.test(val) && val.length >= LEN) {
-    let v: any[] = val
-      .replace(/(^\d{4}|\d{2})/gi, res => res + ',')
-      .split(',', 6)
-    v[1] = Number(v[1]) - 1
-    return new Date(v[0], v[1], v[2], v[3], v[4], v[5])
+  if (!val || !/[0-9]+/.test(val)) {
+    throw Error('invalid date')
   }
-  return new Date()
+  const LEN = 14
+  const _str = `${val}00000000000000`.substr(0, LEN)
+
+  let v: any[] = _str.replace(/(^\d{4}|\d{2})/gi, res => res + ',').split(',', 6)
+  v[1] = Number(v[1]) - 1
+  return new Date(v[0], v[1], v[2], v[3], v[4], v[5])
 }
 
 export { offsetHours, offsetDays, stringToDate, dateFormat }
