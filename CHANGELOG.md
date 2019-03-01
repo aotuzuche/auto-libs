@@ -1,3 +1,12 @@
+## [0.1.27](https://github.com/shaodahong/auto-lib/compare/v0.1.26...v0.1.27) (2019-03-01)
+
+
+### Bug Fixes
+
+* **transfer.ts:** 将secondToCountdown函数的zh_CN参数作为可选参数 ([2ade0e4](https://github.com/shaodahong/auto-lib/commit/2ade0e4))
+
+
+
 ## [0.1.26](https://github.com/shaodahong/auto-lib/compare/v0.1.25...v0.1.26) (2019-03-01)
 
 
