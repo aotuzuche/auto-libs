@@ -25,6 +25,7 @@ export interface AddressParams {
 export interface PayParmas {
   token: string
   orderNo: string
+  payFrom?: string
   payKind: string
   redirect_url: string
 }
@@ -51,9 +52,7 @@ const go = {
   },
 
   dirverAuth: (params: DirverAuthParams) => {
-    window.location.href = `/m/identityAuth/dirverLicense?${qs.stringify(
-      params
-    )}`
+    window.location.href = `/m/identityAuth/dirverLicense?${qs.stringify(params)}`
   }
 }
 
