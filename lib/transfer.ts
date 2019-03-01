@@ -28,6 +28,32 @@ const secondToCountdown = (second: number, zh_CN: boolean, justDayOver24h = true
   return h + ':' + m + ':' + s
 }
 
+const dateFormat: (date: Date, fmt: string) => string = (date, fmt) => {
+  const o = {
+    'M+': date.getMonth() + 1, // 月份
+    'd+': date.getDate(), // 日
+    'h+': date.getHours(), // 小时
+    'm+': date.getMinutes(), // 分
+    's+': date.getSeconds(), // 秒
+    'q+': Math.floor((date.getMonth() + 3) / 3), // 季度
+    S: date.getMilliseconds() // 毫秒
+  }
+  let format = fmt
+  if (/(y+)/.test(fmt)) {
+    format = fmt.replace(RegExp.$1, String(date.getFullYear()).substr(4 - RegExp.$1.length))
+  }
+  if (/(wk)/.test(fmt)) {
+    const wks = '日一二三四五六'.split('')
+    format = fmt.replace(RegExp.$1, wks[date.getDay()])
+  }
+  for (const k in o) {
+    if (new RegExp(`(${k})`).test(format)) {
+      format = format.replace(RegExp.$1, RegExp.$1.length === 1 ? (o as any)[k] : `00${(o as any)[k]}`.substr(String((o as any)[k]).length))
+    }
+  }
+  return format
+}
+
 // 时间差，单位为小时
 const offsetHours = (date1: Date, date2: Date): number => {
   const NUM = 3600000
@@ -52,13 +78,15 @@ const offsetDays = (date1: Date, date2: Date): string => {
 
 // 将字符串20190101093000 转换为时间格式
 const stringToDate = (val: string): Date => {
-  const LEN = 12
-  if (/^\d+$/.test(val) && val.length >= LEN) {
-    let v: any[] = val.replace(/(^\d{4}|\d{2})/gi, res => res + ',').split(',', 6)
-    v[1] = Number(v[1]) - 1
-    return new Date(v[0], v[1], v[2], v[3], v[4], v[5])
+  if (!val || !/[0-9]+/.test(val)) {
+    throw Error('invalid date')
   }
-  return new Date()
+  const LEN = 14
+  const _str = `${val}00000000000000`.substr(0, LEN)
+
+  let v: any[] = _str.replace(/(^\d{4}|\d{2})/gi, res => res + ',').split(',', 6)
+  v[1] = Number(v[1]) - 1
+  return new Date(v[0], v[1], v[2], v[3], v[4], v[5])
 }
 
-export { offsetHours, offsetDays, stringToDate, secondToCountdown }
+export { offsetHours, offsetDays, stringToDate, dateFormat, secondToCountdown }
