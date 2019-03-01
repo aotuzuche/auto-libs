@@ -1,5 +1,5 @@
 // 秒数转为倒计时方式的字符串
-const secondToCountdown = (second: number, zh_CN: boolean, justDayOver24h = true) => {
+const secondToCountdown = (second: number, zh_CN?: boolean, justDayOver24h = true) => {
   let _second = second < 0 ? 0 : second
 
   const HOUR = 3600
