@@ -1,3 +1,12 @@
+## [0.1.26](https://github.com/shaodahong/auto-lib/compare/v0.1.25...v0.1.26) (2019-03-01)
+
+
+### Features
+
+* **transfer.ts:** 添加秒数转倒计时的方法 ([8251e8e](https://github.com/shaodahong/auto-lib/commit/8251e8e))
+
+
+
 ## [0.1.24](https://github.com/shaodahong/auto-lib/compare/v0.1.23...v0.1.24) (2019-02-27)
 
 
