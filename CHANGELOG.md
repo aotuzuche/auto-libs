@@ -1,3 +1,16 @@
+## [0.1.29](https://github.com/shaodahong/auto-lib/compare/v0.1.28...v0.1.29) (2019-03-12)
+
+
+
+## [0.1.28](https://github.com/shaodahong/auto-lib/compare/v0.1.27...v0.1.28) (2019-03-12)
+
+
+### Bug Fixes
+
+* **stringToDate:** 修正该方法在只有年或年月时,月和日补0改为补1 ([c0e7217](https://github.com/shaodahong/auto-lib/commit/c0e7217))
+
+
+
 ## [0.1.27](https://github.com/shaodahong/auto-lib/compare/v0.1.26...v0.1.27) (2019-03-01)
 
 
