@@ -82,7 +82,13 @@ const stringToDate = (val: string): Date => {
     throw Error('invalid date')
   }
   const LEN = 14
-  const _str = `${val}00000000000000`.substr(0, LEN)
+  let _str = val
+  if (_str.length === 4) {
+    _str = `${_str}0101` // 如果只有年，把月和日补1，即 2019 => 20190101
+  } else if (_str.length === 6) { // 如果只有年月，把日补1，即 201901 => 20190101
+    _str = `${_str}01`
+  }
+  _str = `${_str}00000000000000`.substr(0, LEN)
 
   let v: any[] = _str.replace(/(^\d{4}|\d{2})/gi, res => res + ',').split(',', 6)
   v[1] = Number(v[1]) - 1
