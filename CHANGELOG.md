@@ -1,3 +1,12 @@
+## [0.1.30](https://github.com/shaodahong/auto-lib/compare/v0.1.29...v0.1.30) (2019-03-13)
+
+
+### Features
+
+* 🎸 flexible.js ([2a25181](https://github.com/shaodahong/auto-lib/commit/2a25181))
+
+
+
 ## [0.1.29](https://github.com/shaodahong/auto-lib/compare/v0.1.28...v0.1.29) (2019-03-12)
 
 
