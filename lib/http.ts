@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookie from 'js-cookie';
 import { clearToken, getToken, toLogin } from './token';
 
 interface HttpConfig {
@@ -46,6 +47,11 @@ export const http = axios.create({
  */
 http.interceptors.request.use(config => {
   const token = getToken()
+  const utmSource = Cookie.get('utm_source')
+  const utmMedium = Cookie.get('utm_medium')
+  const utmCampaign = Cookie.get('utm_campaign')
+  const utmTerm = Cookie.get('utm_term')
+
   const method = (config.method as string).toLocaleLowerCase()
   if (token) {
     config.headers['Atzuche-Token'] = token
@@ -59,6 +65,18 @@ http.interceptors.request.use(config => {
     if (token) {
       config.params.token = token
     }
+    if (utmSource) {
+      config.params.utmSource = utmSource
+    }
+    if (utmMedium) {
+      config.params.utmMedium = utmMedium
+    }
+    if (utmCampaign) {
+      config.params.utmCampaign = utmCampaign
+    }
+    if (utmTerm) {
+      config.params.utmTerm = utmTerm
+    }
 
     config.params.requestId = Number(new Date())
   }
@@ -67,6 +85,18 @@ http.interceptors.request.use(config => {
   if (methods.indexOf(method) > -1 && typeof config.data !== 'string') {
     if (token) {
       config.data.token = token
+    }
+    if (utmSource) {
+      config.data.utmSource = utmSource
+    }
+    if (utmMedium) {
+      config.data.utmMedium = utmMedium
+    }
+    if (utmCampaign) {
+      config.data.utmCampaign = utmCampaign
+    }
+    if (utmTerm) {
+      config.data.utmTerm = utmTerm
     }
     config.data.requestId = Number(new Date())
   }
@@ -98,12 +128,7 @@ http.interceptors.response.use(
     }
 
     // 判断微信
-    if (
-      config.data.appId &&
-      config.data.nonceStr &&
-      config.data.signature &&
-      config.data.timestamp
-    ) {
+    if (config.data.appId && config.data.nonceStr && config.data.signature && config.data.timestamp) {
       return config.data
     }
 

@@ -26,10 +26,12 @@
   "dependencies": {
     "at-js-sdk": "^2.2.2",
     "axios": "^0.18.0",
+    "js-cookie": "^2.2.0",
     "qs": "^6.5.2",
     "weixin-js-sdk": "^1.4.0-test"
   },
   "devDependencies": {
+    "@types/js-cookie": "^2.2.2",
     "@types/node": "^10.12.18",
     "commitizen": "^3.0.5",
     "conventional-changelog": "^3.0.5",
