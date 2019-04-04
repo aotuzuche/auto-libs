@@ -1,3 +1,17 @@
+## [0.1.32](https://github.com/shaodahong/auto-lib/compare/v0.1.31...v0.1.32) (2019-04-04)
+
+
+### Bug Fixes
+
+* **isdev.ts:** 修改isdev的判断方式 ([cd57739](https://github.com/shaodahong/auto-lib/commit/cd57739))
+
+
+### Features
+
+* **http.ts:** 增加utm相关的默认传递参数 ([28a38ca](https://github.com/shaodahong/auto-lib/commit/28a38ca))
+
+
+
 ## [0.1.30](https://github.com/shaodahong/auto-lib/compare/v0.1.29...v0.1.30) (2019-03-13)
 
 
