@@ -36,11 +36,14 @@ const getMemNo = () => ss.getItem(memNo)
 const setMemNo = (e: string) => ss.setItem(memNo, e)
 const clearMemNo = () => ss.removeItem(memNo)
 
-const initToken = async () => {
+const initToken = async (ignore?: () => boolean) => {
+  if (ignore && ignore()) {
+    return Promise.resolve()
+  }
   return new Promise((resolve, reject) => {
     if ((window as any).isApp) {
       at.getToken({
-        callback(result: { token: string }) {
+        callback(result: {token: string}) {
           if (result.token && String(result.token).length > 20) {
             setToken(result.token)
             resolve()
@@ -95,22 +98,4 @@ const toLogin = (appParams?: ItoLogin) => {
   }
 }
 
-export {
-  getToken,
-  setToken,
-  clearToken,
-  initToken,
-  toLogin,
-  getOpenId,
-  setOpenId,
-  clearOpenId,
-  getUnionId,
-  setUnionId,
-  clearUnionId,
-  getVirtualNo,
-  setVirtualNo,
-  clearVirtualNo,
-  getMemNo,
-  setMemNo,
-  clearMemNo
-}
+export {getToken, setToken, clearToken, initToken, toLogin, getOpenId, setOpenId, clearOpenId, getUnionId, setUnionId, clearUnionId, getVirtualNo, setVirtualNo, clearVirtualNo, getMemNo, setMemNo, clearMemNo}
