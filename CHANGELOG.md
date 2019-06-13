@@ -1,3 +1,16 @@
+## [0.1.37](https://github.com/shaodahong/auto-lib/compare/v0.1.36...v0.1.37) (2019-06-13)
+
+
+
+## [0.1.36](https://github.com/shaodahong/auto-lib/compare/v0.1.35...v0.1.36) (2019-06-13)
+
+
+### Features
+
+* 🎸 flexible添加百度小程序判断 ([ec6d986](https://github.com/shaodahong/auto-lib/commit/ec6d986))
+
+
+
 ## [0.1.33](https://github.com/shaodahong/auto-lib/compare/v0.1.32...v0.1.33) (2019-04-26)
 
 
