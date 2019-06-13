@@ -1,3 +1,12 @@
+## [0.1.33](https://github.com/shaodahong/auto-lib/compare/v0.1.32...v0.1.33) (2019-04-26)
+
+
+### Features
+
+* 🎸 initToken ([64081d7](https://github.com/shaodahong/auto-lib/commit/64081d7))
+
+
+
 ## [0.1.32](https://github.com/shaodahong/auto-lib/compare/v0.1.31...v0.1.32) (2019-04-04)
 
 
