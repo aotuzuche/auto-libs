@@ -9,9 +9,9 @@ export interface ASData {
 export async function AS(data: ASData = {}) {
   if (typeof data.eventContent === 'object') {
     let params: string[] = [];
-    ( Object as any)
+    (Object as any)
       .entries(data.eventContent)
-      .forEach((key: string, value: any) => {
+      .forEach(([key, value]: [string, any]) => {
         params.push(`${key}=${value}`)
       })
     data.eventContent = `{${params.join(',')}}`
