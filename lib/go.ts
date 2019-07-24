@@ -1,16 +1,16 @@
-import isDev from './isDev';
-import qs from 'qs';
+import qs from 'qs'
+import isDev from './isDev'
 
 export interface AddressParams {
   redirectUrl: string
   redirectParam: string
   locationInfo?: {
-    address?: string;
-    name?: string;
-    code?: string;
-    lat?: string;
-    ng?: string;
-    telPrefix?: string;
+    address?: string
+    name?: string
+    code?: string
+    lat?: string
+    ng?: string
+    telPrefix?: string
   }
   telPrefix?: string
   cityCode?: string
@@ -20,6 +20,8 @@ export interface AddressParams {
   selectCity?: 1 | 0
   selectCityTip?: string
   isOnDoor?: 1 | 0
+  form?: string
+  [others: string]: any
 }
 
 export interface PayParmas {
@@ -53,7 +55,7 @@ const go = {
 
   dirverAuth: (params: DirverAuthParams) => {
     window.location.href = `/m/identityAuth/dirverLicense?${qs.stringify(params)}`
-  }
+  },
 }
 
 export default go
