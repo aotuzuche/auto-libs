@@ -20,7 +20,7 @@ export interface AddressParams {
   selectCity?: 1 | 0
   selectCityTip?: string
   isOnDoor?: 1 | 0
-  form?: string
+  from?: string
   [others: string]: any
 }
 
