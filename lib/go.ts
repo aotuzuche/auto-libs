@@ -9,7 +9,7 @@ export interface AddressParams {
     name?: string
     code?: string
     lat?: string
-    ng?: string
+    lng?: string
     telPrefix?: string
   }
   telPrefix?: string

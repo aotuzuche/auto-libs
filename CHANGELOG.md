@@ -1,8 +1,54 @@
-## [0.1.37](https://github.com/shaodahong/auto-lib/compare/v0.1.36...v0.1.37) (2019-06-13)
+## [0.1.44](https://github.com/shaodahong/auto-lib/compare/v0.1.43...v0.1.44) (2019-07-24)
+
+
+### Bug Fixes
+
+* **go.address:** form->from ([ec3223e](https://github.com/shaodahong/auto-lib/commit/ec3223e))
+* **go.address:** form错误 ([ad16cd6](https://github.com/shaodahong/auto-lib/commit/ad16cd6))
 
 
 
-## [0.1.36](https://github.com/shaodahong/auto-lib/compare/v0.1.35...v0.1.36) (2019-06-13)
+## [0.1.43](https://github.com/shaodahong/auto-lib/compare/v0.1.42...v0.1.43) (2019-07-24)
+
+
+
+## [0.1.42](https://github.com/shaodahong/auto-lib/compare/v0.1.41...v0.1.42) (2019-07-24)
+
+
+### Bug Fixes
+
+* **package.json:** fix version ([79d4408](https://github.com/shaodahong/auto-lib/commit/79d4408))
+
+
+
+## [0.1.41](https://github.com/shaodahong/auto-lib/compare/v0.1.40...v0.1.41) (2019-07-24)
+
+
+### Bug Fixes
+
+* **go.address:** 完善go.address的interface参数 ([c16813d](https://github.com/shaodahong/auto-lib/commit/c16813d))
+* **package.json:** fix version ([4964fa0](https://github.com/shaodahong/auto-lib/commit/4964fa0))
+
+
+
+## [0.1.40](https://github.com/shaodahong/auto-lib/compare/v0.1.39...v0.1.40) (2019-07-08)
+
+
+
+## [0.1.39](https://github.com/shaodahong/auto-lib/compare/v0.1.38...v0.1.39) (2019-07-08)
+
+
+
+## [0.1.38](https://github.com/shaodahong/auto-lib/compare/v0.1.37...v0.1.38) (2019-06-28)
+
+
+### Bug Fixes
+
+* 🐛 修复 AS 解析 eventContent 格式错误 ([b512a82](https://github.com/shaodahong/auto-lib/commit/b512a82))
+
+
+
+## [0.1.37](https://github.com/shaodahong/auto-lib/compare/v0.1.33...v0.1.37) (2019-06-13)
 
 
 ### Features
