@@ -11,7 +11,7 @@ const paths = {
     src: 'lib/**/*.scss',
   },
   scripts: {
-    src: ['lib/**/*.ts', 'lib/**/*.tsx', '!lib/_test/*'],
+    src: ['lib/**/*.ts', 'lib/**/*.tsx', '!lib/__tests__/*', 'types/**/*.ts'],
   },
   dest: 'build/',
 };
@@ -41,7 +41,7 @@ function styles() {
 
 // copy some files for build
 function copy() {
-  return gulp.src(['lib/**/*.css', 'lib/**/*.js', '!lib/_test/*']).pipe(gulp.dest(paths.dest));
+  return gulp.src(['lib/**/*.css', 'lib/**/*.js', '!lib/__tests__/*']).pipe(gulp.dest(paths.dest));
 }
 
 // start watch files

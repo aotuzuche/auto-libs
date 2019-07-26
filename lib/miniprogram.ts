@@ -26,34 +26,38 @@ interface MiniEnv {
   isAlipay?: boolean;
   isWeapp?: boolean;
   isSwan?: boolean;
-  isMiniProgram?: boolean;
+  isMiniProgram: boolean;
 }
 
 export const getMiniProgramEnv = (): Promise<MiniEnv> => {
   return new Promise(resolve => {
+    const defaultReturn: MiniEnv = {
+      isMiniProgram: true,
+    };
     if (window.my && window.my.getEnv) {
       window.my.getEnv((res: any) => {
         resolve({
+          ...defaultReturn,
           isAlipay: res.miniprogram,
-          isMiniProgram: res.miniprogram,
         });
       });
     } else if (window.wx && window.wx.miniProgram) {
       window.wx.miniProgram.getEnv((res: any) => {
         resolve({
+          ...defaultReturn,
           isWeapp: res.miniprogram,
-          isMiniProgram: res.miniprogram,
         });
       });
-    } else if (window.swan && window.swan.webView.getEnv) {
+    } else if (window.swan && window.swan.webView && window.swan.webView.getEnv) {
       window.swan.webView.getEnv((res: any) => {
         resolve({
+          ...defaultReturn,
           isSwan: res.smartprogram,
-          isMiniProgram: res.smartprogram,
         });
       });
     } else {
       resolve({
+        ...defaultReturn,
         isMiniProgram: false,
       });
     }
