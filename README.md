@@ -35,37 +35,37 @@
 ### reset 样式
 
 ```js
-import "auto-libs/build/styles/reset";
+import 'auto-libs/build/styles/reset';
 ```
 
 ### flexible 布局脚本
 
 ```js
-import "auto-libs/build/scripts/flexible";
+import 'auto-libs/build/scripts/flexible';
 ```
 
 ### Date 扩展
 
 ```js
-import "auto-libs/build/scripts/date";
+import 'auto-libs/build/scripts/date';
 ```
 
 ### Input 扩展
 
 ```js
-import "auto-libs/build/scripts/inputEvents";
+import 'auto-libs/build/scripts/inputEvents';
 ```
 
 ## cdn 地址
 
 ```js
-import {cdn} from "auto-libs";
+import { cdn } from 'auto-libs';
 ```
 
 ## go 跳转
 
 ```js
-import {go} from "auto-libs";
+import { go } from 'auto-libs';
 ```
 
 ### 取还车地址
@@ -132,10 +132,10 @@ dirverAuth({
 ## http
 
 ```js
-import {http} from "auto-libs";
+import { http } from 'auto-libs';
 
 http.request({
-  method: "get",
+  method: 'get',
   url: `/wechatgw/jsapi/ticket`,
 });
 ```
@@ -143,11 +143,11 @@ http.request({
 ### 自定义拦截器
 
 ```js
-import {http} from "auto-libs";
+import { http } from 'auto-libs';
 
 http.interceptors.request.use(config => {
-  if (config.method === "get") {
-    if (typeof config.params !== "object") {
+  if (config.method === 'get') {
+    if (typeof config.params !== 'object') {
       config.params = {};
     }
 
@@ -167,7 +167,7 @@ export default http;
 ## AS 统计埋点
 
 ```js
-import {AS} from "auto-libs";
+import { AS } from 'auto-libs';
 
 AS();
 ```
@@ -179,7 +179,7 @@ AS({
   pageNo: 100,
   eventNo: 1000,
   eventContent: {
-    name: "hello world",
+    name: 'hello world',
   },
 });
 ```
@@ -187,7 +187,7 @@ AS({
 ## WX
 
 ```js
-import {WX} from "auto-libs";
+import { WX } from 'auto-libs';
 
 // 微信分享
 WX.share();
@@ -224,7 +224,7 @@ WX.share({
 ### token
 
 ```js
-import {getToken, setToken, clearToken, initToken} from "auto-libs";
+import { getToken, setToken, clearToken, initToken } from 'auto-libs';
 
 // 获取 token
 getToken();
@@ -243,7 +243,7 @@ await initToken();
 
 // 忽略部分页面做initToken
 initToken(() => {
-  if (window.location.href === "需要忽略的url") {
+  if (window.location.href === '需要忽略的url') {
     return true;
   }
   return false;
@@ -261,7 +261,7 @@ toLogin(?params)
 ### openId
 
 ```js
-import {getOpenId, setOpenId, clearOpenId} from "auto-libs";
+import { getOpenId, setOpenId, clearOpenId } from 'auto-libs';
 
 // 获取 openId
 getOpenId();
@@ -276,7 +276,7 @@ clearOpenId();
 ### unionId
 
 ```js
-import {getUnionId, setUnionId, clearUnionId} from "auto-libs";
+import { getUnionId, setUnionId, clearUnionId } from 'auto-libs';
 
 // 获取 unionId
 getUnionId();
@@ -291,7 +291,7 @@ clearUnionId();
 ### virtualNo
 
 ```js
-import {getVirtualNo, setVirtualNo, clearVirtualNo} from "auto-libs";
+import { getVirtualNo, setVirtualNo, clearVirtualNo } from 'auto-libs';
 
 // 获取虚拟会员号
 getVirtualNo();
@@ -306,7 +306,7 @@ clearVirtualNo();
 ### memNo
 
 ```js
-import {getMemNo, setMemNo, clearMemNo} from "auto-libs";
+import { getMemNo, setMemNo, clearMemNo } from 'auto-libs';
 
 // 获取 memNo
 getMemNo();
@@ -327,7 +327,7 @@ clearMemNo();
 ### stringToDate
 
 ```js
-import {offsetHours, offsetDays, stringToDate} from "auto-libs";
+import { offsetHours, offsetDays, stringToDate } from 'auto-libs';
 
 // 时间差，单位为小时
 offsetHours();

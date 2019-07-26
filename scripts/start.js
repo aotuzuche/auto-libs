@@ -1,4 +1,3 @@
-const { watch } = require('./base')
+const { watch } = require('./base');
 
-watch()
-
+watch();

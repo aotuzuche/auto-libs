@@ -1,3 +1,3 @@
-const { build } = require('./base')
+const { build } = require('./base');
 
-build()
+build();

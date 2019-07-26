@@ -1,3 +1,3 @@
-const { copy } = require('./base')
+const { copy } = require('./base');
 
-copy()
+copy();

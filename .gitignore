@@ -7,3 +7,8 @@ node_modules
 dist
 .vscode
 build
+lib/**/*.js
+lib/**/*.jsx
+!lib/**/__tests__/**/*.js
+!lib/scripts/flexible.js
+!lib/scripts/inputEvents.js

@@ -4,7 +4,8 @@
     "exclude": ["**/node_modules/**"]
   },
   "rules": {
-    "semicolon": [true, "never"],
+    "semicolon": [true, "always"],
+    "trailing-comma": [true, "always"],
     "no-unused-expression": [true, "allow-fast-null-checks"],
     "arrow-parens": false,
     "no-magic-numbers": false

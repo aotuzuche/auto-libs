@@ -6,9 +6,8 @@
 // (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423
 // (new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18
 
-
 interface Date {
-  format: (format: string) => string
+  format: (format: string) => string;
 }
 
 Date.prototype.format = function(fmt) {
@@ -19,25 +18,25 @@ Date.prototype.format = function(fmt) {
     'm+': this.getMinutes(), // 分
     's+': this.getSeconds(), // 秒
     'q+': Math.floor((this.getMonth() + 3) / 3), // 季度
-    S: this.getMilliseconds() // 毫秒
-  }
-  let format = fmt
+    S: this.getMilliseconds(), // 毫秒
+  };
+  let format = fmt;
   if (/(y+)/.test(fmt)) {
-    format = fmt.replace(RegExp.$1, String(this.getFullYear()).substr(4 - RegExp.$1.length))
+    format = fmt.replace(RegExp.$1, String(this.getFullYear()).substr(4 - RegExp.$1.length));
   }
   if (/(wk)/.test(fmt)) {
-    const wks = '日一二三四五六'.split('')
-    format = fmt.replace(RegExp.$1, wks[this.getDay()])
+    const wks = '日一二三四五六'.split('');
+    format = fmt.replace(RegExp.$1, wks[this.getDay()]);
   }
   for (const k in o) {
     if (new RegExp(`(${k})`).test(format)) {
       format = format.replace(
         RegExp.$1,
-        RegExp.$1.length === 1 ? (o as any)[k] : `00${(o as any)[k]}`.substr(String((o as any)[k]).length)
-      )
+        RegExp.$1.length === 1
+          ? (o as any)[k]
+          : `00${(o as any)[k]}`.substr(String((o as any)[k]).length),
+      );
     }
   }
-  return format
-
-}
-
+  return format;
+};
