@@ -1,9 +1,18 @@
-## [0.1.44](https://github.com/shaodahong/auto-lib/compare/v0.1.43...v0.1.44) (2019-07-24)
+## [0.1.48](https://github.com/shaodahong/auto-lib/compare/v0.1.47...v0.1.48) (2019-08-01)
+
+### Performance Improvements
+
+- **http.ts:** 兼容 200-300 的正常 status 返回 ([9b38de3](https://github.com/shaodahong/auto-lib/commit/9b38de3))
+
+## [0.1.47](https://github.com/shaodahong/auto-lib/compare/v0.1.46...v0.1.47) (2019-08-01)
+
+## [0.1.45](https://github.com/shaodahong/auto-lib/compare/v0.1.43...v0.1.45) (2019-07-25)
 
 ### Bug Fixes
 
 - **go.address:** form->from ([ec3223e](https://github.com/shaodahong/auto-lib/commit/ec3223e))
 - **go.address:** form 错误 ([ad16cd6](https://github.com/shaodahong/auto-lib/commit/ad16cd6))
+- **go.address:** ng 改为 lng ([670a11d](https://github.com/shaodahong/auto-lib/commit/670a11d))
 
 ## [0.1.43](https://github.com/shaodahong/auto-lib/compare/v0.1.42...v0.1.43) (2019-07-24)
 
@@ -30,7 +39,9 @@
 
 - 🐛 修复 AS 解析 eventContent 格式错误 ([b512a82](https://github.com/shaodahong/auto-lib/commit/b512a82))
 
-## [0.1.37](https://github.com/shaodahong/auto-lib/compare/v0.1.33...v0.1.37) (2019-06-13)
+## [0.1.37](https://github.com/shaodahong/auto-lib/compare/v0.1.34...v0.1.37) (2019-06-13)
+
+## [0.1.34](https://github.com/shaodahong/auto-lib/compare/v0.1.33...v0.1.34) (2019-06-13)
 
 ### Features
 
