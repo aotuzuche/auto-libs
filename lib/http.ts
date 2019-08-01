@@ -109,10 +109,6 @@ http.interceptors.request.use(config => {
  */
 http.interceptors.response.use(
   config => {
-    // 兼容新API
-    if (config.status < 300 && config.data && !config.data.resCode) {
-      return config.data.data || config.data;
-    }
     // 响应正常
     if (config.data.resCode === '000000') {
       return config.data.data;
@@ -138,6 +134,10 @@ http.interceptors.response.use(
       config.data.signature &&
       config.data.timestamp
     ) {
+      return config.data;
+    }
+
+    if (config.status >= 200 && config.status < 300) {
       return config.data;
     }
 
