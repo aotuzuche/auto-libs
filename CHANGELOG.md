@@ -1,3 +1,9 @@
+## [0.1.49](https://github.com/shaodahong/auto-lib/compare/v0.1.48...v0.1.49) (2019-08-02)
+
+### Bug Fixes
+
+- **package.json:** 修复 sideEffects 优化直接使用的脚本和样式文件 ([f4dc488](https://github.com/shaodahong/auto-lib/commit/f4dc488))
+
 ## [0.1.48](https://github.com/shaodahong/auto-lib/compare/v0.1.47...v0.1.48) (2019-08-01)
 
 ### Performance Improvements
