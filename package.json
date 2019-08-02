@@ -7,7 +7,11 @@
   "repository": "git@github.com:shaodahong/auto-lib.git",
   "author": "shaodahong <337097324@qq.com>",
   "license": "MIT",
-  "sideEffects": false,
+  "sideEffects": [
+    "*.css",
+    "*.scss",
+    "build/scripts/**/*"
+  ],
   "scripts": {
     "start": "cross-env NODE_ENV=development PACKAGE=development node scripts/start.js",
     "build": "cross-env NODE_ENV=production PACKAGE=production node scripts/build.js",
