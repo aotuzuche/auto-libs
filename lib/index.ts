@@ -1,6 +1,7 @@
 export * from './as';
 export * from './wx';
 export * from './http';
+export * from './httpConsole';
 export * from './token';
 export * from './cdn';
 export * from './transfer';

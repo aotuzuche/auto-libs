@@ -3,6 +3,7 @@ import qs from 'qs';
 /* tslint:disable:no-magic-numbers */
 
 const token = '_app_token_';
+const consoleToken = '_app_console_token_';
 const openId = '_app_openId_';
 const unionId = '_app_unionId_';
 const virtualNo = '_app_virtualNo_';
@@ -15,6 +16,11 @@ const ss = window.sessionStorage;
 const getToken = () => ls.getItem(token);
 const setToken = (e: string) => ls.setItem(token, e);
 const clearToken = () => ls.removeItem(token);
+
+// 获取管理后台token方法，即jwt
+const getConsoleToken = () => ls.getItem(consoleToken);
+const setConsoleToken = (e: string) => ls.setItem(consoleToken, e);
+const clearConsoleToken = () => ls.removeItem(consoleToken);
 
 // openId 操作方法
 const getOpenId = () => ss.getItem(openId);
@@ -98,12 +104,25 @@ const toLogin = (appParams?: ItoLogin) => {
   }
 };
 
+// 跳转管理后台登录
+const toConsoleLogin = () => {
+  clearConsoleToken();
+  const search = {
+    redirect: window.location.href,
+  };
+  window.location.href = '/system/login/?' + qs.stringify(search);
+};
+
 export {
   getToken,
   setToken,
   clearToken,
+  getConsoleToken,
+  setConsoleToken,
+  clearConsoleToken,
   initToken,
   toLogin,
+  toConsoleLogin,
   getOpenId,
   setOpenId,
   clearOpenId,
