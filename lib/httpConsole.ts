@@ -1,4 +1,3 @@
-import { httpConsole } from './httpConsole';
 import axios from 'axios';
 import Cookie from 'js-cookie';
 import { clearConsoleToken, getConsoleToken, toConsoleLogin } from './token';
