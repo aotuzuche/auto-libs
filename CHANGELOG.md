@@ -1,3 +1,15 @@
+## [0.1.53](https://github.com/shaodahong/auto-lib/compare/v0.1.52...v0.1.53) (2019-08-12)
+
+### Features
+
+- 🎸 readme add ([a590f0a](https://github.com/shaodahong/auto-lib/commit/a590f0a))
+
+## [0.1.52](https://github.com/shaodahong/auto-lib/compare/v0.1.51...v0.1.52) (2019-08-12)
+
+### Features
+
+- 🎸 readme update ([515889d](https://github.com/shaodahong/auto-lib/commit/515889d))
+
 ## [0.1.51](https://github.com/shaodahong/auto-lib/compare/v0.1.50...v0.1.51) (2019-08-12)
 
 ### Features
