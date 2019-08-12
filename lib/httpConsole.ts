@@ -51,7 +51,7 @@ httpConsole.interceptors.request.use(config => {
 
   const method = (config.method as string).toLocaleLowerCase();
   if (token) {
-    config.headers['Authorization'] = token;
+    config.headers.Authorization = token;
   }
   if (method === 'get') {
     if (typeof config.params !== 'object') {
