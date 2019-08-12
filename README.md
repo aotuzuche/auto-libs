@@ -29,6 +29,8 @@
    - [offsetHours](#offsetHours)
    - [offsetDays](#offsetDays)
    - [stringToDate](#stringToDate)
+9. [httpConsole](#httpConsole)
+   - [自定义拦截器 管理后台](#自定义拦截器)
 
 ## 公用样式和脚本引入
 
@@ -140,6 +142,17 @@ http.request({
 });
 ```
 
+## httpConsole
+
+```js
+import { httpConsole } from 'auto-libs';
+
+httpConsole.request({
+  method: 'get',
+  url: `/wechatgw/jsapi/ticket`,
+});
+```
+
 ### 自定义拦截器
 
 ```js
@@ -224,7 +237,15 @@ WX.share({
 ### token
 
 ```js
-import { getToken, setToken, clearToken, initToken } from 'auto-libs';
+import {
+  getToken,
+  setToken,
+  clearToken,
+  initToken,
+  getConsoleToken,
+  setConsoleToken,
+  clearConsoleToken,
+} from 'auto-libs';
 
 // 获取 token
 getToken();
@@ -234,6 +255,15 @@ setToken();
 
 // 清空 token
 clearToken();
+
+// 获取console token
+getConsoleToken();
+
+// 设置console token
+setConsoleToken();
+
+// 清空console token
+clearConsoleToken();
 
 // 初始化 token
 initToken();

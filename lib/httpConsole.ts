@@ -1,3 +1,4 @@
+import { httpConsole } from './httpConsole';
 import axios from 'axios';
 import Cookie from 'js-cookie';
 import { clearConsoleToken, getConsoleToken, toConsoleLogin } from './token';
@@ -30,6 +31,7 @@ class HttpError extends Error {
 /**
  * 配置axios
  */
+
 export const httpConsole = axios.create({
   baseURL: '/',
   headers: {
@@ -115,16 +117,6 @@ httpConsole.interceptors.response.use(
       clearConsoleToken();
       toConsoleLogin();
       return false;
-    }
-
-    // 判断微信
-    if (
-      config.data.appId &&
-      config.data.nonceStr &&
-      config.data.signature &&
-      config.data.timestamp
-    ) {
-      return config.data;
     }
 
     if (config.status >= 200 && config.status < 300) {
