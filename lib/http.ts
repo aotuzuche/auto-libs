@@ -109,40 +109,44 @@ http.interceptors.request.use(config => {
  */
 http.interceptors.response.use(
   config => {
+    let strictModel = true; // 严格模式
+    const data = config.data || {};
+
+    // 目前的判断方式：因为resCode与resMsg是java端必给的字段，所以认为没有该两个字段时，走标准的http status模式
+    if (typeof data.resCode !== 'undefined' && typeof data.resMsg !== 'undefined') {
+      strictModel = false;
+    }
+
+    if (strictModel) {
+      if (config.status >= 200 && config.status < 300) {
+        return data;
+      } else {
+        return Promise.reject(new HttpError(data.message || '', data));
+      }
+    }
+
+    // atcz java端的模式
+
     // 响应正常
-    if (config.data.resCode === '000000') {
-      return config.data.data;
+    if (data.resCode === '000000') {
+      return data.data;
     }
     // 需要登录（没登录或登录过期）
-    else if (config.data.resCode === '200008') {
+    else if (data.resCode === '200008') {
       clearToken();
       toLogin();
       return false;
     }
     // 需要绑定
-    else if (config.data.resCode === '200101') {
+    else if (data.resCode === '200101') {
       toLogin({
         isBind: true,
       });
       return false;
     }
 
-    // 判断微信
-    if (
-      config.data.appId &&
-      config.data.nonceStr &&
-      config.data.signature &&
-      config.data.timestamp
-    ) {
-      return config.data;
-    }
-
-    if (config.status >= 200 && config.status < 300) {
-      return config.data;
-    }
-
     // reject错误处理
-    return Promise.reject(new HttpError(config.data.resMsg, config.data));
+    return Promise.reject(new HttpError(data.resMsg || data.msg || data.message, data));
   },
   error => {
     console.error('http:reject', error);
