@@ -147,6 +147,8 @@ http.interceptors.response.use(
   error => {
     console.error('http:reject', error);
     // reject错误处理
-    return Promise.reject(new HttpError('系统错误'));
+    return Promise.reject(
+      new HttpError(error.response.data && (error.response.data.message || '系统错误')),
+    );
   },
 );
