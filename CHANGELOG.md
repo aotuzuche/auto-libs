@@ -69,7 +69,9 @@
 
 - 🐛 修复 AS 解析 eventContent 格式错误 ([b512a82](https://github.com/shaodahong/auto-lib/commit/b512a82))
 
-## [0.1.37](https://github.com/shaodahong/auto-lib/compare/v0.1.33...v0.1.37) (2019-06-13)
+## [0.1.37](https://github.com/shaodahong/auto-lib/compare/v0.1.34...v0.1.37) (2019-06-13)
+
+## [0.1.34](https://github.com/shaodahong/auto-lib/compare/v0.1.33...v0.1.34) (2019-06-13)
 
 ### Features
 
@@ -151,8 +153,6 @@
 - ⚡️ 分享微信朋友圈 title 使用分享给朋友的描述，新增 settitle 方法 ([4f8cc77](https://github.com/shaodahong/auto-lib/commit/4f8cc77))
 
 ## [0.1.16](https://github.com/shaodahong/auto-lib/compare/v0.0.11...v0.1.16) (2019-02-20)
-
-## [0.1.9](https://github.com/shaodahong/auto-lib/compare/v0.1.10...v0.1.9) (2019-02-20)
 
 ### Features
 
