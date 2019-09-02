@@ -1,3 +1,14 @@
+## [0.1.62](https://github.com/shaodahong/auto-lib/compare/v0.1.61...v0.1.62) (2019-09-02)
+
+### Bug Fixes
+
+- 🐛 http.ts ([3d77ac1](https://github.com/shaodahong/auto-lib/commit/3d77ac1))
+
+### Features
+
+- **http.ts:** 兼容 node 端报错信息 ([02f722c](https://github.com/shaodahong/auto-lib/commit/02f722c))
+- **reset.scss:** 修改 a 的颜色 ([7127635](https://github.com/shaodahong/auto-lib/commit/7127635))
+
 ## [0.1.53](https://github.com/shaodahong/auto-lib/compare/v0.1.52...v0.1.53) (2019-08-12)
 
 ### Features
