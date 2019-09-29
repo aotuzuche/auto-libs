@@ -1,6 +1,6 @@
-import axios from 'axios';
-import Cookie from 'js-cookie';
-import { clearToken, getToken, toLogin } from './token';
+import axios from 'axios'
+import Cookie from 'js-cookie'
+import { clearToken, getToken, toLogin } from './token'
 
 interface HttpConfig {
   resCode?: string;
@@ -121,6 +121,11 @@ http.interceptors.response.use(
       if (config.status >= 200 && config.status < 300) {
         return data;
       } else {
+        if (config.status === 401) {
+          clearToken();
+          toLogin();
+          return false;
+        }
         return Promise.reject(new HttpError(data.message || '', data));
       }
     }
