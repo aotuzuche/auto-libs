@@ -1,6 +1,6 @@
-import axios from 'axios'
-import Cookie from 'js-cookie'
-import { clearToken, getToken, toLogin } from './token'
+import axios from 'axios';
+import Cookie from 'js-cookie';
+import { clearToken, getToken, toLogin } from './token';
 
 interface HttpConfig {
   resCode?: string;
