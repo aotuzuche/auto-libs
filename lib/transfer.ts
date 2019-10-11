@@ -59,10 +59,16 @@ const dateFormat: (date: Date, fmt: string) => string = (date, fmt) => {
   return format;
 };
 
-// 时间差，单位为小时
+// 时间差，单位为小时(ceil取整，例： 23.15小时会返回24小时 )
 const offsetHours = (date1: Date, date2: Date): number => {
   const NUM = 3600000;
   return Math.ceil((date2.valueOf() - date1.valueOf()) / NUM);
+};
+
+// 时间差，单位为小时(带小数)
+const offsetHoursFloat = (date1: Date, date2: Date): number => {
+  const NUM = 3600000;
+  return (date2.valueOf() - date1.valueOf()) / NUM;
 };
 
 // 将时间差转为文字方式
@@ -101,4 +107,4 @@ const stringToDate = (val: string): Date => {
   return new Date(v[0], v[1], v[2], v[3], v[4], v[5]);
 };
 
-export { offsetHours, offsetDays, stringToDate, dateFormat, secondToCountdown };
+export { offsetHours, offsetHoursFloat, offsetDays, stringToDate, dateFormat, secondToCountdown };
