@@ -155,6 +155,11 @@ http.interceptors.response.use(
   },
   error => {
     console.error('http:reject', error);
+    if (error.response.status === 401) {
+      clearToken();
+      toLogin();
+      return false;
+    }
     // reject错误处理
     return Promise.reject(
       new HttpError(error.response.data && (error.response.data.message || '系统错误')),
