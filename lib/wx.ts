@@ -1,5 +1,7 @@
-import wx from 'weixin-js-sdk';
+import wx1 from 'weixin-js-sdk';
 import { http } from './http';
+
+const wx = wx1 || (window as any).wx;
 
 export type jsApiListType = string;
 export interface WXConfig {
