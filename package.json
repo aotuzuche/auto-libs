@@ -1,6 +1,6 @@
 {
   "name": "auto-libs",
-  "version": "0.1.67",
+  "version": "0.1.68",
   "description": "凹凸 公用组件",
   "main": "build/index",
   "types": "build/index",
@@ -25,6 +25,9 @@
     "lint:ts": "tsc --build tsconfig.build.json && node node_modules/tslint/bin/tslint -c ./tslint.json -p ./tsconfig.build.json",
     "prepublish": "npm run lint && npm run test",
     "np": "np --yolo --no-yarn"
+  },
+  "publishConfig": {
+    "registry": "http://registry.npmjs.org"
   },
   "husky": {
     "hooks": {
@@ -70,6 +73,7 @@
     "jest": "^24.8.0",
     "lint-staged": "^9.2.1",
     "merge2": "^1.2.3",
+    "np": "^5.1.2",
     "prettier": "^1.18.2",
     "tslint": "^5.20.0",
     "tslint-config-alloy": "^0.2.1",
