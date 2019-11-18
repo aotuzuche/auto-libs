@@ -1,5 +1,7 @@
 import at from 'at-js-sdk';
 import qs from 'qs';
+import { getMiniProgramEnv } from './miniprogram';
+import { search } from './search'
 /* tslint:disable:no-magic-numbers */
 
 const token = '_app_token_';
@@ -8,6 +10,7 @@ const openId = '_app_openId_';
 const unionId = '_app_unionId_';
 const virtualNo = '_app_virtualNo_';
 const memNo = '_app_memNo_';
+const atMiniProgram = '_app_atMiniProgram_';
 
 const ls = window.localStorage;
 const ss = window.sessionStorage;
@@ -41,6 +44,14 @@ const clearVirtualNo = () => ss.removeItem(virtualNo);
 const getMemNo = () => ss.getItem(memNo);
 const setMemNo = (e: string) => ss.setItem(memNo, e);
 const clearMemNo = () => ss.removeItem(memNo);
+
+// atMiniProgramd 操作方法
+const getAtMiniProgram = () => {
+  const val = (ss.getItem(atMiniProgram) || 'false').toLocaleLowerCase();
+  return eval(val)
+};
+const setAtMiniProgram = (e: string) => ss.setItem(atMiniProgram, e);
+const clearAtMiniProgram = () => ss.removeItem(atMiniProgram);
 
 const initToken = async (ignore?: () => boolean) => {
   if (ignore && ignore()) {
@@ -82,8 +93,10 @@ interface ItoLogin {
   isBind?: boolean;
 }
 
-const toLogin = (appParams?: ItoLogin) => {
+const toLogin = async (appParams?: ItoLogin) => {
   clearToken();
+  const atMiniProgram = getAtMiniProgram();
+
   if ((window as any).isApp) {
     at.openLogin({
       success(res: any) {
@@ -96,7 +109,32 @@ const toLogin = (appParams?: ItoLogin) => {
         else at.closeWindow();
       },
     });
-  } else {
+  }
+  else if (atMiniProgram) {
+    clearAtMiniProgram();
+    const miniProgram = await getMiniProgramEnv();
+    const params = search();
+    const searchParam = {
+      redirect: window.location.href,
+    };
+
+    let url = '/m/login/?' + qs.stringify(searchParam);
+
+    if (params.loginUrl) {
+      url = `${params.loginUrl}/?` + qs.stringify(searchParam);
+
+      if (miniProgram.isAlipay) {
+        window.my.switchTab({ url });
+      }
+      else if (miniProgram.isWeapp) {
+        window.wx.miniProgram.redirectTo({ url });
+      }
+    }
+    else {
+      window.location.href = url;
+    }
+  }
+  else {
     const search = {
       redirect: window.location.href,
     };
@@ -135,4 +173,7 @@ export {
   getMemNo,
   setMemNo,
   clearMemNo,
+  getAtMiniProgram,
+  setAtMiniProgram,
+  clearAtMiniProgram
 };
