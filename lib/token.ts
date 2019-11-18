@@ -1,7 +1,7 @@
 import at from 'at-js-sdk';
 import qs from 'qs';
 import { getMiniProgramEnv } from './miniprogram';
-import { search } from './search'
+import { search } from './search';
 /* tslint:disable:no-magic-numbers */
 
 const token = '_app_token_';
@@ -48,7 +48,10 @@ const clearMemNo = () => ss.removeItem(memNo);
 // atMiniProgramd 操作方法
 const getAtMiniProgram = () => {
   const val = (ss.getItem(atMiniProgram) || 'false').toLocaleLowerCase();
-  return eval(val)
+  if (val === 'true') {
+    return true;
+  }
+  return false;
 };
 const setAtMiniProgram = (e: string) => ss.setItem(atMiniProgram, e);
 const clearAtMiniProgram = () => ss.removeItem(atMiniProgram);
@@ -109,8 +112,7 @@ const toLogin = async (appParams?: ItoLogin) => {
         else at.closeWindow();
       },
     });
-  }
-  else if (atMiniProgram) {
+  } else if (atMiniProgram) {
     clearAtMiniProgram();
     const miniProgram = await getMiniProgramEnv();
     const params = search();
@@ -125,16 +127,13 @@ const toLogin = async (appParams?: ItoLogin) => {
 
       if (miniProgram.isAlipay) {
         window.my.switchTab({ url });
-      }
-      else if (miniProgram.isWeapp) {
+      } else if (miniProgram.isWeapp) {
         window.wx.miniProgram.redirectTo({ url });
       }
-    }
-    else {
+    } else {
       window.location.href = url;
     }
-  }
-  else {
+  } else {
     const search = {
       redirect: window.location.href,
     };
@@ -175,5 +174,5 @@ export {
   clearMemNo,
   getAtMiniProgram,
   setAtMiniProgram,
-  clearAtMiniProgram
+  clearAtMiniProgram,
 };
