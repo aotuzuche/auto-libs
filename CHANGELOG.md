@@ -1,3 +1,9 @@
+## [0.1.73](https://github.com/shaodahong/auto-lib/compare/v0.1.74...v0.1.73) (2019-11-19)
+
+### Bug Fixes
+
+- 🐛 fix http ([6b24167](https://github.com/shaodahong/auto-lib/commit/6b24167ded2737986dd90d07d4876774a3a41087))
+
 ## [0.1.74](https://github.com/shaodahong/auto-lib/compare/v0.1.72...v0.1.74) (2019-11-19)
 
 ## [0.1.72](https://github.com/shaodahong/auto-lib/compare/v0.1.71...v0.1.72) (2019-11-19)
