@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosAdapter } from 'axios';
 import Cookie from 'js-cookie';
 import { clearToken, getToken, toLogin } from './token';
 
@@ -166,3 +166,62 @@ http.interceptors.response.use(
     );
   },
 );
+
+const httpCacheAdapter = (page: string, key: string, hour: number) => {
+  const adapter: AxiosAdapter = (conf: any) => {
+    // 判断是否存在缓存数据
+    const fullKey = `_auto_cache_${page}_${key}_`;
+    let cache = localStorage.getItem(fullKey);
+    let cacheJson = cache ? JSON.parse(cache) : {};
+
+    if (cacheJson.created && cacheJson.duration) {
+      const horOffset = (new Date().valueOf() - cacheJson.created) / 1000 / 60 / 60;
+      if (horOffset > cacheJson.duration) {
+        localStorage.removeItem(fullKey);
+        cache = null;
+        cacheJson = {};
+      }
+    } else {
+      cache = null;
+    }
+
+    // 调用默认请求接口, 发送正常请求及返回
+    if (!cache) {
+      const newConf = { ...conf };
+      delete newConf.adapter;
+      return new Promise((resolve, reject) => {
+        axios(newConf)
+          .then(json => {
+            const data = json.data || {};
+            if (
+              json.status === 200 &&
+              data.resCode &&
+              data.resMsg &&
+              data.data &&
+              data.resCode === '000000'
+            ) {
+              localStorage.setItem(
+                fullKey,
+                JSON.stringify({
+                  created: new Date().valueOf(),
+                  duration: hour,
+                  response: data,
+                  status: json.status,
+                }),
+              );
+            }
+            resolve(data);
+          })
+          .catch(err => reject(err));
+      });
+    }
+
+    // 返回缓存数据
+    return new Promise(resolve => {
+      resolve({ data: cacheJson.response, status: cacheJson.status } as any);
+    });
+  };
+  return adapter;
+};
+
+export { httpCacheAdapter };
