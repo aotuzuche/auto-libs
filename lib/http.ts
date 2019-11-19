@@ -210,7 +210,7 @@ const httpCacheAdapter = (page: string, key: string, hour: number) => {
                 }),
               );
             }
-            resolve(data);
+            resolve(json);
           })
           .catch(err => reject(err));
       });
