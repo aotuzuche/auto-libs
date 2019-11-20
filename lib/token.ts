@@ -123,12 +123,14 @@ const toLogin = async (appParams?: ItoLogin) => {
     let url = '/m/login/?' + qs.stringify(searchParam);
 
     if (params.loginUrl) {
-      url = `${params.loginUrl}/?` + qs.stringify(searchParam);
+      url = `${params.loginUrl}?` + qs.stringify(searchParam);
 
       if (miniProgram.isAlipay) {
-        window.my.switchTab({ url });
+        window.my.redirectTo({ url });
       } else if (miniProgram.isWeapp) {
         window.wx.miniProgram.redirectTo({ url });
+      } else {
+        window.location.href = url;
       }
     } else {
       window.location.href = url;
