@@ -285,7 +285,7 @@ initToken(() => {
 ```js
 import { toLogin } from 'auto-libs'
 
-toLogin(?params)
+toLogin(params?)
 ```
 
 ### openId
