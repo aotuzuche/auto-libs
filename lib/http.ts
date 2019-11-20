@@ -167,22 +167,28 @@ http.interceptors.response.use(
   },
 );
 
-const httpCacheAdapter = (page: string, key: string, hour: number) => {
+const httpCacheAdapter = (page: string, key: string, hour: number = 0) => {
   const adapter: AxiosAdapter = (conf: any) => {
     // 判断是否存在缓存数据
     const fullKey = `_auto_cache_${page}_${key}_`;
-    let cache = localStorage.getItem(fullKey);
-    let cacheJson = cache ? JSON.parse(cache) : {};
-
-    if (cacheJson.created && cacheJson.duration) {
-      const horOffset = (new Date().valueOf() - cacheJson.created) / 1000 / 60 / 60;
-      if (horOffset > cacheJson.duration) {
-        localStorage.removeItem(fullKey);
-        cache = null;
-        cacheJson = {};
-      }
+    let cache = null;
+    let cacheJson: Record<string, any> = {};
+    if (hour <= 0) {
+      cache = window['_auto_cache_'][fullKey] ? '_' : void 0;
+      cacheJson = window['_auto_cache_'][fullKey] || {};
     } else {
-      cache = null;
+      cache = localStorage.getItem(fullKey);
+      cacheJson = cache ? JSON.parse(cache) : {};
+      if (cacheJson.created && cacheJson.duration) {
+        const horOffset = (new Date().valueOf() - cacheJson.created) / 1000 / 60 / 60;
+        if (horOffset > cacheJson.duration) {
+          localStorage.removeItem(fullKey);
+          cache = null;
+          cacheJson = {};
+        }
+      } else {
+        cache = null;
+      }
     }
 
     // 调用默认请求接口, 发送正常请求及返回
@@ -200,15 +206,23 @@ const httpCacheAdapter = (page: string, key: string, hour: number) => {
               data.data &&
               data.resCode === '000000'
             ) {
-              localStorage.setItem(
-                fullKey,
-                JSON.stringify({
+              if (hour <= 0) {
+                window['_auto_cache_'][fullKey] = {
                   created: new Date().valueOf(),
-                  duration: hour,
                   response: data,
                   status: json.status,
-                }),
-              );
+                };
+              } else {
+                localStorage.setItem(
+                  fullKey,
+                  JSON.stringify({
+                    created: new Date().valueOf(),
+                    duration: hour,
+                    response: data,
+                    status: json.status,
+                  }),
+                );
+              }
             }
             resolve(json);
           })
