@@ -1,3 +1,9 @@
+## [0.1.82](https://github.com/shaodahong/auto-lib/compare/v0.1.81...v0.1.82) (2019-11-20)
+
+### Bug Fixes
+
+- **httpCacheAdapter:** 修复 bug ([44222bd](https://github.com/shaodahong/auto-lib/commit/44222bd))
+
 ## [0.1.81](https://github.com/shaodahong/auto-lib/compare/v0.1.80...v0.1.81) (2019-11-20)
 
 ### Bug Fixes
