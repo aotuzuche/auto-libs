@@ -167,15 +167,15 @@ http.interceptors.response.use(
   },
 );
 
-const httpCacheAdapter = (page: string, key: string, hour: number = 0) => {
+const httpCacheAdapter = (page: string, key: string, hour = 0) => {
   const adapter: AxiosAdapter = (conf: any) => {
     // 判断是否存在缓存数据
     const fullKey = `_auto_cache_${page}_${key}_`;
-    let cache = null;
+    let cache: string | null | undefined = void 0;
     let cacheJson: Record<string, any> = {};
     if (hour <= 0) {
-      cache = window['_auto_cache_'][fullKey] ? '_' : void 0;
-      cacheJson = window['_auto_cache_'][fullKey] || {};
+      cache = (window as any)._auto_cache_[fullKey] ? '_' : void 0;
+      cacheJson = (window as any)._auto_cache_[fullKey] || {};
     } else {
       cache = localStorage.getItem(fullKey);
       cacheJson = cache ? JSON.parse(cache) : {};
@@ -207,7 +207,7 @@ const httpCacheAdapter = (page: string, key: string, hour: number = 0) => {
               data.resCode === '000000'
             ) {
               if (hour <= 0) {
-                window['_auto_cache_'][fullKey] = {
+                (window as any)._auto_cache_[fullKey] = {
                   created: new Date().valueOf(),
                   response: data,
                   status: json.status,
