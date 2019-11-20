@@ -174,8 +174,12 @@ const httpCacheAdapter = (page: string, key: string, hour = 0) => {
     let cache: string | null | undefined = void 0;
     let cacheJson: Record<string, any> = {};
     if (hour <= 0) {
-      cache = (window as any)._auto_cache_[fullKey] ? '_' : void 0;
-      cacheJson = (window as any)._auto_cache_[fullKey] || {};
+      if (!(window as any)._auto_cache_) {
+        (window as any)._auto_cache_ = {};
+      } else {
+        cache = (window as any)._auto_cache_[fullKey] ? '_' : void 0;
+        cacheJson = (window as any)._auto_cache_[fullKey] || {};
+      }
     } else {
       cache = localStorage.getItem(fullKey);
       cacheJson = cache ? JSON.parse(cache) : {};
@@ -207,6 +211,9 @@ const httpCacheAdapter = (page: string, key: string, hour = 0) => {
               data.resCode === '000000'
             ) {
               if (hour <= 0) {
+                if (!(window as any)._auto_cache_) {
+                  (window as any)._auto_cache_ = {};
+                }
                 (window as any)._auto_cache_[fullKey] = {
                   created: new Date().valueOf(),
                   response: data,
