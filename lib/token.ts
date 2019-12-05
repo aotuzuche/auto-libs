@@ -54,7 +54,6 @@ const getAtMiniProgram = () => {
   return false;
 };
 const setAtMiniProgram = (e: string) => ss.setItem(atMiniProgram, e);
-const clearAtMiniProgram = () => ss.removeItem(atMiniProgram);
 
 const initToken = async (ignore?: () => boolean) => {
   if (ignore && ignore()) {
@@ -113,22 +112,26 @@ const toLogin = async (appParams?: ItoLogin) => {
       },
     });
   } else if (atMiniProgram) {
-    clearAtMiniProgram();
+    /***
+     * 此场景适用情况：
+     * H5页面放在
+     *  */
+
     const miniProgram = await getMiniProgramEnv();
     const params = search();
     const searchParam = {
       redirect: window.location.href,
     };
 
-    let url = '/m/login/?' + qs.stringify(searchParam);
+    let url = `/m/login/?${qs.stringify(searchParam)}`;
 
     if (params.loginUrl) {
-      url = `${params.loginUrl}?` + qs.stringify(searchParam);
+      let miniUrl = `${params.loginUrl}?${qs.stringify(searchParam)}`;
 
       if (miniProgram.isAlipay) {
-        window.my.redirectTo({ url });
+        window.my.redirectTo({ miniUrl });
       } else if (miniProgram.isWeapp) {
-        window.wx.miniProgram.redirectTo({ url });
+        window.wx.miniProgram.redirectTo({ miniUrl });
       } else {
         window.location.href = url;
       }
@@ -139,7 +142,7 @@ const toLogin = async (appParams?: ItoLogin) => {
     const search = {
       redirect: window.location.href,
     };
-    window.location.href = '/m/login/?' + qs.stringify(search);
+    window.location.href = `/m/login/?${qs.stringify(search)}`;
   }
 };
 
@@ -176,5 +179,4 @@ export {
   clearMemNo,
   getAtMiniProgram,
   setAtMiniProgram,
-  clearAtMiniProgram,
 };
