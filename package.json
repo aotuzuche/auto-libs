@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "start": "cross-env NODE_ENV=development PACKAGE=development node scripts/start.js",
-    "build": "cross-env NODE_ENV=production PACKAGE=production node scripts/build.js",
+    "build": "npm run lint && cross-env NODE_ENV=production PACKAGE=production node scripts/build.js",
     "release": "sh scripts/release.sh",
     "commit": "git-cz",
     "test": "jest --no-cache",

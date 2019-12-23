@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Cookie from 'js-cookie';
-import { clearConsoleToken, getConsoleToken, toConsoleLogin, clearConsoleCookie } from './token';
+import { clearConsoleCookie, clearConsoleToken, getConsoleToken, toConsoleLogin } from './token';
 
 interface HttpConfig {
   resCode?: string;

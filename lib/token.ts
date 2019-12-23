@@ -1,6 +1,6 @@
 import at from 'at-js-sdk';
-import qs from 'qs';
 import Cookie from 'js-cookie';
+import qs from 'qs';
 import { getMiniProgramEnv } from './miniprogram';
 import { search } from './search';
 /* tslint:disable:no-magic-numbers */
