@@ -1,3 +1,17 @@
+## [0.1.87](https://github.com/shaodahong/auto-lib/compare/v0.1.86...v0.1.87) (2019-12-23)
+
+### Bug Fixes
+
+- 修改 tslint 排序报错 ([7c1acdc](https://github.com/shaodahong/auto-lib/commit/7c1acdc27d4421b5c96097ba5b6f480caf90773c))
+
+## [0.1.86](https://github.com/shaodahong/auto-lib/compare/v0.1.85...v0.1.86) (2019-12-23)
+
+## [0.1.85](https://github.com/shaodahong/auto-lib/compare/v0.1.84...v0.1.85) (2019-12-23)
+
+### Features
+
+- 🎸 token, httpConsole ([71744f9](https://github.com/shaodahong/auto-lib/commit/71744f9fa7ea8fee13a66e32e09bf4315cdd820d))
+
 ## [0.1.84](https://github.com/shaodahong/auto-lib/compare/v0.1.83...v0.1.84) (2019-12-05)
 
 ### Bug Fixes
