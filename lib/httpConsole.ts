@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Cookie from 'js-cookie';
-import { clearConsoleToken, getConsoleToken, toConsoleLogin } from './token';
+import { clearConsoleToken, getConsoleToken, toConsoleLogin, clearConsoleCookie } from './token';
 
 interface HttpConfig {
   resCode?: string;
@@ -120,6 +120,7 @@ httpConsole.interceptors.response.use(
         return data;
       } else {
         if (config.status === 401) {
+          clearConsoleCookie();
           clearConsoleToken();
           toConsoleLogin();
           return false;
@@ -136,6 +137,7 @@ httpConsole.interceptors.response.use(
     }
     // 需要登录（没登录或登录过期）
     else if (data.resCode === '200008') {
+      clearConsoleCookie();
       clearConsoleToken();
       toConsoleLogin();
       return false;

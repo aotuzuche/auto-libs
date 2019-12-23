@@ -1,5 +1,6 @@
 import at from 'at-js-sdk';
 import qs from 'qs';
+import Cookie from 'js-cookie';
 import { getMiniProgramEnv } from './miniprogram';
 import { search } from './search';
 /* tslint:disable:no-magic-numbers */
@@ -24,6 +25,11 @@ const clearToken = () => ls.removeItem(token);
 const getConsoleToken = () => ls.getItem(consoleToken);
 const setConsoleToken = (e: string) => ls.setItem(consoleToken, e);
 const clearConsoleToken = () => ls.removeItem(consoleToken);
+
+// 获取管理后台登录cookie
+const getConsoleCookie = () => Cookie.get(consoleToken);
+const setConsoleCookie = (e: string) => Cookie.set(consoleToken, e);
+const clearConsoleCookie = () => Cookie.remove(consoleToken);
 
 // openId 操作方法
 const getOpenId = () => ss.getItem(openId);
@@ -179,4 +185,7 @@ export {
   clearMemNo,
   getAtMiniProgram,
   setAtMiniProgram,
+  getConsoleCookie,
+  setConsoleCookie,
+  clearConsoleCookie,
 };
