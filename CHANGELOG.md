@@ -1,3 +1,9 @@
+## [0.1.88](https://github.com/shaodahong/auto-lib/compare/v0.1.87...v0.1.88) (2020-01-15)
+
+### Features
+
+- 🎸 wx.ts ([eb5bc4b](https://github.com/shaodahong/auto-lib/commit/eb5bc4b74bff0f14cd3488027e2ee4833236972b))
+
 ## [0.1.87](https://github.com/shaodahong/auto-lib/compare/v0.1.86...v0.1.87) (2019-12-23)
 
 ### Bug Fixes
