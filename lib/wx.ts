@@ -34,8 +34,6 @@ export const WX = {
       });
 
       wx.ready(() => {
-        callback && callback(wx);
-
         if (
           jsApiList.some(api => {
             return api === 'onMenuShareTimeline' || api === 'onMenuShareAppMessage';
@@ -70,6 +68,8 @@ export const WX = {
               title: config.text || '凹凸租车',
             });
         }
+
+        callback && callback(wx);
       });
 
       wx.error((res: any) => {
