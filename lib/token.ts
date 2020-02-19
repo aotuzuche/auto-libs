@@ -7,6 +7,7 @@ import { search } from './search';
 
 const token = '_app_token_';
 const consoleToken = '_app_console_token_';
+const oldConsoleToken = 'auto_system_token';
 const openId = '_app_openId_';
 const unionId = '_app_unionId_';
 const virtualNo = '_app_virtualNo_';
@@ -24,12 +25,18 @@ const clearToken = () => ls.removeItem(token);
 // 获取管理后台token方法，即jwt
 const getConsoleToken = () => ls.getItem(consoleToken);
 const setConsoleToken = (e: string) => ls.setItem(consoleToken, e);
-const clearConsoleToken = () => ls.removeItem(consoleToken);
+const clearConsoleToken = () => {
+  ls.removeItem(oldConsoleToken);
+  ls.removeItem(consoleToken);
+};
 
 // 获取管理后台登录cookie
 const getConsoleCookie = () => Cookie.get(consoleToken);
 const setConsoleCookie = (e: string) => Cookie.set(consoleToken, e);
-const clearConsoleCookie = () => Cookie.remove(consoleToken);
+const clearConsoleCookie = () => {
+  Cookie.remove(oldConsoleToken);
+  Cookie.remove(consoleToken);
+};
 
 // openId 操作方法
 const getOpenId = () => ss.getItem(openId);
