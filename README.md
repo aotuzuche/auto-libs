@@ -383,8 +383,6 @@ stringToDate();
 
 是否是百度客户端： isBaidu,
 
-是否是百度小程序：isMiniBaidu,
-
 是否是企业微信：isWXWork,
 
 是否是手机号 function： isMobile(str),
@@ -394,3 +392,9 @@ stringToDate();
 是否是电子邮箱 function： isEmail(str),
 
 是否是身份证 function：isIDCard(str),
+
+是否是支付宝小程序 function isMiniAlipay() 异步函数,
+
+是否是微信小程序 function isMiniWX() 异步函数,
+
+是否是微信小程序 function isMiniBaidu() 异步函数,

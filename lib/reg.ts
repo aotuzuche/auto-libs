@@ -1,3 +1,12 @@
+import { getMiniProgramEnv } from './miniprogram';
+
+interface MiniEnv {
+  isAlipay?: boolean;
+  isWeapp?: boolean;
+  isSwan?: boolean;
+  isMiniProgram?: boolean;
+}
+
 const ua = navigator.userAgent;
 
 // 是否是企业微信
@@ -20,9 +29,6 @@ const isAndroid = !isiOS && (/Android/.test(ua) || /Adr/.test(ua));
 
 // 是否是百度app
 const isBaidu = /baiduboxapp/gi.test(ua);
-
-// 是否是百度小程序
-const isMiniBaidu = /swan/gi.test(ua);
 
 // 是否是手机号
 const isMobile = (str: string) => {
@@ -48,6 +54,22 @@ const isIDCard = (str: string) => {
   return reg.test(str);
 };
 
+const isMiniWX = async () => {
+  const result: MiniEnv = await getMiniProgramEnv();
+  return result.isMiniProgram && result.isWeapp;
+};
+
+const isMiniAlipay = async () => {
+  const result: MiniEnv = await getMiniProgramEnv();
+  return result.isMiniProgram && result.isAlipay;
+};
+
+// 是否是百度小程序
+const isMiniBaidu = async () => {
+  const result: MiniEnv = await getMiniProgramEnv();
+  return result.isMiniProgram && result.isSwan;
+};
+
 export {
   isApp,
   isWX,
@@ -55,10 +77,12 @@ export {
   isiOS,
   isAndroid,
   isBaidu,
-  isMiniBaidu,
   isWXWork,
   isMobile,
   isTel,
   isEmail,
   isIDCard,
+  isMiniWX,
+  isMiniBaidu,
+  isMiniAlipay,
 };
