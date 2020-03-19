@@ -368,3 +368,29 @@ offsetDays();
 // 将字符串20190101093000 转换为时间格式
 stringToDate();
 ```
+
+## 正则
+
+是否是凹凸 app: isApp,
+
+是否是微信: isWX,
+
+是否是支付宝客户端: isAlipay,
+
+是否是 iOS: isiOS,
+
+是否是 android: isAndroid,
+
+是否是百度客户端： isBaidu,
+
+是否是百度小程序：isMiniBaidu,
+
+是否是企业微信：isWXWork,
+
+是否是手机号 function： isMobile(str),
+
+是否是电话号码 function： isTel(str),
+
+是否是电子邮箱 function： isEmail(str),
+
+是否是身份证 function：isIDCard(str),
