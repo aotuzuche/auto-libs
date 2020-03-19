@@ -7,6 +7,21 @@ interface MiniEnv {
   isMiniProgram?: boolean;
 }
 
+// interface IProps {
+//   isWXWork: boolean;
+//   isApp: boolean;
+//   isWX: boolean;
+//   isAlipay: boolean;
+//   isiOS: boolean;
+//   isAndroid: boolean;
+//   isBaidu: boolean;
+//   isMobile: (str: string) => boolean;
+//   isTel: (str: string) => boolean;
+//   isEmail: (str: string) => boolean;
+//   isIDCard: (str: string) => boolean;
+//   isMiniWX: () => boolean;
+// }
+
 const ua = navigator.userAgent;
 
 // 是否是企业微信
@@ -70,7 +85,7 @@ const isMiniBaidu = async () => {
   return result.isMiniProgram && result.isSwan;
 };
 
-export {
+export default {
   isApp,
   isWX,
   isAlipay,

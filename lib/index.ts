@@ -8,5 +8,5 @@ export * from './transfer';
 export * from './search';
 export * from './setWechatTitle';
 export * from './miniprogram';
-export * from './reg';
+export { default as Reg } from './reg';
 export { default as go } from './go';
