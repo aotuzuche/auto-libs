@@ -371,6 +371,8 @@ stringToDate();
 
 ## 正则
 
+添加 Reg 对象，包含下面这些方法和属性：
+
 是否是凹凸 app: isApp,
 
 是否是微信: isWX,
