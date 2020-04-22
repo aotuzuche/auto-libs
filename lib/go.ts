@@ -40,21 +40,24 @@ export interface DirverAuthParams {
   redirect?: string;
 }
 const go = {
-  address: (params: AddressParams) => {
-    window.location.href = `/m/address/?${qs.stringify(params)}`;
+  address: (params: AddressParams, prefix?: string) => {
+    const baseurl = !isDev ? window.location.origin : prefix || '';
+    window.location.href = `${baseurl}/m/address/?${qs.stringify(params)}`;
   },
 
-  pay: (params: PayParmas) => {
-    const baseurl = !isDev ? 'https://m.atzuche.com' : '';
+  pay: (params: PayParmas, prefix?: string) => {
+    const baseurl = !isDev ? 'https://m.atzuche.com' : prefix || '';
     window.location.href = `${baseurl}/m/pay/?${qs.stringify(params)}`;
   },
 
-  identityAuth: (params: IdentityAuthParams) => {
-    window.location.href = `/m/identityAuth?${qs.stringify(params)}`;
+  identityAuth: (params: IdentityAuthParams, prefix?: string) => {
+    const baseurl = !isDev ? window.location.origin : prefix || '';
+    window.location.href = `${baseurl}/m/identityAuth?${qs.stringify(params)}`;
   },
 
-  dirverAuth: (params: DirverAuthParams) => {
-    window.location.href = `/m/identityAuth/dirverLicense?${qs.stringify(params)}`;
+  dirverAuth: (params: DirverAuthParams, prefix?: string) => {
+    const baseurl = !isDev ? window.location.origin : prefix || '';
+    window.location.href = `${baseurl}/m/identityAuth/dirverLicense?${qs.stringify(params)}`;
   },
 };
 

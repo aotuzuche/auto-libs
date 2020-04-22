@@ -2,7 +2,7 @@ import qs from 'qs';
 
 export default class Search {
   // 获取search的map
-  public static parse() {
+  public static parse(): Record<string, string> {
     const sh = window.location.search.replace(/^\?/, '');
     return qs.parse(sh);
   }
@@ -31,6 +31,14 @@ export default class Search {
     return Search;
   }
 
+  // 当不存在时，添加
+  public static init(key: string, value: string) {
+    if (!Search.exist(key)) {
+      Search.add(key, value);
+    }
+    return Search;
+  }
+
   // 删除
   public static remove(...key: string[]) {
     const map = Search.parse();
@@ -53,9 +61,3 @@ export default class Search {
     return Search.get(key) === value;
   }
 }
-
-// 旧版本
-export const search = () => {
-  const search = window.location.search.replace(/^\?/, '');
-  return qs.parse(search);
-};

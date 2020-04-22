@@ -2,7 +2,7 @@ import at from 'at-js-sdk';
 import Cookie from 'js-cookie';
 import qs from 'qs';
 import { getMiniProgramEnv } from './miniprogram';
-import { search } from './search';
+import Search from './search';
 /* tslint:disable:no-magic-numbers */
 
 const token = '_app_token_';
@@ -131,7 +131,7 @@ const toLogin = async (appParams?: ItoLogin) => {
      *  */
 
     const miniProgram = await getMiniProgramEnv();
-    const params = search();
+    const params = Search.parse();
     const searchParam = {
       redirect: window.location.href,
     };
