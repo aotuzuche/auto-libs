@@ -2,7 +2,7 @@ import qs from 'qs';
 
 export default class Search {
   // 获取search的map
-  public static parse<T extends Record<string, string>>(): T {
+  public static parse<T extends any>(): T {
     const sh = window.location.search.replace(/^\?/, '');
     return qs.parse(sh);
   }

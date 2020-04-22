@@ -131,7 +131,7 @@ const toLogin = async (appParams?: ItoLogin) => {
      *  */
 
     const miniProgram = await getMiniProgramEnv();
-    const params = Search.parse();
+    const params: any = Search.parse();
     const searchParam = {
       redirect: window.location.href,
     };
