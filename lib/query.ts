@@ -23,13 +23,19 @@ export default class Query {
     const map = Query.get();
     map[key] = value;
     window.history.replaceState(null, '', `?${qs.stringify(map)}`);
+    return Query;
   }
 
   // 删除
-  public static remove(key: string) {
+  public static remove(...key: string[]) {
     const map = Query.get();
-    delete map[key];
+    if (key && key.length) {
+      for (let k of key) {
+        delete map[k];
+      }
+    }
     window.history.replaceState(null, '', `?${qs.stringify(map)}`);
+    return Query;
   }
 
   // 判断是否存在
