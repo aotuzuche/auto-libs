@@ -13,41 +13,47 @@ export default class Search {
   }
 
   // 获取search的指定key
-  public static get(key: string): string {
+  public static get(key: string): string | undefined {
     return Search.parse()[key];
   }
 
   // 获取search的指定key，不存在时使用默认值
   public static getDefault(key: string, value: string): string {
-    const res = Search.parse()[key];
+    const res = Search.get(key);
     return typeof res === 'undefined' ? value : res;
   }
 
-  // 添加
-  public static add(key: string, value: string) {
+  // 设置
+  public static set(key: string, value: string) {
     const map = Search.parse();
     map[key] = value;
     window.history.replaceState(null, '', `?${qs.stringify(map)}`);
     return Search;
   }
 
-  // 当不存在时，添加
-  public static init(key: string, value: string) {
+  // 定义，即当不存在时才添加
+  public static define(key: string, value: string) {
     if (!Search.exist(key)) {
-      Search.add(key, value);
+      Search.set(key, value);
     }
     return Search;
   }
 
   // 删除
-  public static remove(...key: string[]) {
+  public static remove(key: string) {
     const map = Search.parse();
-    if (key && key.length) {
-      for (let k of key) {
-        delete map[k];
-      }
+    delete map[key];
+    if (Object.keys(map).length === 0) {
+      window.history.replaceState(null, '', window.location.origin + window.location.pathname);
+    } else {
+      window.history.replaceState(null, '', `?${qs.stringify(map)}`);
     }
-    window.history.replaceState(null, '', `?${qs.stringify(map)}`);
+    return Search;
+  }
+
+  // 清空
+  public static clear() {
+    window.history.replaceState(null, '', window.location.origin + window.location.pathname);
     return Search;
   }
 
@@ -61,3 +67,8 @@ export default class Search {
     return Search.get(key) === value;
   }
 }
+
+export const search = () => {
+  const search = window.location.search.replace(/^\?/, '');
+  return qs.parse(search);
+};
