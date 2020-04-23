@@ -14,7 +14,8 @@ export default class Search {
 
   // 获取search的指定key
   public static get(key: string): string | undefined {
-    return Search.parse()[key];
+    const val = Search.parse()[key];
+    return decodeURIComponent(decodeURIComponent(val));
   }
 
   // 获取search的指定key，不存在时使用默认值
