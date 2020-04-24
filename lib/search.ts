@@ -4,7 +4,11 @@ export default class Search {
   // 获取search的map
   public static parse<T extends any>(): T {
     const sh = window.location.search.replace(/^\?/, '');
-    return qs.parse(sh);
+    const map = qs.parse(sh);
+    Object.keys(map).forEach(k => {
+      map[k] = decodeURIComponent(decodeURIComponent(map[k]));
+    });
+    return map;
   }
 
   // 获取search的string
@@ -15,7 +19,7 @@ export default class Search {
   // 获取search的指定key
   public static get(key: string): string | undefined {
     const val = Search.parse()[key];
-    return typeof val !== 'undefined' ? decodeURIComponent(decodeURIComponent(val)) : void 0;
+    return val;
   }
 
   // 获取search的指定key，不存在时使用默认值
