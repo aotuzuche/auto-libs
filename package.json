@@ -1,11 +1,11 @@
 {
   "name": "auto-libs",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "凹凸 公用组件",
   "main": "build/index",
   "types": "build/index",
   "repository": "git@github.com:aotuzuche/auto-libs.git",
-  "author": "shaodahong <337097324@qq.com>",
+  "author": "atzuche <www.atzuche.com>",
   "license": "MIT",
   "sideEffects": [
     "*.css",
