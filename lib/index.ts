@@ -8,6 +8,7 @@ export * from './transfer';
 export * from './setWechatTitle';
 export * from './miniprogram';
 export * from './search';
+export { default as Report } from './report';
 export { default as CDN } from './cdn';
 export { default as Reg } from './reg';
 export { default as Search } from './search';
