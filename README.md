@@ -5,32 +5,34 @@
    - [flexible 布局脚本](#flexible-布局脚本)
    - [Date 扩展](#date-扩展)
    - [Input 扩展](#input-扩展)
-2. [cdn 地址](#cdn-地址)
-3. [go 跳转](#go-跳转)
+2. [CDN](#CDN方法)
+3. [Report 错误上报](#Report-错误上报)
+4. [Search 浏览器地址参数处理](#Search-浏览器地址参数处理)
+5. [go 跳转](#go-跳转)
    - [取还车地址](#取还车地址)
    - [支付](#支付)
    - [身份认证](#身份认证)
    - [驾照认证](#驾照认证)
-4. [http](#http)
+6. [http](#http)
    - [自定义拦截器](#自定义拦截器)
-5. [AS 统计埋点](#as-统计埋点)
+7. [AS 统计埋点](#as-统计埋点)
    - [页面编号 事件号和携带参数](#页面编号-事件号和携带参数)
-6. [WX](#wx)
+8. [WX](#wx)
    - [自定义参数](#自定义参数)
    - [自定义按钮](#自定义按钮)
-7. [token 相关](#token-相关)
+9. [token 相关](#token-相关)
    - [token](#token)
    - [登录](#登录)
    - [openId](#openid)
    - [unionId](#unionid)
    - [virtualNo](#virtualno)
    - [memNo](#memno)
-8. [时间转换](#时间转换)
-   - [offsetHours](#offsetHours)
-   - [offsetDays](#offsetDays)
-   - [stringToDate](#stringToDate)
-9. [httpConsole](#httpConsole)
-   - [自定义拦截器 管理后台](#自定义拦截器)
+10. [时间转换](#时间转换)
+    - [offsetHours](#offsetHours)
+    - [offsetDays](#offsetDays)
+    - [stringToDate](#stringToDate)
+11. [httpConsole](#httpConsole)
+    - [自定义拦截器 管理后台](#自定义拦截器)
 
 ## 公用样式和脚本引入
 
@@ -58,10 +60,83 @@ import 'auto-libs/build/scripts/date';
 import 'auto-libs/build/scripts/inputEvents';
 ```
 
-## cdn 地址
+## CDN 方法
+
+获取 cdn 的静态资源或图片资源，cdn 地址会自动根据开发和生产环境切换
+
+另外当传递的值为空时，返回一张灰白色空图，保证了不会访问 cdn/undefined 这样的地址
 
 ```js
-import { cdn } from 'auto-libs';
+import { CDN } from 'auto-libs';
+
+CDN.image('myimage.jpg'); // https://carphoto.atzuche.com/myimage.jpg
+
+CDN.asset('myimage.jpg'); // https://cdn.atzuche.com/myimage.jpg
+
+CDN.asset(void 0); // https://cdn.atzuche.com/static/images/space.png
+```
+
+## Report 错误上报
+
+上报的错误将会到 sentry 仅适用于 react-scrupts-auto 脚手架项目
+
+```js
+import { Report } from 'auto-libs';
+
+// 用于做一些记录
+Report.info('info消息');
+
+// 用于警告
+Report.warning('warning消息');
+
+// 用于记录错误
+Report.error(new Error('错误'));
+```
+
+1. 使用`Report.error`时注意：传递的内容不管是不是一个 Error 类型的数据，用`new Error()`包一层，方便 sentry 做错误定位
+1. 一般我们在`try { ... } catch (err) { ... }`的 catch 里上报错误，全局的错误在该脚手架中会自动上报
+
+## Search 浏览器地址参数处理
+
+```js
+import { Search } from 'auto-libs'
+
+// 获取当前网址search内容的map
+Search.parse<T>()
+
+// 获取当前网址search内容的string
+Search.toString()
+
+// map格式转string格式
+const str = Search.map2string({ a: 1, b: 2 }) // a=1&b=2
+
+// string格式转map格式
+const map = Search.string2map('a=1&b=2') // { a: '1', b: '2' }
+
+// 获取当前网址search的某个key
+const t = Search.get('token')
+
+// 获取当前网址search的某个key，当值为undefined时，取默认值
+const t = Search.getDefault('token', '112233')
+
+// 设置某个值到当前网址search中
+Search.set('token', '112233')
+
+// 当该key不存在时，设置某个值到当前网址search中
+// 注意：当key存在值，不做任何处理
+Search.define('token', '112233')
+
+// 删除当前网址search中的某个key
+Search.remove('token')
+
+// 清空当前网址的search内容
+Search.clear()
+
+// 判断某个key是否存在于当前search
+const hasToken = Search.exist('token')
+
+// 比较当前search中某个值
+const isNew = Search.is('new', '1')
 ```
 
 ## go 跳转

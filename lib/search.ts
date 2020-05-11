@@ -3,17 +3,26 @@ import qs from 'qs';
 const Search = {
   // 获取search的map
   parse<T extends any>(): T {
-    const sh = window.location.search.replace(/^\?/, '');
-    const map = qs.parse(sh);
-    Object.keys(map).forEach(k => {
-      map[k] = decodeURIComponent(decodeURIComponent(map[k]));
-    });
-    return map;
+    return Search.string2map(Search.toString());
   },
 
   // 获取search的string
   toString() {
     return window.location.search.replace(/^\?/, '');
+  },
+
+  // map格式转string格式
+  map2string(data: Record<string, any>): string {
+    return qs.stringify(data);
+  },
+
+  // string格式转map格式
+  string2map<T extends any>(str: string): T {
+    const map = qs.parse(str);
+    Object.keys(map).forEach(k => {
+      map[k] = decodeURIComponent(decodeURIComponent(map[k]));
+    });
+    return map;
   },
 
   // 获取search的指定key

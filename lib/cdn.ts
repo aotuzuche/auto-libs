@@ -16,10 +16,10 @@ const CDN = {
     }
 
     if (!isDev) {
-      return 'https://carphoto.atzuche.com/' + path;
+      return 'https://carphoto.atzuche.com/' + path.replace(/^\/+/, '');
     }
 
-    return 'https://at-images-test.oss-cn-hangzhou.aliyuncs.com/' + path;
+    return 'https://at-images-test.oss-cn-hangzhou.aliyuncs.com/' + path.replace(/^\/+/, '');
   },
 
   /**
@@ -31,10 +31,10 @@ const CDN = {
     }
 
     if (!isDev) {
-      return 'https://cdn.atzuche.com/' + path;
+      return 'https://cdn.atzuche.com/' + path.replace(/^\/+/, '');
     }
 
-    return 'https://cdn-test.atzuche.com/' + path;
+    return 'https://cdn-test.atzuche.com/' + path.replace(/^\/+/, '');
   },
 };
 
