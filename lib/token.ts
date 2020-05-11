@@ -92,6 +92,7 @@ const initToken = async (ignore?: () => boolean) => {
       }
 
       if (token && String(token).length > 20) {
+        setToken(token);
         resolve();
       } else {
         clearToken();
