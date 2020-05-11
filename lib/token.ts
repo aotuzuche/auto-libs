@@ -86,7 +86,11 @@ const initToken = async (ignore?: () => boolean) => {
         },
       });
     } else {
-      const token = getToken();
+      let token = getToken();
+      if (Search.exist('token') && Search.exist('atMiniProgram')) {
+        token = Search.get('token')!;
+      }
+
       if (token && String(token).length > 20) {
         resolve();
       } else {
