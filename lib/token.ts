@@ -126,7 +126,6 @@ const toLogin = async (appParams?: ItoLogin) => {
       },
       cancel() {
         if (appParams && appParams.cancel) appParams.cancel();
-        else at.closeWindow();
       },
     });
   } else if (atMiniProgram) {
