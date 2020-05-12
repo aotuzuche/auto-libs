@@ -3,9 +3,8 @@
 1. [公用样式和脚本引入](#公用样式和脚本引入)
    - [reset 样式](#reset-样式)
    - [flexible 布局脚本](#flexible-布局脚本)
-   - [Date 扩展](#date-扩展)
    - [Input 扩展](#input-扩展)
-2. [CDN](#CDN方法)
+2. [CDN](#CDN-方法)
 3. [Report 错误上报](#Report-错误上报)
 4. [Search 浏览器地址参数处理](#Search-浏览器地址参数处理)
 5. [go 跳转](#go-跳转)
@@ -46,12 +45,6 @@ import 'auto-libs/build/styles/reset';
 
 ```js
 import 'auto-libs/build/scripts/flexible';
-```
-
-### Date 扩展
-
-```js
-import 'auto-libs/build/scripts/date';
 ```
 
 ### Input 扩展
