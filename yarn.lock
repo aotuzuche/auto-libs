@@ -1336,10 +1336,10 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha1-x57Zf380y48robyXkLzDZkdLS3k=
 
-at-js-sdk@^2.2.2:
-  version "2.2.19"
-  resolved "https://registry.yarnpkg.com/at-js-sdk/-/at-js-sdk-2.2.19.tgz#e264931a9201d68e38dcde8946f68c25a9e443f1"
-  integrity sha512-Kw98L5SXoD9t9/kWGqn7jUdcMEcEtKDFx/H16A6xiItl48+pqv89NOBj2LK3S9OzmisoeEM0InfNQ5YdXfXZKQ==
+at-js-sdk@^2.2.60:
+  version "2.2.60"
+  resolved "https://registry.npm.taobao.org/at-js-sdk/download/at-js-sdk-2.2.60.tgz#a8ba9542d0912ff2040fcabb8df001e297f0bdb8"
+  integrity sha1-qLqVQtCRL/IED8q7jfAB4pfwvbg=
 
 atob@^2.1.1:
   version "2.1.2"

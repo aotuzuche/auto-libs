@@ -1,6 +1,6 @@
 {
   "name": "auto-libs",
-  "version": "0.2.15",
+  "version": "0.2.16",
   "description": "凹凸 公用组件",
   "main": "build/index",
   "types": "build/index",
@@ -46,7 +46,7 @@
     "types"
   ],
   "dependencies": {
-    "at-js-sdk": "^2.2.2",
+    "at-js-sdk": "^2.2.60",
     "axios": "^0.18.0",
     "js-cookie": "^2.2.0",
     "qs": "^6.5.2",
