@@ -7,21 +7,6 @@ interface MiniEnv {
   isMiniProgram?: boolean;
 }
 
-// interface IProps {
-//   isWXWork: boolean;
-//   isApp: boolean;
-//   isWX: boolean;
-//   isAlipay: boolean;
-//   isiOS: boolean;
-//   isAndroid: boolean;
-//   isBaidu: boolean;
-//   isMobile: (str: string) => boolean;
-//   isTel: (str: string) => boolean;
-//   isEmail: (str: string) => boolean;
-//   isIDCard: (str: string) => boolean;
-//   isMiniWX: () => boolean;
-// }
-
 const ua = navigator.userAgent;
 
 // 是否是企业微信
@@ -49,6 +34,30 @@ const isBaidu = /baiduboxapp/gi.test(ua);
 const isMobile = (str: string) => {
   const reg = /^1[3-9]\d{9}$/;
   return reg.test(str);
+};
+
+// 验证姓名格式
+const isUserName = (name: string) => {
+  const reg = /^[\u4e00-\u9fa5]|[a-zA-Z]$/;
+  return reg.test(name);
+};
+
+// 验证护照号格式
+const isPassCard = (num: string) => {
+  const reg = /^((1[45]\d{7})|(G\d{8})|(P\d{7})|(S\d{7,8}))?$/;
+  return reg.test(num);
+};
+
+// 验证回乡证号格式
+const isHomeReturnPermit = (num: string) => {
+  const reg = /^[a-zA-Z]\d{8}$|^\d{15}$|^\d{17}(\d|x|X)$/;
+  return reg.test(num);
+};
+
+// 验证台胞证号格式
+const isTaiwanCompatriotPermit = (num: string) => {
+  const reg = /^(?:(830000(?:19|20)\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])\d{3}[\dX])|\d{10}[DAB])$/;
+  return reg.test(num);
 };
 
 // 固定电话
@@ -94,6 +103,10 @@ export default {
   isBaidu,
   isWXWork,
   isMobile,
+  isUserName,
+  isPassCard,
+  isHomeReturnPermit,
+  isTaiwanCompatriotPermit,
   isTel,
   isEmail,
   isIDCard,
