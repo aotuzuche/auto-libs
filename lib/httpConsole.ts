@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import Cookie from 'js-cookie';
 import { clearConsoleCookie, clearConsoleToken, getConsoleToken, toConsoleLogin } from './token';
 
@@ -146,9 +146,11 @@ httpConsole.interceptors.response.use(
     // reject错误处理
     return Promise.reject(new HttpError(data.resMsg || data.msg || data.message, data));
   },
-  error => {
+  (error: AxiosError) => {
     console.error('http:reject', error);
     // reject错误处理
-    return Promise.reject(new HttpError('系统错误'));
+    const { data } = error.response || {};
+    const { message = '系统错误', msg, resMsg } = data || {};
+    return Promise.reject(new HttpError(resMsg || msg || message));
   },
 );
