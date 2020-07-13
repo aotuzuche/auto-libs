@@ -1,6 +1,6 @@
 {
   "name": "auto-libs",
-  "version": "0.3.3",
+  "version": "0.3.4-beta.0",
   "description": "凹凸 公用组件",
   "main": "build/index",
   "types": "build/index",
@@ -26,7 +26,6 @@
     "prepublish": "npm run lint && npm run test",
     "np": "np --yolo --no-yarn",
     "npb": "np 0.3.4-beta.0 --yolo --no-yarn --tag=beta"
-
   },
   "publishConfig": {
     "registry": "http://registry.npmjs.org"
