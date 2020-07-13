@@ -47,11 +47,6 @@ const go = {
 
   pay: (params: PayParmas, prefix?: string) => {
     const baseurl = !isDev ? 'https://m.atzuche.com' : prefix || '';
-    window.location.href = `${baseurl}/m/pay/?${qs.stringify(params)}`;
-  },
-
-  newPay: (params: PayParmas, prefix?: string) => {
-    const baseurl = !isDev ? 'https://m.atzuche.com' : prefix || '';
     window.location.href = `${baseurl}/node/thirdpartyauth/pay?${qs.stringify(params)}`;
   },
 
