@@ -50,6 +50,11 @@ const go = {
     window.location.href = `${baseurl}/m/pay/?${qs.stringify(params)}`;
   },
 
+  newPay: (params: PayParmas, prefix?: string) => {
+    const baseurl = !isDev ? 'https://m.atzuche.com' : prefix || '';
+    window.location.href = `${baseurl}/node/thirdpartyauth/pay?${qs.stringify(params)}`;
+  },
+
   identityAuth: (params: IdentityAuthParams, prefix?: string) => {
     const baseurl = !isDev ? window.location.origin : prefix || '';
     window.location.href = `${baseurl}/m/identityAuth?${qs.stringify(params)}`;
