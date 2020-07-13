@@ -18,10 +18,10 @@ const Ruse = {
       }, 1000);
     };
 
-    const reset = () => {
-      setVal(t);
-      run();
-    };
+    // const reset = () => {
+    //   setVal(t);
+    //   run();
+    // };
 
     return [val];
   },
