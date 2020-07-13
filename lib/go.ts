@@ -39,6 +39,7 @@ export interface IdentityAuthParams {
 export interface DirverAuthParams {
   redirect?: string;
 }
+
 const go = {
   address: (params: AddressParams, prefix?: string) => {
     const baseurl = !isDev ? window.location.origin : prefix || '';

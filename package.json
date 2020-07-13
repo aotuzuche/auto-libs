@@ -24,7 +24,9 @@
     "lint-staged": "lint-staged",
     "lint:ts": "tsc --build tsconfig.build.json && node node_modules/tslint/bin/tslint -c ./tslint.json -p ./tsconfig.build.json",
     "prepublish": "npm run lint && npm run test",
-    "np": "np --yolo --no-yarn"
+    "np": "np --yolo --no-yarn",
+    "npb": "np 0.3.4-beta.0 --yolo --no-yarn --tag=beta"
+
   },
   "publishConfig": {
     "registry": "http://registry.npmjs.org"
