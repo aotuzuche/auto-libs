@@ -2,7 +2,7 @@ import qs from 'qs';
 
 const Search = {
   // 获取search的map
-  parse<T extends any>(): T {
+  parse<T = any>(): T {
     return Search.string2map(Search.toString());
   },
 
@@ -17,7 +17,7 @@ const Search = {
   },
 
   // string格式转map格式
-  string2map<T extends any>(str: string): T {
+  string2map<T = any>(str: string): T {
     const map = qs.parse(str);
     Object.keys(map).forEach(k => {
       map[k] = decodeURIComponent(decodeURIComponent(map[k]));

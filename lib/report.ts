@@ -5,6 +5,10 @@ const Report = {
    */
   info(msg: string) {
     if (window && (window as any).Raven) {
+      if (!msg) {
+        return;
+      }
+
       (window as any).Raven.captureMessage(msg, { level: 'info' });
     }
   },
@@ -15,6 +19,10 @@ const Report = {
    */
   warning(msg: string) {
     if (window && (window as any).Raven) {
+      if (!msg) {
+        return;
+      }
+
       (window as any).Raven.captureMessage(msg, { level: 'warning' });
     }
   },
@@ -26,7 +34,17 @@ const Report = {
   error(msg: string | Error) {
     if (window && (window as any).Raven) {
       if (msg instanceof Error) {
+        // 如果没有message内容，不做上报
+        if (!msg.message) {
+          return;
+        }
+
         (window as any).Raven.captureException(msg);
+        return;
+      }
+
+      // 如果没有内容，不做上报
+      if (!msg) {
         return;
       }
 
