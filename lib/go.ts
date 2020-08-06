@@ -25,6 +25,8 @@ export interface AddressParams {
 }
 
 export interface PayParmas {
+  amount?: string;
+  payTitle?: string;
   token: string;
   orderNo: string;
   payFrom?: string;
@@ -48,7 +50,7 @@ const go = {
 
   pay: (params: PayParmas, prefix?: string) => {
     const baseurl = !isDev ? 'https://m.atzuche.com' : prefix || '';
-    window.location.href = `${baseurl}/node/thirdpartyauth/pay?${qs.stringify(params)}`;
+    window.location.href = `${baseurl}/m/pay/?${qs.stringify(params)}`;
   },
 
   identityAuth: (params: IdentityAuthParams, prefix?: string) => {

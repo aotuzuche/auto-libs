@@ -171,6 +171,8 @@ address({
 const { pay } = go
 
 pay({
+  amount?: string
+  payTitle?: string
   token: string
   orderNo: string
   payKind: string
