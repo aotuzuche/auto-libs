@@ -51,6 +51,7 @@ http.interceptors.request.use(config => {
   const utmMedium = Cookie.get('utm_medium');
   const utmCampaign = Cookie.get('utm_campaign');
   const utmTerm = Cookie.get('utm_term');
+  const platform = (window as any).platform;
 
   const method = (config.method as string).toLocaleLowerCase();
   if (token) {
@@ -79,6 +80,9 @@ http.interceptors.request.use(config => {
     }
 
     config.params.requestId = Number(new Date());
+    if (platform) {
+      config.params.h5Platform = platform;
+    }
   }
 
   const methods: string[] = ['post', 'put', 'patch', 'delete'];
@@ -99,6 +103,9 @@ http.interceptors.request.use(config => {
       config.data.utmTerm = utmTerm;
     }
     config.data.requestId = Number(new Date());
+    if (platform) {
+      config.data.h5Platform = platform;
+    }
   }
 
   return config;
