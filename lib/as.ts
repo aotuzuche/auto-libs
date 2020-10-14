@@ -21,8 +21,8 @@ export async function AS(data: ASData = {}) {
       et = decodeURIComponent(et);
       et.split(',').forEach(i => {
         const v = i.split('=');
-        if (v && v.length === 2) {
-          data.eventContent![v[0]] = v[1];
+        if (v && v.length === 2 && data.eventContent) {
+          data.eventContent[v[0]] = v[1];
         }
       });
     }
