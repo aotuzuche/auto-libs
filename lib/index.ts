@@ -14,3 +14,4 @@ export { default as CDN } from './cdn';
 export { default as Reg } from './reg';
 export { default as Search } from './search';
 export { default as go } from './go';
+export { default as Mini } from './mini';
