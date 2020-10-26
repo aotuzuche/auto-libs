@@ -76,7 +76,7 @@ const Mini = {
       params = { ...params, ...qs.parse(split[1]) };
     }
 
-    baseUrl = `${baseUrl}?urlParams${JSON.stringify({
+    baseUrl = `${baseUrl}?urlParams=${JSON.stringify({
       src: split[0].indexOf('http') === 0 ? split[0] : window.location.origin + split[0],
       paramsObj: params,
     })}`;
