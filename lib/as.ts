@@ -1,4 +1,5 @@
 import qs from 'qs';
+import Cookie from 'js-cookie';
 
 export interface ASData {
   pageNo?: number;
@@ -33,6 +34,24 @@ export async function AS(data: ASData = {}) {
     (Object as any).entries(data.eventContent).forEach(([key, value]: [string, any]) => {
       params.push(`${key}=${value}`);
     });
+
+    const utmSource = Cookie.get('utm_source');
+    const utmMedium = Cookie.get('utm_medium');
+    const utmCampaign = Cookie.get('utm_campaign');
+    const utmTerm = Cookie.get('utm_term');
+    if (utmSource) {
+      params.push(`utm_source=${utmSource}`);
+    }
+    if (utmMedium) {
+      params.push(`utm_medium=${utmMedium}`);
+    }
+    if (utmCampaign) {
+      params.push(`utm_campaign=${utmCampaign}`);
+    }
+    if (utmTerm) {
+      params.push(`utm_term=${utmTerm}`);
+    }
+
     data.eventContent = `{${params.join(',')}}` as any;
   }
 
