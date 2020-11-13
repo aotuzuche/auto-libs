@@ -3,7 +3,7 @@ import { getMiniProgramEnv } from './miniprogram';
 interface MiniEnv {
   isAlipay?: boolean;
   isWeapp?: boolean;
-  isSwan?: boolean;
+  isJD?: boolean;
   isMiniProgram?: boolean;
 }
 
@@ -21,7 +21,10 @@ const isWX = !isWXWork && /MicroMessenger/gi.test(ua);
 // 是否是支付宝客户端
 const isAlipay = /AlipayClient/gi.test(ua);
 
-// 是否
+// 是否是京东客户端
+const isJD = ua.indexOf('jdapp') > -1;
+
+// 是否是ios
 const isiOS = /\(i[^;]+;( U;)? CPU.+Mac OS X/.test(ua);
 
 // 是否是安卓
@@ -78,6 +81,11 @@ const isIDCard = (str: string) => {
   return reg.test(str);
 };
 
+const isMiniJD = async () => {
+  const result: MiniEnv = await getMiniProgramEnv();
+  return result.isMiniProgram && result.isJD;
+};
+
 const isMiniWX = async () => {
   const result: MiniEnv = await getMiniProgramEnv();
   return result.isMiniProgram && result.isWeapp;
@@ -88,15 +96,10 @@ const isMiniAlipay = async () => {
   return result.isMiniProgram && result.isAlipay;
 };
 
-// 是否是百度小程序
-const isMiniBaidu = async () => {
-  const result: MiniEnv = await getMiniProgramEnv();
-  return result.isMiniProgram && result.isSwan;
-};
-
 export default {
   isApp,
   isWX,
+  isJD,
   isAlipay,
   isiOS,
   isAndroid,
@@ -111,6 +114,6 @@ export default {
   isEmail,
   isIDCard,
   isMiniWX,
-  isMiniBaidu,
   isMiniAlipay,
+  isMiniJD,
 };
