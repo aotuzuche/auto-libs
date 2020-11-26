@@ -121,9 +121,9 @@ http.interceptors.request.use(config => {
 http.interceptors.response.use(
   config => {
     if (config.config && (config.config as any).____t) {
-      var c = config.config as any;
-      var offset = (new Date().valueOf() - c.____t) / 1000;
-      var uuid = localStorage.getItem('_app_uuid_');
+      const c = config.config as any;
+      const offset = (new Date().valueOf() - c.____t) / 1000;
+      let uuid = localStorage.getItem('_app_uuid_');
       if (!uuid) {
         uuid = String(new Date().valueOf()) + Math.round(Math.random() * 9999);
         localStorage.setItem('_app_uuid_', uuid);
