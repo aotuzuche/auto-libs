@@ -32,6 +32,26 @@ class HttpError extends Error {
   }
 }
 
+const report = (ok: boolean, type: string, data: any) => {
+  if (!ok) {
+    return;
+  }
+  window
+    .fetch('/apigateway/webAnalytics/public/' + type, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    })
+    .catch(() => {});
+};
+
+// 用户唯一id
+let uuid = localStorage.getItem('_app_uuid_');
+if (!uuid) {
+  uuid = String(new Date().valueOf()) + Math.round(Math.random() * 9999);
+  localStorage.setItem('_app_uuid_', uuid);
+}
+
 /**
  * 配置axios
  */
@@ -120,28 +140,17 @@ http.interceptors.request.use(config => {
  */
 http.interceptors.response.use(
   config => {
-    if (config.config && (config.config as any).____t) {
-      const c = config.config as any;
-      const offset = (new Date().valueOf() - c.____t) / 1000;
-      let uuid = localStorage.getItem('_app_uuid_');
-      if (!uuid) {
-        uuid = String(new Date().valueOf()) + Math.round(Math.random() * 9999);
-        localStorage.setItem('_app_uuid_', uuid);
-      }
-      window
-        .fetch('/apigateway/webAnalytics/public/api/m', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            m: c.method,
-            u: c.url,
-            p: window.location.origin + window.location.pathname,
-            s: offset,
-            uu: uuid,
-          }),
-        })
-        .catch(() => {});
-    }
+    // config data
+    const cc = (config.config as any) || {};
+
+    // report
+    report(cc.____t && cc.url && cc.method, 'api/m', {
+      m: cc.method,
+      u: cc.url,
+      p: window.location.origin + window.location.pathname,
+      s: (new Date().valueOf() - cc.____t) / 1000,
+      uu: uuid,
+    });
 
     let strictModel = true; // 严格模式
     const data = config.data || {};
@@ -154,14 +163,25 @@ http.interceptors.response.use(
     if (strictModel) {
       if (config.status >= 200 && config.status < 300) {
         return data;
-      } else {
-        if (config.status === 401) {
-          clearToken();
-          toLogin();
-          return false;
-        }
-        return Promise.reject(new HttpError(data.message || '', data));
       }
+
+      if (config.status === 401) {
+        clearToken();
+        toLogin();
+        return false;
+      }
+
+      // report error
+      report(cc.url && cc.method, 'api_error/m', {
+        m: cc.method,
+        u: cc.url,
+        p: window.location.origin + window.location.pathname,
+        uu: uuid,
+        s: config.status,
+        err: JSON.stringify(data),
+      });
+
+      return Promise.reject(new HttpError(data.message || '', data));
     }
 
     // atcz java端的模式
@@ -170,34 +190,55 @@ http.interceptors.response.use(
     if (data.resCode === '000000') {
       return data.data;
     }
-    // 需要登录（没登录或登录过期）
-    else if (data.resCode === '200008') {
+
+    if (data.resCode === '200008') {
+      // 需要登录（没登录或登录过期）
       clearToken();
       toLogin();
       return false;
     }
-    // 需要绑定
-    else if (data.resCode === '200101') {
-      toLogin({
-        isBind: true,
-      });
+
+    if (data.resCode === '200101') {
+      // 需要绑定
+      toLogin({ isBind: true });
       return false;
     }
+
+    // report error
+    report(cc.url && cc.method && data.resCode === '999999', 'api_error/m', {
+      m: cc.method,
+      u: cc.url,
+      p: window.location.origin + window.location.pathname,
+      uu: uuid,
+      s: config.status,
+      err: data.resMsg || data.msg || data.message,
+    });
 
     // reject错误处理
     return Promise.reject(new HttpError(data.resMsg || data.msg || data.message, data));
   },
   error => {
     console.error('http:reject', error);
+
     if (error.response.status === 401) {
       clearToken();
       toLogin();
       return false;
     }
+
+    const cc = error.config;
+    const res = error.response || {};
+    report(cc && res.status, 'api_error/m', {
+      m: cc.method,
+      u: cc.url,
+      p: window.location.origin + window.location.pathname,
+      uu: uuid,
+      s: res.status,
+      err: JSON.stringify(res.data),
+    });
+
     // reject错误处理
-    return Promise.reject(
-      new HttpError(error.response.data && (error.response.data.message || '系统错误')),
-    );
+    return Promise.reject(new HttpError(res.data && (res.data.message || '系统错误')));
   },
 );
 
