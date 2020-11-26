@@ -7,6 +7,7 @@ interface HttpConfig {
   resMsg?: string;
   data?: any;
 }
+
 export interface ProcessEnv {
   [key: string]: string | undefined;
 }
@@ -25,6 +26,7 @@ class HttpError extends Error {
       this.code = data.resCode || '';
     }
   }
+
   public toString() {
     return this.message;
   }
@@ -108,6 +110,8 @@ http.interceptors.request.use(config => {
     }
   }
 
+  (config as any).____t = new Date().valueOf();
+
   return config;
 });
 
@@ -116,6 +120,29 @@ http.interceptors.request.use(config => {
  */
 http.interceptors.response.use(
   config => {
+    if (config.config && (config.config as any).____t) {
+      var c = config.config as any;
+      var offset = (new Date().valueOf() - c.____t) / 1000;
+      var uuid = localStorage.getItem('_app_uuid_');
+      if (!uuid) {
+        uuid = String(new Date().valueOf()) + Math.round(Math.random() * 9999);
+        localStorage.setItem('_app_uuid_', uuid);
+      }
+      window
+        .fetch('/apigateway/webAnalytics/public/api/m', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            m: c.method,
+            u: c.url,
+            p: window.location.origin + window.location.pathname,
+            s: offset,
+            uu: uuid,
+          }),
+        })
+        .catch(() => {});
+    }
+
     let strictModel = true; // 严格模式
     const data = config.data || {};
 
