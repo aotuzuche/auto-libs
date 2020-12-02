@@ -148,6 +148,14 @@ httpConsole.interceptors.response.use(
   },
   (error: AxiosError) => {
     console.error('http:reject', error);
+
+    if (error.response && error.response.status === 401) {
+      clearConsoleCookie();
+      clearConsoleToken();
+      toConsoleLogin();
+      return false;
+    }
+
     // reject错误处理
     const { data } = error.response || {};
     const { message = '系统错误', msg, resMsg } = data || {};
