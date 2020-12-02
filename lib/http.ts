@@ -33,21 +33,22 @@ class HttpError extends Error {
 }
 
 const report = (ok: boolean, type: string, data: any) => {
-  if (!ok) {
-    return;
-  }
-  if (navigator.sendBeacon) {
-    navigator.sendBeacon('/apigateway/webAnalytics/public/' + type, JSON.stringify(data));
-  } else if (window.fetch) {
-    window
-      .fetch('/apigateway/webAnalytics/public/' + type, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-        keepalive: true,
-      })
-      .catch(() => {});
-  }
+  return;
+  // if (!ok) {
+  //   return;
+  // }
+  // if (navigator.sendBeacon) {
+  //   navigator.sendBeacon('/apigateway/webAnalytics/public/' + type, JSON.stringify(data));
+  // } else if (window.fetch) {
+  //   window
+  //     .fetch('/apigateway/webAnalytics/public/' + type, {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify(data),
+  //       keepalive: true,
+  //     })
+  //     .catch(() => {});
+  // }
 };
 
 // 用户唯一id
