@@ -5,4 +5,5 @@ interface Window {
   my: any;
   swan: any;
   wx: any;
+  jd: any;
 }

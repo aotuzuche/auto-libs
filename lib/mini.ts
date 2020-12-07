@@ -17,6 +17,11 @@ const Mini = {
       window.wx.miniProgram.navigateBack();
     }
 
+    if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.navigateBack) {
+      key++;
+      window.jd.navigateBack();
+    }
+
     if (key === 0) {
       window.history.back();
     }
@@ -33,6 +38,27 @@ const Mini = {
     if (window && window.wx && window.wx.miniProgram && window.wx.miniProgram.navigateTo) {
       window.wx.miniProgram.navigateTo({ url });
     }
+
+    if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.navigateTo) {
+      window.jd.miniProgram.navigateTo({ url });
+    }
+  },
+
+  /**
+   * postMessage
+   */
+  postMessage(data: any) {
+    if (window && window.my && window.my.postMessage) {
+      window.my.postMessage(data);
+    }
+
+    if (window && window.wx && window.wx.miniProgram && window.wx.miniProgram.postMessage) {
+      window.wx.miniProgram.postMessage(data);
+    }
+
+    if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.postMessage) {
+      window.jd.miniProgram.postMessage(data);
+    }
   },
 
   /**
@@ -46,6 +72,10 @@ const Mini = {
     if (window && window.wx && window.wx.miniProgram && window.wx.miniProgram.redirectTo) {
       window.wx.miniProgram.redirectTo({ url });
     }
+
+    if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.redirectTo) {
+      window.jd.miniProgram.redirectTo({ url });
+    }
   },
 
   /**
@@ -58,6 +88,10 @@ const Mini = {
 
     if (window && window.wx && window.wx.miniProgram && window.wx.miniProgram.reLaunch) {
       window.wx.miniProgram.reLaunch({ url });
+    }
+
+    if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.reLaunch) {
+      window.jd.miniProgram.reLaunch({ url });
     }
   },
 
