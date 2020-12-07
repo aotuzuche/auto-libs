@@ -19,7 +19,7 @@ const Mini = {
 
     if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.navigateBack) {
       key++;
-      window.jd.navigateBack();
+      window.jd.miniProgram.navigateBack();
     }
 
     if (key === 0) {
