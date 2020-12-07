@@ -1,4 +1,4 @@
-import at from 'at-js-sdk';
+import at from 'at-js-bridge';
 import Cookie from 'js-cookie';
 import qs from 'qs';
 import { getMiniProgramEnv } from './miniprogram';
@@ -74,16 +74,14 @@ const initToken = async (ignore?: () => boolean) => {
   }
   return new Promise((resolve, reject) => {
     if ((window as any).isApp) {
-      at.getToken({
-        callback(result: { token: string }) {
-          if (result.token && String(result.token).length > 20) {
-            setToken(result.token);
-            resolve();
-          } else {
-            clearToken();
-            reject(new Error('token is empty'));
-          }
-        },
+      at.user.getToken().then(t => {
+        if (t) {
+          setToken(t);
+          resolve();
+        } else {
+          clearToken();
+          reject(new Error('token is empty'));
+        }
       });
     } else {
       let token = getToken();
@@ -118,15 +116,14 @@ const toLogin = async (appParams?: ItoLogin) => {
   const atMiniProgram = getAtMiniProgram();
 
   if ((window as any).isApp) {
-    at.openLogin({
-      success(res: any) {
+    at.user.login().then(res => {
+      if (res.status === 'success') {
         setToken(res.token);
         if (appParams && appParams.success) appParams.success();
         else window.location.reload();
-      },
-      cancel() {
+      } else if (res.status === 'cancel') {
         if (appParams && appParams.cancel) appParams.cancel();
-      },
+      }
     });
   } else if (atMiniProgram) {
     /***

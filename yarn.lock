@@ -1424,11 +1424,6 @@ at-js-bridge@^1.0.22:
   resolved "https://registry.npm.taobao.org/at-js-bridge/download/at-js-bridge-1.0.22.tgz#268001be81788e701e4f0fcb5f5789afbfb1899c"
   integrity sha1-JoABvoF4jnAeTw/LX1eJr7+xiZw=
 
-at-js-sdk@^2.2.60:
-  version "2.2.60"
-  resolved "https://registry.npm.taobao.org/at-js-sdk/download/at-js-sdk-2.2.60.tgz#a8ba9542d0912ff2040fcabb8df001e297f0bdb8"
-  integrity sha1-qLqVQtCRL/IED8q7jfAB4pfwvbg=
-
 atob@^2.1.1:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
