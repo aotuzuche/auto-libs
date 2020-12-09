@@ -45,6 +45,23 @@ const Mini = {
   },
 
   /**
+   * 跳转原生Tab
+   */
+  switchTab(url: string) {
+    if (window && window.my && window.my.switchTab) {
+      window.my.switchTab({ url });
+    }
+
+    if (window && window.wx && window.wx.miniProgram && window.wx.miniProgram.switchTab) {
+      window.wx.miniProgram.switchTab({ url });
+    }
+
+    if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.switchTab) {
+      window.jd.miniProgram.switchTab({ url });
+    }
+  },
+
+  /**
    * postMessage
    */
   postMessage(data: any) {
