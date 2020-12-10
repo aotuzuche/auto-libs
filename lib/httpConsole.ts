@@ -3,9 +3,9 @@ import Cookie from 'js-cookie';
 import {
   clearConsoleCookie,
   clearConsoleToken,
+  getConsoleLoginInfo,
   getConsoleToken,
   toConsoleLogin,
-  getConsoleLoginInfo,
 } from './token';
 import analyticsReport from './utils/analyticsReport';
 
