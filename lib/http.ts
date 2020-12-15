@@ -1,6 +1,7 @@
 import axios, { AxiosAdapter } from 'axios';
 import Cookie from 'js-cookie';
 import { clearToken, getToken, toLogin } from './token';
+import report from './utils/analyticsReport';
 
 interface HttpConfig {
   resCode?: string;
@@ -31,24 +32,6 @@ class HttpError extends Error {
     return this.message;
   }
 }
-
-const report = (ok: boolean, type: string, data: any) => {
-  if (!ok) {
-    return;
-  }
-  if (navigator.sendBeacon) {
-    navigator.sendBeacon('/apigateway/webAnalytics/public/' + type, JSON.stringify(data));
-  } else if (window.fetch) {
-    window
-      .fetch('/apigateway/webAnalytics/public/' + type, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-        keepalive: true,
-      })
-      .catch(() => {});
-  }
-};
 
 // 用户唯一id
 let uuid = localStorage.getItem('_app_uuid_');

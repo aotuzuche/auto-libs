@@ -8,6 +8,8 @@ import Search from './search';
 const token = '_app_token_';
 const consoleToken = '_app_console_token_';
 const oldConsoleToken = 'auto_system_token';
+const consoleInfoToken = '_app_console_userinfo_';
+const oldConsoleInfoToken = 'auto_system_userData';
 const openId = '_app_openId_';
 const unionId = '_app_unionId_';
 const virtualNo = '_app_virtualNo_';
@@ -169,6 +171,18 @@ const toConsoleLogin = () => {
   window.location.href = '/system/login/?' + qs.stringify(search);
 };
 
+const getConsoleLoginInfo = () => {
+  const value = window.localStorage.getItem(consoleInfoToken);
+  const oldValue = window.localStorage.getItem(oldConsoleInfoToken);
+  const emptyObj = {};
+
+  try {
+    return value ? JSON.parse(value) : oldValue ? JSON.parse(oldValue) : emptyObj;
+  } catch (error) {
+    return emptyObj;
+  }
+};
+
 export {
   getToken,
   setToken,
@@ -196,4 +210,5 @@ export {
   getConsoleCookie,
   setConsoleCookie,
   clearConsoleCookie,
+  getConsoleLoginInfo,
 };
