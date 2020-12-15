@@ -31,7 +31,7 @@ export interface PayParmas {
   orderNo: string;
   payFrom?: string;
   payKind: string;
-  redirect_url: string;
+  redirect_url?: string;
 }
 
 export interface IdentityAuthParams {
