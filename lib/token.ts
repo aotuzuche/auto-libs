@@ -1,7 +1,7 @@
 import at from 'at-js-bridge';
 import Cookie from 'js-cookie';
 import qs from 'qs';
-import { getMiniProgramEnv } from './miniprogram';
+import Mini from './mini';
 import Search from './search';
 /* tslint:disable:no-magic-numbers */
 
@@ -113,9 +113,8 @@ interface ItoLogin {
   isBind?: boolean;
 }
 
-const toLogin = async (appParams?: ItoLogin) => {
+const toLogin = (appParams?: ItoLogin) => {
   clearToken();
-  const atMiniProgram = getAtMiniProgram();
 
   if ((window as any).isApp) {
     at.user.login().then(res => {
@@ -127,38 +126,12 @@ const toLogin = async (appParams?: ItoLogin) => {
         if (appParams && appParams.cancel) appParams.cancel();
       }
     });
-  } else if (atMiniProgram) {
-    /***
-     * 此场景适用情况：
-     * H5页面放在
-     *  */
-
-    const miniProgram = await getMiniProgramEnv();
-    const params: any = Search.parse();
-    const searchParam = {
-      redirect: window.location.href,
-    };
-
-    let url = `/m/login/?${qs.stringify(searchParam)}`;
-
-    if (params.loginUrl) {
-      let miniUrl = `${params.loginUrl}?${qs.stringify(searchParam)}`;
-
-      if (miniProgram.isAlipay) {
-        window.my.redirectTo({ miniUrl });
-      } else if (miniProgram.isWeapp) {
-        window.wx.miniProgram.redirectTo({ miniUrl });
-      } else {
-        window.location.href = url;
-      }
-    } else {
-      window.location.href = url;
-    }
+  } else if (window.isMiniProgram) {
+    Mini.authLogin();
   } else {
-    const search = {
+    window.location.href = `/m/login/?${qs.stringify({
       redirect: window.location.href,
-    };
-    window.location.href = `/m/login/?${qs.stringify(search)}`;
+    })}`;
   }
 };
 
