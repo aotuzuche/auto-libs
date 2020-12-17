@@ -31,6 +31,18 @@ const Mini = {
    * 跳转原生页面
    */
   navigateTo(url: string) {
+    if (!url) {
+      return;
+    }
+
+    if (
+      url.startsWith('/pages/home/index') ||
+      url.startsWith('/pages/user/index') ||
+      url.startsWith('/pages/order/index')
+    ) {
+      Mini.switchTab(url);
+    }
+
     if (window && window.my && window.my.navigateTo) {
       window.my.navigateTo({ url });
     }
