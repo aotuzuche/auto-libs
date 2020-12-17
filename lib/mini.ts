@@ -134,6 +134,19 @@ const Mini = {
 
     Mini.navigateTo(baseUrl);
   },
+
+  /**
+   * h5调用小程序的授权登录
+   */
+  authLogin(redirect?: string) {
+    if (redirect) {
+      Mini.navigateTo(
+        `/pages/pageCommon/fastLogin/index?redirectUrl=${encodeURIComponent(redirect)}`,
+      );
+    } else {
+      Mini.navigateTo('/pages/pageCommon/fastLogin/index');
+    }
+  },
 };
 
 export default Mini;
