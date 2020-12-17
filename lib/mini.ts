@@ -41,6 +41,7 @@ const Mini = {
       url.startsWith('/pages/order/index')
     ) {
       Mini.switchTab(url);
+      return;
     }
 
     if (window && window.my && window.my.navigateTo) {
