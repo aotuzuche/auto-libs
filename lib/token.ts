@@ -1,13 +1,15 @@
-import at from 'at-js-sdk';
+import at from 'at-js-bridge';
 import Cookie from 'js-cookie';
 import qs from 'qs';
-import { getMiniProgramEnv } from './miniprogram';
+import Mini from './mini';
 import Search from './search';
 /* tslint:disable:no-magic-numbers */
 
 const token = '_app_token_';
 const consoleToken = '_app_console_token_';
 const oldConsoleToken = 'auto_system_token';
+const consoleInfoToken = '_app_console_userinfo_';
+const oldConsoleInfoToken = 'auto_system_userData';
 const openId = '_app_openId_';
 const unionId = '_app_unionId_';
 const virtualNo = '_app_virtualNo_';
@@ -74,16 +76,14 @@ const initToken = async (ignore?: () => boolean) => {
   }
   return new Promise((resolve, reject) => {
     if ((window as any).isApp) {
-      at.getToken({
-        callback(result: { token: string }) {
-          if (result.token && String(result.token).length > 20) {
-            setToken(result.token);
-            resolve();
-          } else {
-            clearToken();
-            reject(new Error('token is empty'));
-          }
-        },
+      at.user.getToken().then(t => {
+        if (t) {
+          setToken(t);
+          resolve();
+        } else {
+          clearToken();
+          reject(new Error('token is empty'));
+        }
       });
     } else {
       let token = getToken();
@@ -113,53 +113,25 @@ interface ItoLogin {
   isBind?: boolean;
 }
 
-const toLogin = async (appParams?: ItoLogin) => {
+const toLogin = (appParams?: ItoLogin) => {
   clearToken();
-  const atMiniProgram = getAtMiniProgram();
 
   if ((window as any).isApp) {
-    at.openLogin({
-      success(res: any) {
+    at.user.login().then(res => {
+      if (res.status === 'success') {
         setToken(res.token);
         if (appParams && appParams.success) appParams.success();
         else window.location.reload();
-      },
-      cancel() {
+      } else if (res.status === 'cancel') {
         if (appParams && appParams.cancel) appParams.cancel();
-      },
-    });
-  } else if (atMiniProgram) {
-    /***
-     * 此场景适用情况：
-     * H5页面放在
-     *  */
-
-    const miniProgram = await getMiniProgramEnv();
-    const params: any = Search.parse();
-    const searchParam = {
-      redirect: window.location.href,
-    };
-
-    let url = `/m/login/?${qs.stringify(searchParam)}`;
-
-    if (params.loginUrl) {
-      let miniUrl = `${params.loginUrl}?${qs.stringify(searchParam)}`;
-
-      if (miniProgram.isAlipay) {
-        window.my.redirectTo({ miniUrl });
-      } else if (miniProgram.isWeapp) {
-        window.wx.miniProgram.redirectTo({ miniUrl });
-      } else {
-        window.location.href = url;
       }
-    } else {
-      window.location.href = url;
-    }
+    });
+  } else if (window.isMiniProgram) {
+    Mini.authLogin();
   } else {
-    const search = {
+    window.location.href = `/m/login/?${qs.stringify({
       redirect: window.location.href,
-    };
-    window.location.href = `/m/login/?${qs.stringify(search)}`;
+    })}`;
   }
 };
 
@@ -170,6 +142,18 @@ const toConsoleLogin = () => {
     redirect: window.location.href,
   };
   window.location.href = '/system/login/?' + qs.stringify(search);
+};
+
+const getConsoleLoginInfo = () => {
+  const value = window.localStorage.getItem(consoleInfoToken);
+  const oldValue = window.localStorage.getItem(oldConsoleInfoToken);
+  const emptyObj = {};
+
+  try {
+    return value ? JSON.parse(value) : oldValue ? JSON.parse(oldValue) : emptyObj;
+  } catch (error) {
+    return emptyObj;
+  }
 };
 
 export {
@@ -199,4 +183,5 @@ export {
   getConsoleCookie,
   setConsoleCookie,
   clearConsoleCookie,
+  getConsoleLoginInfo,
 };

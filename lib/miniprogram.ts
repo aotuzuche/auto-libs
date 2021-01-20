@@ -26,12 +26,21 @@ interface MiniEnv {
   isAlipay?: boolean;
   isWeapp?: boolean;
   isSwan?: boolean;
+  isJD?: boolean;
   isMiniProgram?: boolean;
 }
 
 export const getMiniProgramEnv = (): Promise<MiniEnv> => {
   return new Promise(resolve => {
-    if (window.my && window.my.getEnv) {
+    // 是否是京东客户端
+    const isJD = navigator.userAgent.indexOf('jdapp') > -1;
+    const isJDMP = isJD && navigator.userAgent.indexOf('jdmp') > -1;
+    if (isJDMP) {
+      resolve({
+        isJD: isJD && isJDMP,
+        isMiniProgram: isJD && isJDMP,
+      });
+    } else if (window.my && window.my.getEnv) {
       window.my.getEnv((res: any) => {
         resolve({
           isAlipay: res.miniprogram,

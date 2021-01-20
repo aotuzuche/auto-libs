@@ -1,6 +1,15 @@
 import axios, { AxiosError } from 'axios';
 import Cookie from 'js-cookie';
-import { clearConsoleCookie, clearConsoleToken, getConsoleToken, toConsoleLogin } from './token';
+import {
+  clearConsoleCookie,
+  clearConsoleToken,
+  getConsoleLoginInfo,
+  getConsoleToken,
+  toConsoleLogin,
+} from './token';
+import analyticsReport from './utils/analyticsReport';
+
+const uuid = getConsoleLoginInfo().loginId || localStorage.getItem('_app_uuid_');
 
 interface HttpConfig {
   resCode?: string;
@@ -99,6 +108,8 @@ httpConsole.interceptors.request.use(config => {
     config.data.requestId = Number(new Date());
   }
 
+  (config as any).____t = new Date().valueOf();
+
   return config;
 });
 
@@ -109,6 +120,17 @@ httpConsole.interceptors.response.use(
   config => {
     let strictModel = true; // 严格模式
     const data = config.data || {};
+
+    // config data
+    const cc = (config.config as any) || {};
+
+    analyticsReport(cc.____t && cc.url && cc.method, 'api/system', {
+      m: cc.method,
+      u: cc.url,
+      p: window.location.origin + window.location.pathname,
+      s: (new Date().valueOf() - cc.____t) / 1000,
+      uu: uuid,
+    });
 
     // 目前的判断方式：因为resCode与resMsg是java端必给的字段，所以认为没有该两个字段时，走标准的http status模式
     if (typeof data.resCode !== 'undefined' && typeof data.resMsg !== 'undefined') {
@@ -125,6 +147,16 @@ httpConsole.interceptors.response.use(
           toConsoleLogin();
           return false;
         }
+
+        // report error
+        analyticsReport(cc.url && cc.method, 'api_error/system', {
+          m: cc.method,
+          u: cc.url,
+          p: window.location.origin + window.location.pathname,
+          uu: uuid,
+          s: config.status,
+          err: JSON.stringify(data),
+        });
         return Promise.reject(new HttpError(data.message || '', data));
       }
     }
@@ -143,11 +175,40 @@ httpConsole.interceptors.response.use(
       return false;
     }
 
+    // report error
+    analyticsReport(cc.url && cc.method && data.resCode === '999999', 'api_error/system', {
+      m: cc.method,
+      u: cc.url,
+      p: window.location.origin + window.location.pathname,
+      uu: uuid,
+      s: config.status,
+      err: data.resMsg || data.msg || data.message,
+    });
+
     // reject错误处理
     return Promise.reject(new HttpError(data.resMsg || data.msg || data.message, data));
   },
   (error: AxiosError) => {
     console.error('http:reject', error);
+
+    if (error.response && error.response.status === 401) {
+      clearConsoleCookie();
+      clearConsoleToken();
+      toConsoleLogin();
+      return false;
+    }
+
+    const cc = error.config;
+    const res = (error.response as any) || {};
+    analyticsReport(cc && res.status, 'api_error/system', {
+      m: cc.method,
+      u: cc.url,
+      p: window.location.origin + window.location.pathname,
+      uu: uuid,
+      s: res.status,
+      err: JSON.stringify(res.data),
+    });
+
     // reject错误处理
     const { data } = error.response || {};
     const { message = '系统错误', msg, resMsg } = data || {};
