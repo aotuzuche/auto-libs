@@ -72,6 +72,11 @@ const isEmail = (str: string) => {
   return reg.test(str);
 };
 
+// 验证图形验证码格式
+const imgValidCodeReg = (num: string) => {
+  return /^[a-zA-Z0-9]{4}$/.test(num);
+}
+
 // 身份证
 const isIDCard = (str: string) => {
   const reg = /(^\d{15}$)|(^\d{17}([0-9]|X|x)$)/;
@@ -113,4 +118,5 @@ export default {
   isMiniWX,
   isMiniBaidu,
   isMiniAlipay,
+  imgValidCodeReg,
 };
