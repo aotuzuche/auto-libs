@@ -4,16 +4,25 @@ import qs from 'qs';
 export interface ASData {
   pageNo?: number;
   eventNo?: number;
-  eventContent?: object;
+  eventContent?: Record<string, any>;
 }
 
 export async function AS(data: ASData = {}) {
+  let uuid = localStorage.getItem('_app_uuid_');
+  if (!uuid) {
+    const r = Math.round(Math.random() * (99999 - 10000) + 10000);
+    const t = new Date().getTime();
+    uuid = `${t}${r}`;
+    localStorage.setItem('_app_uuid_', uuid);
+  }
+
   if (!data.eventContent) {
     data.eventContent = {};
   }
 
   if (typeof data.eventContent === 'object') {
-    (data.eventContent as any).platformType = (window as any).platform;
+    data.eventContent.uuid = uuid;
+    data.eventContent.platformType = (window as any).platform;
   }
 
   if (window.sessionStorage.getItem('__atMiniProgram__') === 'True') {
