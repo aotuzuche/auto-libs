@@ -1,6 +1,7 @@
 export * from './as';
 export * from './wx';
 export * from './http';
+export { default as httpConsole } from './httpConsole';
 export * from './httpConsole';
 export * from './token';
 export * from './cdn';

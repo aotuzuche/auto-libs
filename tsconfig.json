@@ -16,9 +16,7 @@
     "pretty": true,
     "jsx": "react",
     "lib": ["es2015", "dom"],
-    "suppressImplicitAnyIndexErrors": true,
-    "target": "ESNext",
-    "module": "ESNext"
+    "suppressImplicitAnyIndexErrors": true
   },
   "exclude": ["src/test"]
 }
