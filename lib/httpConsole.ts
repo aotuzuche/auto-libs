@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import Cookie from 'js-cookie';
 import {
   clearConsoleCookie,
@@ -10,6 +10,9 @@ import {
 import analyticsReport from './utils/analyticsReport';
 
 const uuid = getConsoleLoginInfo().loginId || localStorage.getItem('_app_uuid_');
+
+export type ToLoginType = ((config?: AxiosResponse) => boolean) | undefined;
+let toLogin: ToLoginType;
 
 interface HttpConfig {
   resCode?: string;
@@ -36,11 +39,26 @@ class HttpError extends Error {
   }
 }
 
+export interface HttpConsoleExtendParams {
+  /**
+   * return true 不执行下一步
+   */
+  toLogin: ToLoginType;
+}
+
+export function httpConsoleExtend(params: HttpConsoleExtendParams) {
+  const { toLogin: initialToLogin } = params || {};
+
+  if (initialToLogin) {
+    toLogin = initialToLogin;
+  }
+}
+
 /**
  * 配置axios
  */
 
-export const httpConsole = axios.create({
+const httpConsole = axios.create({
   baseURL: '/',
   headers: {
     Accept: 'application/json;version=3.0;compress=false',
@@ -121,6 +139,10 @@ httpConsole.interceptors.response.use(
     let strictModel = true; // 严格模式
     const data = config.data || {};
 
+    if (toLogin && toLogin(config) === true) {
+      return;
+    }
+
     // config data
     const cc = (config.config as any) || {};
 
@@ -191,6 +213,10 @@ httpConsole.interceptors.response.use(
   (error: AxiosError) => {
     console.error('http:reject', error);
 
+    if (toLogin && toLogin(error.response) === true) {
+      return;
+    }
+
     if (error.response && error.response.status === 401) {
       clearConsoleCookie();
       clearConsoleToken();
@@ -215,3 +241,5 @@ httpConsole.interceptors.response.use(
     return Promise.reject(new HttpError(resMsg || msg || message));
   },
 );
+
+export default httpConsole;
