@@ -79,7 +79,7 @@ const isEmail = (str: string) => {
 const isImgCode = (str: string) => {
   const reg = /^[a-zA-Z0-9]{4}$/;
   return reg.test(str);
-}
+};
 
 // 身份证
 const isIDCard = (str: string) => {
