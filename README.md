@@ -32,6 +32,7 @@
     - [stringToDate](#stringToDate)
 11. [httpConsole](#httpConsole)
     - [自定义拦截器 管理后台](#自定义拦截器)
+    - [自定义登陆跳转 管理后台](#自定义登陆跳转)
 
 ## 公用样式和脚本引入
 
@@ -245,6 +246,23 @@ http.interceptors.request.use(config => {
 });
 
 export default http;
+```
+
+### 自定义登陆跳转
+
+```js
+import { httpConsole, httpConsoleExtend } from 'auto-libs';
+
+httpConsoleExtend({
+  toLogin: config => {
+    if (config.status === 400) {
+      location.href = '/login';
+      return true;
+    }
+
+    return false;
+  },
+});
 ```
 
 ## AS 统计埋点

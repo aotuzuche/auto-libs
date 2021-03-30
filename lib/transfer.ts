@@ -107,4 +107,23 @@ const stringToDate = (val: string): Date => {
   return new Date(v[0], v[1], v[2], v[3], v[4], v[5]);
 };
 
-export { offsetHours, offsetHoursFloat, offsetDays, stringToDate, dateFormat, secondToCountdown };
+// 隐藏手机号
+const mobileToStar = (val: string) => {
+  if (val.length !== 11) {
+    throw new Error('invalid mobile');
+  }
+
+  let reg = /(\d{3})\d{4}(\d{4})/;
+
+  return val.replace(reg, '$1****$2');
+};
+
+export {
+  offsetHours,
+  offsetHoursFloat,
+  offsetDays,
+  stringToDate,
+  dateFormat,
+  secondToCountdown,
+  mobileToStar,
+};
