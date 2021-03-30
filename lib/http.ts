@@ -45,7 +45,7 @@ if (!uuid) {
  */
 
 interface CustomRequestConfig {
-  onLogin?: () => void;
+  onLogin?: (code: string) => void;
 }
 interface CustomAxiosInstance {
   request<T = any, R = AxiosResponse<T>>(
