@@ -25,7 +25,3 @@ interface Window {
   isiOS: boolean;
   isAndroid: boolean;
 }
-
-interface AxiosRequestConfig {
-  toLogin?: () => void;
-}

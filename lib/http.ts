@@ -1,4 +1,4 @@
-import axios, { AxiosAdapter } from 'axios';
+import axios, { AxiosAdapter, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import Cookie from 'js-cookie';
 import { clearToken, getToken, toLogin } from './token';
 import report from './utils/analyticsReport';
@@ -43,7 +43,17 @@ if (!uuid) {
 /**
  * 配置axios
  */
-export const http = axios.create({
+
+interface CustomRequestConfig {
+  onLogin?: () => void;
+}
+interface CustomAxiosInstance {
+  request<T = any, R = AxiosResponse<T>>(
+    config: AxiosRequestConfig & CustomRequestConfig,
+  ): Promise<R>;
+}
+
+export const http: AxiosInstance & CustomAxiosInstance = axios.create({
   baseURL: '/',
   headers: {
     Accept: 'application/json;version=3.0;compress=false',
@@ -155,7 +165,11 @@ http.interceptors.response.use(
 
       if (config.status === 401) {
         clearToken();
-        toLogin();
+        if (cc.onLogin) {
+          cc.onLogin('200008');
+        } else {
+          toLogin();
+        }
         return false;
       }
 
@@ -182,13 +196,21 @@ http.interceptors.response.use(
     if (data.resCode === '200008') {
       // 需要登录（没登录或登录过期）
       clearToken();
-      toLogin();
+      if (cc.onLogin) {
+        cc.onLogin(data.resCode);
+      } else {
+        toLogin();
+      }
       return false;
     }
 
     if (data.resCode === '200101') {
       // 需要绑定
-      toLogin({ isBind: true });
+      if (cc.onLogin) {
+        cc.onLogin(data.resCode);
+      } else {
+        toLogin({ isBind: true });
+      }
       return false;
     }
 
