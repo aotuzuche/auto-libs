@@ -1,5 +1,6 @@
 declare module 'weixin-js-sdk';
 declare module 'qs';
+
 interface Window {
   dpr: number;
   rem: number;
@@ -23,4 +24,8 @@ interface Window {
   isMiniProgram: boolean;
   isiOS: boolean;
   isAndroid: boolean;
+}
+
+interface AxiosRequestConfig {
+  toLogin?: () => void;
 }
