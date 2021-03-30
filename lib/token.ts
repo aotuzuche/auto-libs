@@ -129,8 +129,10 @@ const toLogin = (appParams?: ItoLogin) => {
   } else if (window.isMiniProgram) {
     Mini.authLogin();
   } else {
+    const params = Search.parse()
     window.location.href = `/m/login/?${qs.stringify({
       redirect: window.location.href,
+      ...params
     })}`;
   }
 };
