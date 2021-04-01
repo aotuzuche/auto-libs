@@ -1,10 +1,4 @@
-import axios, {
-  AxiosAdapter,
-  AxiosInstance,
-  AxiosPromise,
-  AxiosRequestConfig,
-  AxiosResponse,
-} from 'axios';
+import axios, { AxiosAdapter, AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'axios';
 import Cookie from 'js-cookie';
 import { clearToken, getToken, toLogin } from './token';
 import report from './utils/analyticsReport';
