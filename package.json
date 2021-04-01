@@ -1,6 +1,6 @@
 {
   "name": "auto-libs",
-  "version": "0.3.34",
+  "version": "0.3.35",
   "description": "凹凸 公用组件",
   "main": "build/index",
   "types": "build/index",
@@ -49,7 +49,7 @@
   "dependencies": {
     "@babel/runtime": "^7.12.5",
     "at-js-bridge": "^1.0.22",
-    "axios": "^0.21.1",
+    "axios": "0.18.0",
     "js-cookie": "^2.2.0",
     "qs": "^6.5.2",
     "weixin-js-sdk": "^1.4.0-test"

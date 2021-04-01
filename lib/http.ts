@@ -1,4 +1,10 @@
-import axios, { AxiosAdapter, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, {
+  AxiosAdapter,
+  AxiosInstance,
+  AxiosPromise,
+  AxiosRequestConfig,
+  AxiosResponse,
+} from 'axios';
 import Cookie from 'js-cookie';
 import { clearToken, getToken, toLogin } from './token';
 import report from './utils/analyticsReport';
@@ -48,9 +54,7 @@ interface CustomRequestConfig {
   onLogin?: (code: string) => void;
 }
 interface CustomAxiosInstance {
-  request<T = any, R = AxiosResponse<T>>(
-    config: AxiosRequestConfig & CustomRequestConfig,
-  ): Promise<R>;
+  request<T = any>(config: AxiosRequestConfig & CustomRequestConfig): AxiosPromise<T>;
 }
 
 export const http: AxiosInstance & CustomAxiosInstance = axios.create({
