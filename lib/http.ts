@@ -44,14 +44,16 @@ if (!uuid) {
  * 配置axios
  */
 
-interface CustomRequestConfig {
+interface CustomRequestConfig extends AxiosRequestConfig {
   onLogin?: (code: string) => void;
-}
-interface CustomAxiosInstance {
-  request<T = any>(config: AxiosRequestConfig & CustomRequestConfig): AxiosPromise<T>;
+  report?: boolean;
 }
 
-export const http: AxiosInstance & CustomAxiosInstance = axios.create({
+interface CustomAxiosInstance extends AxiosInstance {
+  request<T = any>(config: CustomRequestConfig): AxiosPromise<T>;
+}
+
+export const http: CustomAxiosInstance = axios.create({
   baseURL: '/',
   headers: {
     Accept: 'application/json;version=3.0;compress=false',
@@ -140,7 +142,7 @@ http.interceptors.response.use(
     const cc = (config.config as any) || {};
 
     // report
-    report(cc.____t && cc.url && cc.method, 'api/m', {
+    report(cc.report !== false && cc.____t && cc.url && cc.method, 'api/m', {
       m: cc.method,
       u: cc.url,
       p: window.location.origin + window.location.pathname,
@@ -162,17 +164,17 @@ http.interceptors.response.use(
       }
 
       if (config.status === 401) {
-        clearToken();
         if (cc.onLogin) {
           cc.onLogin('200008');
         } else {
+          clearToken();
           toLogin();
         }
-        return false;
+        return {};
       }
 
       // report error
-      report(cc.url && cc.method, 'api_error/m', {
+      report(cc.report !== false && cc.url && cc.method, 'api_error/m', {
         m: cc.method,
         u: cc.url,
         p: window.location.origin + window.location.pathname,
@@ -193,13 +195,13 @@ http.interceptors.response.use(
 
     if (data.resCode === '200008') {
       // 需要登录（没登录或登录过期）
-      clearToken();
       if (cc.onLogin) {
         cc.onLogin(data.resCode);
       } else {
+        clearToken();
         toLogin();
       }
-      return false;
+      return {};
     }
 
     if (data.resCode === '200101') {
@@ -207,13 +209,14 @@ http.interceptors.response.use(
       if (cc.onLogin) {
         cc.onLogin(data.resCode);
       } else {
+        clearToken();
         toLogin({ isBind: true });
       }
-      return false;
+      return {};
     }
 
     // report error
-    report(cc.url && cc.method && data.resCode === '999999', 'api_error/m', {
+    report(cc.report !== false && cc.url && cc.method && data.resCode === '999999', 'api_error/m', {
       m: cc.method,
       u: cc.url,
       p: window.location.origin + window.location.pathname,
@@ -236,7 +239,7 @@ http.interceptors.response.use(
 
     const cc = error.config;
     const res = error.response || {};
-    report(cc && res.status, 'api_error/m', {
+    report(cc && cc.report !== false && res.status, 'api_error/m', {
       m: cc.method,
       u: cc.url,
       p: window.location.origin + window.location.pathname,
