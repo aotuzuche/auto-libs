@@ -1,3 +1,101 @@
+## [0.3.37](https://github.com/aotuzuche/auto-libs/compare/v0.3.30...v0.3.37) (2021-04-22)
+
+### Bug Fixes
+
+- 修改小程序 openWebview ([12b8e63](https://github.com/aotuzuche/auto-libs/commit/12b8e63e99128b1851394d7b3608384e7f6a10da))
+- 修改小程序 openWebview ([eb87dd7](https://github.com/aotuzuche/auto-libs/commit/eb87dd7afbf52c03fbef394dba0ac5c3700108a9))
+
+### Features
+
+- http 增加 onLogin 方法 ([e4efa3a](https://github.com/aotuzuche/auto-libs/commit/e4efa3a44d441b2d91b9e3d434e450ea40e32e64))
+- update version ([970f9c6](https://github.com/aotuzuche/auto-libs/commit/970f9c6d07bc97bfc58a0091d1a65d61c02c19ec))
+- 修改 axios 版本 ([fcfbc9d](https://github.com/aotuzuche/auto-libs/commit/fcfbc9d040ef234897d753ab90d5ef158a5c5b21))
+- 修改 axios 版本 ([6d0b9c1](https://github.com/aotuzuche/auto-libs/commit/6d0b9c1bb7ed285bc3b33b0ff780ff162d6e8987))
+- 修改 http 方法 ([4c1b2ce](https://github.com/aotuzuche/auto-libs/commit/4c1b2ceaf71c1d734e3f5574438a08fc0a7b3ad7))
+- 修改类型 ([bb34a56](https://github.com/aotuzuche/auto-libs/commit/bb34a56b1f3056dfecea08bcb039182e3d548993))
+- 添加 types ([0be720e](https://github.com/aotuzuche/auto-libs/commit/0be720ee2bc4bf6dede64e95285ca38997fd8140))
+
+## [0.3.30](https://github.com/aotuzuche/auto-libs/compare/v0.3.29...v0.3.30) (2021-03-18)
+
+### Bug Fixes
+
+- 🐛 解决 eslint 问题 ([820f696](https://github.com/aotuzuche/auto-libs/commit/820f696959926300cf5c5d9fd3914446b985a754))
+
+### Features
+
+- 🎸 添加隐藏手机号功能 ([934cfed](https://github.com/aotuzuche/auto-libs/commit/934cfed4e62ff272d4115341236ef10621b1f2cd))
+- as 方法增加 uuid ([04965b4](https://github.com/aotuzuche/auto-libs/commit/04965b443a8de33b07ff67572980facd7b11cf98))
+- go.pay 的 redirect_url 改为非必填 ([19a013b](https://github.com/aotuzuche/auto-libs/commit/19a013b4965651665ecf6d74bccaa8390ebb3935))
+- 增加 httpConsoleExtend ([b71f98f](https://github.com/aotuzuche/auto-libs/commit/b71f98f1291dd6216bbd72806a4bffe56bc5b39b))
+- 增加小程序登录 ([faa06e4](https://github.com/aotuzuche/auto-libs/commit/faa06e4cecb402e69f9c756425c7dce5f3b34670))
+- 小程序 naviteTo 方法当跳转 tab 页面时,使用 switchTab ([5b7ba8f](https://github.com/aotuzuche/auto-libs/commit/5b7ba8fbb4ad9937f5d75a635fd518116adbf21f))
+- 小程序 naviteTo 方法当跳转 tab 页面时,使用 switchTab ([dd736b3](https://github.com/aotuzuche/auto-libs/commit/dd736b3cbbff9e66d5f5ccd91adbedc71fb7eb52))
+- 小程序内的 h5 在 toLogin 时调用原生小程序登录 ([f73c3d6](https://github.com/aotuzuche/auto-libs/commit/f73c3d650f6ccbdd2714487c5ea557bb2437ce72))
+
+## [0.3.22](https://github.com/aotuzuche/auto-libs/compare/v0.3.15...v0.3.22) (2020-12-10)
+
+### Bug Fixes
+
+- tslint fail ([4abb630](https://github.com/aotuzuche/auto-libs/commit/4abb630e6b512e2e654d3e57986bf10153e413e7))
+
+### Features
+
+- at-js-sdk 改用 at-js-bridge ([5573ac5](https://github.com/aotuzuche/auto-libs/commit/5573ac518497238b18f89170ee9c214de2c36efb))
+- mini 增加 jd 小程序的支持,增加 postMessage 方法的封装 ([5d099e8](https://github.com/aotuzuche/auto-libs/commit/5d099e8575bad54e493772d3e2b491085695e9fc))
+- mini 增加 jd 小程序的支持,增加 postMessage 方法的封装 ([2c9793e](https://github.com/aotuzuche/auto-libs/commit/2c9793e3648578a9cfb3b2fd60d61128707b27be))
+- Mini 增加 switchTab 方法 ([364cfee](https://github.com/aotuzuche/auto-libs/commit/364cfee3203d8073920d93a0c3b4d7881abf7a51))
+- 增加 httpConsole report ([194a943](https://github.com/aotuzuche/auto-libs/commit/194a943c8bc43491570f6a1945ee2eaa09bbe45e))
+- 放开 report 方法的使用限制 ([ca6fbe6](https://github.com/aotuzuche/auto-libs/commit/ca6fbe6b806f3aac36cf273dd83451d8dd8a7858))
+
+## [0.3.15](https://github.com/aotuzuche/auto-libs/compare/v0.3.4-beta.0...v0.3.15) (2020-12-02)
+
+### Bug Fixes
+
+- httpConsole 401 status toLogin ([9377cd2](https://github.com/aotuzuche/auto-libs/commit/9377cd2694a939d2abc498985985c1ae33b76fd5))
+- 暂时删除 http 中的 report 功能 ([21fac1d](https://github.com/aotuzuche/auto-libs/commit/21fac1df9c7c61d0f3dfa60054bdae0de11183aa))
+
+### Features
+
+- as 方法增加小程序支持 ([aaa5570](https://github.com/aotuzuche/auto-libs/commit/aaa55708c1172e948e1068a11edb6413ab15d3df))
+- as 方法增加小程序支持 ([ce9cc71](https://github.com/aotuzuche/auto-libs/commit/ce9cc71428b36db64a2bbd287d73ff44324d77cc))
+- error report ([ee5d653](https://github.com/aotuzuche/auto-libs/commit/ee5d653256f5b023bb78e8cdd9e9cf010edc6010))
+- 修改 report 上报的方式 ([f4c0b64](https://github.com/aotuzuche/auto-libs/commit/f4c0b64e8d0ba49709e7ac3c858f010f205cf690))
+- 发布 beta 版本 ([4b06e1d](https://github.com/aotuzuche/auto-libs/commit/4b06e1d3ce10a150e6244b90b47c29b9fa9921ef))
+- 处理 search 方法的类型, <T extends any>改为<T = any>, report 上报错误时忽略空消息 ([a191ffb](https://github.com/aotuzuche/auto-libs/commit/a191ffbd218a5fd2b5a013924e056162c2abe9c8))
+- 对京东小程序增加 Reg.isJD ([410eb9d](https://github.com/aotuzuche/auto-libs/commit/410eb9db83cdd51531d00f945e61eef36392d1ae))
+- 当 window 下有 platform 时,http 携带上 ([ab3cfac](https://github.com/aotuzuche/auto-libs/commit/ab3cfac3102ddddfecb41903189de0fbe87078aa))
+- 支付增加 amount 和 payTitle 字段 ([6b19fa5](https://github.com/aotuzuche/auto-libs/commit/6b19fa5b810e95e4815608d2f5efc212ff5c6f14))
+- 添加 api 请求上报功能 ([4a2bd93](https://github.com/aotuzuche/auto-libs/commit/4a2bd93ad9ba0aa15ee221813ab8a950e282f2f1))
+- 统计数据增加 utm ([1a9f670](https://github.com/aotuzuche/auto-libs/commit/1a9f6700ef2c11329041d52abcecc77488651fc3))
+- 统计数据增加 utm ([c309f02](https://github.com/aotuzuche/auto-libs/commit/c309f02f8e3b1d6fe6c2a9d2db07f079eb8ac9de))
+- 统计数据增加 utm ([597ba16](https://github.com/aotuzuche/auto-libs/commit/597ba16b26957612decffac9fa661367cf61f84a))
+- **mini:** 增加小程序相关的方法封装 ([200ab03](https://github.com/aotuzuche/auto-libs/commit/200ab030a73e2f2d2cd7fa76761295b508dc004c))
+- **mini:** 增加小程序相关的方法封装 ([b80deb2](https://github.com/aotuzuche/auto-libs/commit/b80deb2d1cf0cdd289fc17865989e6dad7d908ca))
+- **mini:** 增加小程序相关的方法封装 ([16c93a3](https://github.com/aotuzuche/auto-libs/commit/16c93a3e22977bec96801f0fe646c89d06d2b136))
+- **mini:** 增加小程序相关的方法封装 ([66a7bda](https://github.com/aotuzuche/auto-libs/commit/66a7bda7c6f353afb0e51314cd0a4c0bcdb07acb))
+
+## [0.3.4-beta.0](https://github.com/aotuzuche/auto-libs/compare/v0.3.3...v0.3.4-beta.0) (2020-07-13)
+
+### Features
+
+- 🎸 modify pay function ([6dcd987](https://github.com/aotuzuche/auto-libs/commit/6dcd98706008d89a84bed85a95e4e3269f2c1af6))
+- 🎸 pay function modify ([b3770d8](https://github.com/aotuzuche/auto-libs/commit/b3770d8312fbf8718780b57047214c92c93b1814))
+
+## [0.3.3](https://github.com/aotuzuche/auto-libs/compare/v0.3.2...v0.3.3) (2020-07-13)
+
+## [0.3.2](https://github.com/aotuzuche/auto-libs/compare/v0.3.0...v0.3.2) (2020-07-13)
+
+### Bug Fixes
+
+- 优化部分代码 ([15467c2](https://github.com/aotuzuche/auto-libs/commit/15467c21c3419571c488d4838c0e0b4202a90696))
+- 升级版本号 ([18cc454](https://github.com/aotuzuche/auto-libs/commit/18cc4540cd812a512387b489f0251c0fe39aa8ff))
+
+### Features
+
+- 🎸 go module modify pay function ([59222dc](https://github.com/aotuzuche/auto-libs/commit/59222dcf7ac78fd1ed41436d303d1d92dcf819ac))
+- **Ruse:** 注掉目前无用代码 ([d7acbe5](https://github.com/aotuzuche/auto-libs/commit/d7acbe5be5e19bc0e43705d1cdc79d80f0cc1d92))
+- 🎸 add node pay fucntion ([d6515af](https://github.com/aotuzuche/auto-libs/commit/d6515afd2c84e8a0156ce399dfa688ff0581f363))
+
 # [0.3.0](https://github.com/aotuzuche/auto-libs/compare/v0.2.4...v0.3.0) (2020-06-10)
 
 ### Bug Fixes
