@@ -137,7 +137,8 @@ const Mini = {
     const split = url.split('?');
     let params: any = query;
     if (split[1]) {
-      params = { ...params, ...qs.parse(split[1]) };
+      // url上原有的query先放入，若第二个参数携带了对象，后放入，有重复时会覆盖原有的
+      params = { ...qs.parse(split[1]), ...params };
     }
 
     baseUrl = `${baseUrl}?urlParams=${JSON.stringify({
