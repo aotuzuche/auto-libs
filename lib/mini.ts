@@ -1,4 +1,22 @@
 import qs from 'qs';
+import getUtm from './utils/getUtm';
+
+const urlAddUtm = (url: string) => {
+  let newUrl = url;
+
+  const utm = getUtm();
+  if (utm) {
+    const utmQuery = `utmSource=${utm.utm_source}&utmMedium=${utm.utm_medium}&utmCampaign=${utm.utm_campaign}&utmTerm=${utm.utm_term}`;
+
+    if (newUrl.indexOf('?') > 0) {
+      newUrl += `&${utmQuery}`;
+    } else {
+      newUrl += `?${utmQuery}`;
+    }
+  }
+
+  return newUrl;
+};
 
 // 小程序相关方法
 const Mini = {
@@ -45,15 +63,15 @@ const Mini = {
     }
 
     if (window && window.my && window.my.navigateTo) {
-      window.my.navigateTo({ url });
+      window.my.navigateTo({ url: urlAddUtm(url) });
     }
 
     if (window && window.wx && window.wx.miniProgram && window.wx.miniProgram.navigateTo) {
-      window.wx.miniProgram.navigateTo({ url });
+      window.wx.miniProgram.navigateTo({ url: urlAddUtm(url) });
     }
 
     if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.navigateTo) {
-      window.jd.miniProgram.navigateTo({ url });
+      window.jd.miniProgram.navigateTo({ url: urlAddUtm(url) });
     }
   },
 
@@ -62,15 +80,15 @@ const Mini = {
    */
   switchTab(url: string) {
     if (window && window.my && window.my.switchTab) {
-      window.my.switchTab({ url });
+      window.my.switchTab({ url: urlAddUtm(url) });
     }
 
     if (window && window.wx && window.wx.miniProgram && window.wx.miniProgram.switchTab) {
-      window.wx.miniProgram.switchTab({ url });
+      window.wx.miniProgram.switchTab({ url: urlAddUtm(url) });
     }
 
     if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.switchTab) {
-      window.jd.miniProgram.switchTab({ url });
+      window.jd.miniProgram.switchTab({ url: urlAddUtm(url) });
     }
   },
 
@@ -96,15 +114,15 @@ const Mini = {
    */
   redirectTo(url: string) {
     if (window && window.my && window.my.redirectTo) {
-      window.my.redirectTo({ url });
+      window.my.redirectTo({ url: urlAddUtm(url) });
     }
 
     if (window && window.wx && window.wx.miniProgram && window.wx.miniProgram.redirectTo) {
-      window.wx.miniProgram.redirectTo({ url });
+      window.wx.miniProgram.redirectTo({ url: urlAddUtm(url) });
     }
 
     if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.redirectTo) {
-      window.jd.miniProgram.redirectTo({ url });
+      window.jd.miniProgram.redirectTo({ url: urlAddUtm(url) });
     }
   },
 
@@ -113,15 +131,15 @@ const Mini = {
    */
   reLaunch(url: string) {
     if (window && window.my && window.my.reLaunch) {
-      window.my.reLaunch({ url });
+      window.my.reLaunch({ url: urlAddUtm(url) });
     }
 
     if (window && window.wx && window.wx.miniProgram && window.wx.miniProgram.reLaunch) {
-      window.wx.miniProgram.reLaunch({ url });
+      window.wx.miniProgram.reLaunch({ url: urlAddUtm(url) });
     }
 
     if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.reLaunch) {
-      window.jd.miniProgram.reLaunch({ url });
+      window.jd.miniProgram.reLaunch({ url: urlAddUtm(url) });
     }
   },
 

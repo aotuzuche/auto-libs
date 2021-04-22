@@ -1,7 +1,7 @@
 import axios, { AxiosAdapter, AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'axios';
-import Cookie from 'js-cookie';
 import { clearToken, getToken, toLogin } from './token';
 import report from './utils/analyticsReport';
+import getUtm from './utils/getUtm';
 
 interface HttpConfig {
   resCode?: string;
@@ -67,11 +67,8 @@ export const http: CustomAxiosInstance = axios.create({
  */
 http.interceptors.request.use(config => {
   const token = getToken();
-  const utmSource = Cookie.get('utm_source');
-  const utmMedium = Cookie.get('utm_medium');
-  const utmCampaign = Cookie.get('utm_campaign');
-  const utmTerm = Cookie.get('utm_term');
   const platform = (window as any).platform;
+  const utm = getUtm();
 
   const method = (config.method as string).toLocaleLowerCase();
   if (token) {
@@ -86,17 +83,12 @@ http.interceptors.request.use(config => {
     if (token) {
       config.params.token = token;
     }
-    if (utmSource) {
-      config.params.utmSource = utmSource;
-    }
-    if (utmMedium) {
-      config.params.utmMedium = utmMedium;
-    }
-    if (utmCampaign) {
-      config.params.utmCampaign = utmCampaign;
-    }
-    if (utmTerm) {
-      config.params.utmTerm = utmTerm;
+
+    if (utm) {
+      config.params.utmSource = utm.utm_source;
+      config.params.utmMedium = utm.utm_medium;
+      config.params.utmCampaign = utm.utm_campaign;
+      config.params.utmTerm = utm.utm_term;
     }
 
     config.params.requestId = Number(new Date());
@@ -110,18 +102,14 @@ http.interceptors.request.use(config => {
     if (token) {
       config.data.token = token;
     }
-    if (utmSource) {
-      config.data.utmSource = utmSource;
+
+    if (utm) {
+      config.data.utmSource = utm.utm_source;
+      config.data.utmMedium = utm.utm_medium;
+      config.data.utmCampaign = utm.utm_campaign;
+      config.data.utmTerm = utm.utm_term;
     }
-    if (utmMedium) {
-      config.data.utmMedium = utmMedium;
-    }
-    if (utmCampaign) {
-      config.data.utmCampaign = utmCampaign;
-    }
-    if (utmTerm) {
-      config.data.utmTerm = utmTerm;
-    }
+
     config.data.requestId = Number(new Date());
     if (platform) {
       config.data.h5Platform = platform;
