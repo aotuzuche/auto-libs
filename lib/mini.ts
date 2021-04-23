@@ -1,23 +1,6 @@
 import qs from 'qs';
 import getUtm from './utils/getUtm';
 
-const urlAddUtm = (url: string) => {
-  let newUrl = url;
-
-  const utm = getUtm();
-  if (utm) {
-    const utmQuery = `utmSource=${utm.utm_source}&utmMedium=${utm.utm_medium}&utmCampaign=${utm.utm_campaign}&utmTerm=${utm.utm_term}`;
-
-    if (newUrl.indexOf('?') > 0) {
-      newUrl += `&${utmQuery}`;
-    } else {
-      newUrl += `?${utmQuery}`;
-    }
-  }
-
-  return newUrl;
-};
-
 // 小程序相关方法
 const Mini = {
   /**
@@ -62,16 +45,19 @@ const Mini = {
       return;
     }
 
+    const utm = getUtm();
+    Mini.postMessage({ type: 'update_utm', payload: utm });
+
     if (window && window.my && window.my.navigateTo) {
-      window.my.navigateTo({ url: urlAddUtm(url) });
+      window.my.navigateTo({ url });
     }
 
     if (window && window.wx && window.wx.miniProgram && window.wx.miniProgram.navigateTo) {
-      window.wx.miniProgram.navigateTo({ url: urlAddUtm(url) });
+      window.wx.miniProgram.navigateTo({ url });
     }
 
     if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.navigateTo) {
-      window.jd.miniProgram.navigateTo({ url: urlAddUtm(url) });
+      window.jd.miniProgram.navigateTo({ url });
     }
   },
 
@@ -79,16 +65,23 @@ const Mini = {
    * 跳转原生Tab
    */
   switchTab(url: string) {
+    if (!url) {
+      return;
+    }
+
+    const utm = getUtm();
+    Mini.postMessage({ type: 'update_utm', payload: utm });
+
     if (window && window.my && window.my.switchTab) {
-      window.my.switchTab({ url: urlAddUtm(url) });
+      window.my.switchTab({ url });
     }
 
     if (window && window.wx && window.wx.miniProgram && window.wx.miniProgram.switchTab) {
-      window.wx.miniProgram.switchTab({ url: urlAddUtm(url) });
+      window.wx.miniProgram.switchTab({ url });
     }
 
     if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.switchTab) {
-      window.jd.miniProgram.switchTab({ url: urlAddUtm(url) });
+      window.jd.miniProgram.switchTab({ url });
     }
   },
 
@@ -113,16 +106,23 @@ const Mini = {
    * 跳转原生页面(关闭当前页面)
    */
   redirectTo(url: string) {
+    if (!url) {
+      return;
+    }
+
+    const utm = getUtm();
+    Mini.postMessage({ type: 'update_utm', payload: utm });
+
     if (window && window.my && window.my.redirectTo) {
-      window.my.redirectTo({ url: urlAddUtm(url) });
+      window.my.redirectTo({ url });
     }
 
     if (window && window.wx && window.wx.miniProgram && window.wx.miniProgram.redirectTo) {
-      window.wx.miniProgram.redirectTo({ url: urlAddUtm(url) });
+      window.wx.miniProgram.redirectTo({ url });
     }
 
     if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.redirectTo) {
-      window.jd.miniProgram.redirectTo({ url: urlAddUtm(url) });
+      window.jd.miniProgram.redirectTo({ url });
     }
   },
 
@@ -130,16 +130,23 @@ const Mini = {
    * 跳转原生页面(关闭当前所有页面)
    */
   reLaunch(url: string) {
+    if (!url) {
+      return;
+    }
+
+    const utm = getUtm();
+    Mini.postMessage({ type: 'update_utm', payload: utm });
+
     if (window && window.my && window.my.reLaunch) {
-      window.my.reLaunch({ url: urlAddUtm(url) });
+      window.my.reLaunch({ url });
     }
 
     if (window && window.wx && window.wx.miniProgram && window.wx.miniProgram.reLaunch) {
-      window.wx.miniProgram.reLaunch({ url: urlAddUtm(url) });
+      window.wx.miniProgram.reLaunch({ url });
     }
 
     if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.reLaunch) {
-      window.jd.miniProgram.reLaunch({ url: urlAddUtm(url) });
+      window.jd.miniProgram.reLaunch({ url });
     }
   },
 
@@ -171,6 +178,9 @@ const Mini = {
    * h5调用小程序的授权登录
    */
   authLogin(redirect?: string) {
+    const utm = getUtm();
+    Mini.postMessage({ type: 'update_utm', payload: utm });
+
     if (redirect) {
       Mini.navigateTo(
         `/pages/pageCommon/fastLogin/index?redirectUrl=${encodeURIComponent(redirect)}`,
