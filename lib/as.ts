@@ -1,5 +1,6 @@
 import Cookie from 'js-cookie';
 import qs from 'qs';
+import Search from './search';
 
 export interface ASData {
   pageNo?: number;
@@ -44,10 +45,28 @@ export async function AS(data: ASData = {}) {
       params.push(`${key}=${value}`);
     });
 
-    const utmSource = Cookie.get('utm_source');
-    const utmMedium = Cookie.get('utm_medium');
-    const utmCampaign = Cookie.get('utm_campaign');
-    const utmTerm = Cookie.get('utm_term');
+    let utmSource = Cookie.get('utm_source');
+    let utmMedium = Cookie.get('utm_medium');
+    let utmCampaign = Cookie.get('utm_campaign');
+    let utmTerm = Cookie.get('utm_term');
+
+    if (!utmSource && Search.exist('utm_source')) {
+      utmSource = Search.get('utm_source') || '';
+      Cookie.set('utm_source', utmSource);
+    }
+    if (!utmMedium && Search.exist('utm_medium')) {
+      utmMedium = Search.get('utm_medium') || '';
+      Cookie.set('utm_medium', utmMedium);
+    }
+    if (!utmCampaign && Search.exist('utm_campaign')) {
+      utmCampaign = Search.get('utm_campaign') || '';
+      Cookie.set('utm_campaign', utmCampaign);
+    }
+    if (!utmTerm && Search.exist('utm_term')) {
+      utmTerm = Search.get('utm_term') || '';
+      Cookie.set('utm_term', utmTerm);
+    }
+
     if (utmSource) {
       params.push(`utm_source=${utmSource}`);
     }
