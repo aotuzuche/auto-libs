@@ -5,8 +5,13 @@ import getUtm from './utils/getUtm';
 const Mini = {
   /**
    * 返回上一个页面
+   * refreshPreWebview: boolean 如果前一个页面为webview，为true时，刷新该页面
    */
-  navigateBack() {
+  navigateBack(refreshPreWebview?: boolean) {
+    if (refreshPreWebview) {
+      Mini.postMessage({ type: 'refresh_pre_webview' });
+    }
+
     let key = 0;
     if (window && window.my && window.my.navigateBack) {
       key++;
@@ -88,7 +93,7 @@ const Mini = {
   /**
    * postMessage
    */
-  postMessage(data: any) {
+  postMessage(data: { type: string; payload?: any }) {
     if (window && window.my && window.my.postMessage) {
       window.my.postMessage(data);
     }
