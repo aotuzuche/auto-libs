@@ -33,6 +33,9 @@
 11. [httpConsole](#httpConsole)
     - [自定义拦截器 管理后台](#自定义拦截器)
     - [自定义登陆跳转 管理后台](#自定义登陆跳转)
+12. [crypto 加密解密](#crypto-加密解密)
+    - [Encrypt](#Encrypt)
+    - [Decrypt](#Decrypt)
 
 ## 公用样式和脚本引入
 
@@ -263,6 +266,22 @@ httpConsoleExtend({
     return false;
   },
 });
+```
+
+## crypto 加密解密
+
+### Encrypt
+
+### Decrypt
+
+```js
+import { Decrypt, Encrypt } from 'auto-libs';
+
+// 加密 data
+Encrypt();
+
+// 解密 res
+Decrypt();
 ```
 
 ## AS 统计埋点

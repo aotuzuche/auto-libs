@@ -10,6 +10,7 @@ export * from './setWechatTitle';
 export * from './miniprogram';
 export * from './search';
 export * from './launchApp';
+export * from './crypto';
 export { default as Report } from './report';
 export { default as CDN } from './cdn';
 export { default as Reg } from './reg';
