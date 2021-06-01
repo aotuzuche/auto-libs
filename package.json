@@ -1,6 +1,6 @@
 {
   "name": "auto-libs",
-  "version": "0.3.40",
+  "version": "0.3.45",
   "description": "凹凸 公用组件",
   "main": "build/index",
   "types": "build/index",

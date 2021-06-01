@@ -8,10 +8,6 @@ const Mini = {
    * refreshPreWebview: boolean 如果前一个页面为webview，为true时，刷新该页面
    */
   navigateBack(refreshPreWebview?: boolean) {
-    if (refreshPreWebview) {
-      Mini.postMessage({ type: 'refresh_pre_webview' });
-    }
-
     let key = 0;
     if (window && window.my && window.my.navigateBack) {
       key++;
@@ -26,6 +22,10 @@ const Mini = {
     if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.navigateBack) {
       key++;
       window.jd.miniProgram.navigateBack();
+    }
+
+    if (refreshPreWebview) {
+      Mini.postMessage({ type: 'refresh_pre_webview' });
     }
 
     if (key === 0) {
@@ -50,9 +50,6 @@ const Mini = {
       return;
     }
 
-    const utm = getUtm();
-    Mini.postMessage({ type: 'update_utm', payload: utm });
-
     if (window && window.my && window.my.navigateTo) {
       window.my.navigateTo({ url });
     }
@@ -64,6 +61,9 @@ const Mini = {
     if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.navigateTo) {
       window.jd.miniProgram.navigateTo({ url });
     }
+
+    const utm = getUtm();
+    Mini.postMessage({ type: 'update_utm', payload: utm });
   },
 
   /**
@@ -73,9 +73,6 @@ const Mini = {
     if (!url) {
       return;
     }
-
-    const utm = getUtm();
-    Mini.postMessage({ type: 'update_utm', payload: utm });
 
     if (window && window.my && window.my.switchTab) {
       window.my.switchTab({ url });
@@ -88,6 +85,9 @@ const Mini = {
     if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.switchTab) {
       window.jd.miniProgram.switchTab({ url });
     }
+
+    const utm = getUtm();
+    Mini.postMessage({ type: 'update_utm', payload: utm });
   },
 
   /**
@@ -95,15 +95,15 @@ const Mini = {
    */
   postMessage(data: { type: string; payload?: any }) {
     if (window && window.my && window.my.postMessage) {
-      window.my.postMessage(data);
+      window.my.postMessage({ data });
     }
 
     if (window && window.wx && window.wx.miniProgram && window.wx.miniProgram.postMessage) {
-      window.wx.miniProgram.postMessage(data);
+      window.wx.miniProgram.postMessage({ data });
     }
 
     if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.postMessage) {
-      window.jd.miniProgram.postMessage(data);
+      window.jd.miniProgram.postMessage({ data });
     }
   },
 
@@ -114,9 +114,6 @@ const Mini = {
     if (!url) {
       return;
     }
-
-    const utm = getUtm();
-    Mini.postMessage({ type: 'update_utm', payload: utm });
 
     if (window && window.my && window.my.redirectTo) {
       window.my.redirectTo({ url });
@@ -129,6 +126,9 @@ const Mini = {
     if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.redirectTo) {
       window.jd.miniProgram.redirectTo({ url });
     }
+
+    const utm = getUtm();
+    Mini.postMessage({ type: 'update_utm', payload: utm });
   },
 
   /**
@@ -138,9 +138,6 @@ const Mini = {
     if (!url) {
       return;
     }
-
-    const utm = getUtm();
-    Mini.postMessage({ type: 'update_utm', payload: utm });
 
     if (window && window.my && window.my.reLaunch) {
       window.my.reLaunch({ url });
@@ -153,6 +150,9 @@ const Mini = {
     if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.reLaunch) {
       window.jd.miniProgram.reLaunch({ url });
     }
+
+    const utm = getUtm();
+    Mini.postMessage({ type: 'update_utm', payload: utm });
   },
 
   /**
@@ -183,9 +183,6 @@ const Mini = {
    * h5调用小程序的授权登录
    */
   authLogin(redirect?: string) {
-    const utm = getUtm();
-    Mini.postMessage({ type: 'update_utm', payload: utm });
-
     if (redirect) {
       Mini.navigateTo(
         `/pages/pageCommon/fastLogin/index?redirectUrl=${encodeURIComponent(redirect)}`,
