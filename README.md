@@ -42,6 +42,9 @@
     - [plateCode-车牌号](#platecode-车牌号)
     - [vin-车架号](#vin-车架号)
     - [email-邮箱](#email-邮箱)
+  - [crypto  加密解密](#crypto-加密解密)
+    - [Encrypt](#Encrypt)
+    - [Decrypt](#Decrypt)
 
 ## 公用样式和脚本引入
 
@@ -540,4 +543,20 @@ Desensitize.vin('6228480023265389523'); // 622*************523
 
 ```js
 Desensitize.email('liuxingy@163.com'); // l*******@*******
+```
+
+## crypto 加密解密
+
+### Encrypt
+
+### Decrypt
+
+```js
+import { Decrypt, Encrypt } from 'auto-libs';
+
+// AES加密
+Encrypt.AES();
+
+// AES解密
+Decrypt.AES();
 ```
