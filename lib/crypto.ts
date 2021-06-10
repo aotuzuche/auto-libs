@@ -7,12 +7,11 @@ const Encrypt = {
       return '';
     }
     const cip = CryptoJS.enc.Utf8.parse(typeof data === 'object' ? JSON.stringify(data) : data);
-    const encrypted = CryptoJS.AES.encrypt(cip, key, {
+    const encrypted = CryptoJS.AES.encrypt(cip, CryptoJS.enc.Utf8.parse(key), {
       mode: CryptoJS.mode.ECB,
       padding: CryptoJS.pad.Pkcs7,
     });
-    const encryptedStr = encrypted.toString();
-    return encryptedStr;
+    return encrypted.toString();
   },
 };
 
@@ -22,12 +21,11 @@ const Decrypt = {
     if (isEmpty(data)) {
       return '';
     }
-    const decrypt = CryptoJS.AES.decrypt(data, key, {
+    const decrypt = CryptoJS.AES.decrypt(data, CryptoJS.enc.Utf8.parse(key), {
       mode: CryptoJS.mode.ECB,
       padding: CryptoJS.pad.Pkcs7,
     });
-    const decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
-    return decryptedStr;
+    return decrypt.toString(CryptoJS.enc.Utf8);
   },
 };
 
