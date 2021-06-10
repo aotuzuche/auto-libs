@@ -30,6 +30,47 @@ const Desensitize = {
   },
 
   /**
+   * 车架号
+   * @param str 车架号
+   * @returns 脱敏后的车架号
+   */
+  vin(str: string): string {
+    return Desensitize.custom(str, 3, 3);
+  },
+
+  /**
+   * 车牌号
+   * @param str 车牌
+   * @returns 脱敏后的车牌
+   */
+  plateCode(str: string): string {
+    return Desensitize.custom(str, 2, 2);
+  },
+
+  /**
+   * 银行卡
+   * @param str 银行卡
+   * @returns 脱敏后的银行卡
+   */
+  bankCard(str: string): string {
+    return Desensitize.custom(str, str.length - 8, 0);
+  },
+
+  /**
+   * 邮箱
+   * @param str 邮箱
+   * @returns 脱敏后的邮箱
+   */
+  email(str: string): string {
+    if (str.indexOf('@') > -1) {
+      const [str1, str2] = str.split('@');
+      return Desensitize.custom(str1, 1, 0) + '@' + Desensitize.custom(str2, 0, 0);
+    }
+
+    return Desensitize.custom(str, 1, 0);
+  },
+
+  /**
    * 自定义脱敏
    * @param str 需要脱敏的字符串
    * @param showPrefix 显示前几位
