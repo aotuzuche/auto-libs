@@ -554,9 +554,9 @@ Desensitize.email('liuxingy@163.com'); // l*******@*******
 ```js
 import { Decrypt, Encrypt } from 'auto-libs';
 
-// 加密 data
-Encrypt();
+// AES加密
+Encrypt.AES();
 
-// 解密 data
-Decrypt();
+// AES解密
+Decrypt.AES();
 ```
