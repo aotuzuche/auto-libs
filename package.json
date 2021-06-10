@@ -26,7 +26,7 @@
     "prepublish": "npm run lint && npm run test",
     "np": "np --yolo --no-yarn",
     "npb": "np 0.3.4-beta.0 --yolo --no-yarn --tag=beta",
-    "publish": "npm run build && npm run np"
+    "publish": "npm run build && npm run npb"
   },
   "publishConfig": {
     "registry": "http://registry.npmjs.org"
