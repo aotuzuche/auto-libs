@@ -1,10 +1,7 @@
 import CryptoJS from 'crypto-js';
-import { config } from './config';
-
-const key = CryptoJS.enc.Utf8.parse(config.key);
 
 // 解密方法(ECB)
-const Decrypt = (data: any) => {
+const Decrypt = (data: any, key: string) => {
   if (isEmpty(data)) {
     return '';
   }
@@ -17,7 +14,7 @@ const Decrypt = (data: any) => {
 };
 
 // 加密方法(ECB)
-const Encrypt = (data: any) => {
+const Encrypt = (data: any, key: string) => {
   if (isEmpty(data)) {
     return '';
   }

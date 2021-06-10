@@ -33,9 +33,9 @@
 11. [httpConsole](#httpConsole)
     - [自定义拦截器 管理后台](#自定义拦截器)
     - [自定义登陆跳转 管理后台](#自定义登陆跳转)
-12. [crypto 加密解密](#crypto-加密解密)
-    - [Encrypt](#Encrypt)
-    - [Decrypt](#Decrypt)
+12. [crypto  加密解密](#crypto-加密解密)
+    - [Encrypt](#Encrypt)
+    - [Decrypt](#Decrypt)
 
 ## 公用样式和脚本引入
 
@@ -280,7 +280,7 @@ import { Decrypt, Encrypt } from 'auto-libs';
 // 加密 data
 Encrypt();
 
-// 解密 res
+// 解密 data
 Decrypt();
 ```
 
@@ -507,3 +507,47 @@ stringToDate();
 是否是微信小程序 function isMiniWX() 异步函数,
 
 是否是微信小程序 function isMiniBaidu() 异步函数,
+
+## Desensitize 隐私处理方法
+
+### idCard-身份证
+
+```js
+Desensitize.idCard('310110199912120101')) // 310***********0101
+```
+
+### mobile-手机号
+
+```js
+Desensitize.mobile('13800138000'); // 138****8000
+```
+
+### name-名称
+
+```js
+Desensitize.name('张三丰')) // 张**
+```
+
+### bankcard-银行卡
+
+```js
+Desensitize.bankCard('6228480023265389523'); // 62284800232********
+```
+
+### plateCode-车牌号
+
+```js
+Desensitize.plateCode('沪AB00993'); // 沪A****93
+```
+
+### vin-车架号
+
+```js
+Desensitize.vin('6228480023265389523'); // 622*************523
+```
+
+### email-邮箱
+
+```js
+Desensitize.email('liuxingy@163.com'); // l*******@*******
+```

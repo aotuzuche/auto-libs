@@ -17,3 +17,4 @@ export { default as Reg } from './reg';
 export { default as Search } from './search';
 export { default as go } from './go';
 export { default as Mini } from './mini';
+export { default as Desensitize } from './desensitize';

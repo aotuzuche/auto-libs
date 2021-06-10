@@ -1,6 +1,6 @@
 {
   "name": "auto-libs",
-  "version": "0.3.39",
+  "version": "0.3.48",
   "description": "凹凸 公用组件",
   "main": "build/index",
   "types": "build/index",
@@ -25,7 +25,7 @@
     "lint:ts": "tsc --build tsconfig.build.json && node node_modules/tslint/bin/tslint -c ./tslint.json -p ./tsconfig.build.json",
     "prepublish": "npm run lint && npm run test",
     "np": "np --yolo --no-yarn",
-    "npb": "np 0.3.4-beta.0 --yolo --no-yarn --tag=beta"
+    "publish": "npm run build && npm run np"
   },
   "publishConfig": {
     "registry": "http://registry.npmjs.org"
