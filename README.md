@@ -1,39 +1,48 @@
 # AUTO-libs 凹凸公用库
 
-1. [公用样式和脚本引入](#公用样式和脚本引入)
-   - [reset 样式](#reset-样式)
-   - [flexible 布局脚本](#flexible-布局脚本)
-   - [Input 扩展](#input-扩展)
-2. [CDN](#CDN-方法)
-3. [Report 错误上报](#Report-错误上报)
-4. [Search 浏览器地址参数处理](#Search-浏览器地址参数处理)
-5. [go 跳转](#go-跳转)
-   - [取还车地址](#取还车地址)
-   - [支付](#支付)
-   - [身份认证](#身份认证)
-   - [驾照认证](#驾照认证)
-6. [http](#http)
-   - [自定义拦截器](#自定义拦截器)
-7. [AS 统计埋点](#as-统计埋点)
-   - [页面编号 事件号和携带参数](#页面编号-事件号和携带参数)
-8. [WX](#wx)
-   - [自定义参数](#自定义参数)
-   - [自定义按钮](#自定义按钮)
-9. [token 相关](#token-相关)
-   - [token](#token)
-   - [登录](#登录)
-   - [openId](#openid)
-   - [unionId](#unionid)
-   - [virtualNo](#virtualno)
-   - [memNo](#memno)
-10. [时间转换](#时间转换)
-    - [offsetHours](#offsetHours)
-    - [offsetDays](#offsetDays)
-    - [stringToDate](#stringToDate)
-11. [httpConsole](#httpConsole)
-    - [自定义拦截器 管理后台](#自定义拦截器)
-    - [自定义登陆跳转 管理后台](#自定义登陆跳转)
-12. [crypto  加密解密](#crypto-加密解密)
+- [AUTO-libs 凹凸公用库](#auto-libs-凹凸公用库)
+  - [公用样式和脚本引入](#公用样式和脚本引入)
+    - [reset 样式](#reset-样式)
+    - [flexible 布局脚本](#flexible-布局脚本)
+    - [Input 扩展](#input-扩展)
+  - [CDN 方法](#cdn-方法)
+  - [Report 错误上报](#report-错误上报)
+  - [Search 浏览器地址参数处理](#search-浏览器地址参数处理)
+  - [go 跳转](#go-跳转)
+    - [取还车地址](#取还车地址)
+    - [支付](#支付)
+    - [身份认证](#身份认证)
+    - [驾照认证](#驾照认证)
+  - [http](#http)
+  - [httpConsole](#httpconsole)
+    - [自定义拦截器](#自定义拦截器)
+    - [自定义登陆跳转](#自定义登陆跳转)
+  - [AS 统计埋点](#as-统计埋点)
+    - [页面编号 事件号和携带参数](#页面编号-事件号和携带参数)
+  - [WX](#wx)
+    - [自定义参数](#自定义参数)
+    - [自定义按钮](#自定义按钮)
+  - [token 相关](#token-相关)
+    - [token](#token)
+    - [登录](#登录)
+    - [openId](#openid)
+    - [unionId](#unionid)
+    - [virtualNo](#virtualno)
+    - [memNo](#memno)
+  - [时间转换](#时间转换)
+    - [offsetHours](#offsethours)
+    - [offsetDays](#offsetdays)
+    - [stringToDate](#stringtodate)
+  - [正则](#正则)
+  - [Desensitize 隐私处理方法](#desensitize隐私处理方法)
+    - [idCard-身份证](#idcard-身份证)
+    - [mobile-手机号](#mobile-手机号)
+    - [name-名称](#name-名称)
+    - [bankcard-银行卡](#bankcard-银行卡)
+    - [plateCode-车牌号](#platecode-车牌号)
+    - [vin-车架号](#vin-车架号)
+    - [email-邮箱](#email-邮箱)
+  - [crypto  加密解密](#crypto-加密解密)
     - [Encrypt](#Encrypt)
     - [Decrypt](#Decrypt)
 
@@ -266,22 +275,6 @@ httpConsoleExtend({
     return false;
   },
 });
-```
-
-## crypto 加密解密
-
-### Encrypt
-
-### Decrypt
-
-```js
-import { Decrypt, Encrypt } from 'auto-libs';
-
-// 加密 data
-Encrypt();
-
-// 解密 data
-Decrypt();
 ```
 
 ## AS 统计埋点
@@ -550,4 +543,20 @@ Desensitize.vin('6228480023265389523'); // 622*************523
 
 ```js
 Desensitize.email('liuxingy@163.com'); // l*******@*******
+```
+
+## crypto 加密解密
+
+### Encrypt
+
+### Decrypt
+
+```js
+import { Decrypt, Encrypt } from 'auto-libs';
+
+// 加密 data
+Encrypt();
+
+// 解密 data
+Decrypt();
 ```
