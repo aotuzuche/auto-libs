@@ -25,8 +25,7 @@
     "lint": "tsc --build tsconfig.build.json && node node_modules/tslint/bin/tslint -c ./tslint.json -p ./tsconfig.build.json",
     "lint-staged": "lint-staged",
     "np": "np --no-cleanup --yolo --no-publish",
-    "publish": "yarn clean && yarn prettier && yarn lint && yarn build && yarn np",
-    "prepublishOnly": "yarn publish"
+    "prepublishOnly": "yarn clean && yarn prettier && yarn lint && yarn build && yarn np"
   },
   "publishConfig": {
     "registry": "http://registry.npmjs.org"
