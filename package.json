@@ -33,7 +33,8 @@
   "husky": {
     "hooks": {
       "commit-msg": "node scripts/verify-commit-msg.js",
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "node scripts/publish-tips.js"
     }
   },
   "lint-staged": {
