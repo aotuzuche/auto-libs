@@ -88,9 +88,9 @@ const offsetDays = (date1: Date, date2: Date): string => {
 };
 
 // 将字符串20190101093000 转换为时间格式
-const stringToDate = (val: string): Date => {
+const stringToDate = (val: string): Date | undefined => {
   if (!val || !/[0-9]+/.test(val)) {
-    throw Error('invalid date');
+    return;
   }
   const LEN = 14;
   let _str = val;
