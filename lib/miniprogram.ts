@@ -31,6 +31,9 @@ interface MiniEnv {
 }
 
 export const getMiniProgramEnv = (): Promise<MiniEnv> => {
+  console.error(
+    'getMiniProgramEnv已废弃，请使用 window.isMiniProgram / window.isAlipay / window.isWX 等',
+  );
   return new Promise(resolve => {
     // 是否是京东客户端
     const isJD = navigator.userAgent.indexOf('jdapp') > -1;

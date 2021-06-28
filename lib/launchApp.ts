@@ -41,10 +41,8 @@ export const launchApp = () => {
   if (Reg.isiOS) {
     window.location.href = `Atzuche://www.aotuzuche.com?${param}`;
     setTimeout(() => {
-      if (new Date().getTime() - clickedAt < 2000) {
-        window.location.href = 'https://itunes.apple.com/cn/app/id870422896'; // itunes
-      }
-    }, 500);
+      window.location.href = 'https://itunes.apple.com/cn/app/id870422896'; // itunes
+    }, 3000);
   } else {
     window.location.href = `intent://www.aotuzuche.com?${param}#Intent;package=com.Autoyol.auto;scheme=Atzuche;launchFlags=3;end;`;
     setTimeout(() => {
