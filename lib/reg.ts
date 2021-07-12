@@ -19,7 +19,7 @@ const isApp = /atzuche/gi.test(ua);
 const isWX = !isWXWork && /MicroMessenger/gi.test(ua);
 
 // 是否是支付宝客户端
-const isAlipay = /AlipayClient/gi.test(ua);
+const isAlipay = /AlipayClient/gi.test(ua) || /AliApp/gi.test(ua);
 
 // 是否是京东客户端
 const isJD = ua.indexOf('jdapp') > -1;
