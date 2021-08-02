@@ -79,24 +79,26 @@ const Desensitize = {
    * @returns 脱敏后的字符串
    */
   custom(str: string, showPrefix: number, showSuffix: number, hider = '*'): string {
+    const sstr = String(str);
+
     // 传参错误的情况，不处理
-    if (!str || showPrefix < 0 || showSuffix < 0 || !hider) {
-      return str;
+    if (!sstr || showPrefix < 0 || showSuffix < 0 || !hider) {
+      return sstr;
     }
 
     // 需要显示的内容大于等于字符串长度，不处理
-    if (showPrefix + showSuffix >= str.length) {
-      return str;
+    if (showPrefix + showSuffix >= sstr.length) {
+      return sstr;
     }
 
     // 进行隐藏替换
-    const hiderCount = Math.max(str.length - showPrefix - showSuffix, 0);
+    const hiderCount = Math.max(sstr.length - showPrefix - showSuffix, 0);
 
     const allHider = Array(hiderCount)
       .fill(hider)
       .join('');
 
-    return str.substr(0, showPrefix) + allHider + (showSuffix > 0 ? str.substr(-showSuffix) : '');
+    return sstr.substr(0, showPrefix) + allHider + (showSuffix > 0 ? sstr.substr(-showSuffix) : '');
   },
 };
 
