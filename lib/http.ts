@@ -40,6 +40,12 @@ if (!uuid) {
   localStorage.setItem('_app_uuid_', uuid);
 }
 
+// 拦截多次请求弹出重复错误问题
+// 目前整体看下来，只有200008这个场景会出现这种情况，其他类型的错误都会被catch掉
+// 在同一批接口中统一传入相同的_xuuids_参数 最好是随机数
+window._cblock_ = {};
+let xuuids: string = '';
+
 /**
  * 配置axios
  */
@@ -116,6 +122,12 @@ http.interceptors.request.use(config => {
     }
   }
 
+  xuuids = (config.params && config.params._xuuids_) || (config.data && config.data._xuuids_);
+  if (xuuids && window._cblock_[xuuids] === void 0) {
+    delete config.params._xuuids_;
+    window._cblock_[xuuids] = false;
+  }
+
   (config as any).____t = new Date().valueOf();
 
   return config;
@@ -156,7 +168,14 @@ http.interceptors.response.use(
           cc.onLogin('200008');
         } else {
           clearToken();
-          toLogin();
+          if (!xuuids) {
+            toLogin();
+          } else {
+            if (window._cblock_[xuuids] === false) {
+              window._cblock_[xuuids] = true;
+              toLogin();
+            }
+          }
         }
         return {};
       }
@@ -187,7 +206,14 @@ http.interceptors.response.use(
         cc.onLogin(data.resCode);
       } else {
         clearToken();
-        toLogin();
+        if (!xuuids) {
+          toLogin();
+        } else {
+          if (window._cblock_[xuuids] === false) {
+            window._cblock_[xuuids] = true;
+            toLogin();
+          }
+        }
       }
       return {};
     }
