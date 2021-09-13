@@ -79,7 +79,7 @@ const initToken = async (ignore?: () => boolean) => {
       at.user.getToken().then(t => {
         if (t) {
           setToken(t);
-          resolve();
+          resolve(void 0);
         } else {
           clearToken();
           reject(new Error('token is empty'));
@@ -93,7 +93,7 @@ const initToken = async (ignore?: () => boolean) => {
 
       if (token && String(token).length > 20) {
         setToken(token);
-        resolve();
+        resolve(void 0);
       } else {
         clearToken();
         reject(new Error('token is empty'));
@@ -127,7 +127,7 @@ const toLogin = (appParams?: ItoLogin) => {
       }
     });
   } else if (window.isMiniProgram) {
-    Mini.authLogin();
+    Mini.authLogin(window.location.href);
   } else {
     window.location.href = `/m/login/?${qs.stringify({
       redirect: window.location.href,
