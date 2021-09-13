@@ -50,7 +50,7 @@
   "dependencies": {
     "@babel/runtime": "^7.12.5",
     "at-js-bridge": "^1.0.22",
-    "axios": "0.18.0",
+    "axios": "0.21.2",
     "crypto-js": "^4.0.0",
     "js-cookie": "^2.2.0",
     "qs": "^6.5.2",
