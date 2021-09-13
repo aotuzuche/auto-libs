@@ -128,7 +128,7 @@ const toLogin = (appParams?: ItoLogin) => {
       }
     });
   } else if (window.isMiniProgram) {
-    Mini.authLogin((appParams && appParams.redirectUrl) || window.location.href);
+    Mini.authLogin(appParams && appParams.redirectUrl);
   } else {
     window.location.href = `/m/login/?${qs.stringify({
       redirect: window.location.href,
