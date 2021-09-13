@@ -111,6 +111,7 @@ interface ItoLogin {
   success?: () => void;
   cancel?: () => void;
   isBind?: boolean;
+  redirectUrl?: string;
 }
 
 const toLogin = (appParams?: ItoLogin) => {
@@ -127,7 +128,7 @@ const toLogin = (appParams?: ItoLogin) => {
       }
     });
   } else if (window.isMiniProgram) {
-    Mini.authLogin(window.location.href);
+    Mini.authLogin((appParams && appParams.redirectUrl) || window.location.href);
   } else {
     window.location.href = `/m/login/?${qs.stringify({
       redirect: window.location.href,

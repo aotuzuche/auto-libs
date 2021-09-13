@@ -13,6 +13,7 @@ interface Window {
   swan: any;
   atzuche: any;
   NativeJsBridge: any;
+  _cblock_: any;
 }
 
 interface Window {
