@@ -25,7 +25,7 @@
     "lint-staged": "lint-staged",
     "np": "np --no-cleanup --yolo",
     "ps": "sh ./scripts/publish.sh",
-    "prepublishOnly": "yarn clean && yarn prettier && yarn lint && yarn build && yarn np"
+    "prepublishOnly": "yarn clean && yarn prettier && yarn lint && yarn build && yarn ps"
   },
   "publishConfig": {
     "registry": "http://registry.npmjs.org"
