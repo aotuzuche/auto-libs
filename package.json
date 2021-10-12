@@ -23,7 +23,7 @@
     "prettier": "prettier -c --write '**/*.ts'",
     "lint": "tsc --build tsconfig.build.json && node node_modules/tslint/bin/tslint -c ./tslint.json -p ./tsconfig.build.json",
     "lint-staged": "lint-staged",
-    "np": "np --no-cleanup --yolo --no-publish",
+    "np": "yarn clean && yarn prettier && yarn lint && yarn build && np --no-cleanup --yolo",
     "ps": "sh ./scripts/publish.sh",
     "prepublishOnly": "yarn clean && yarn prettier && yarn lint && yarn build && yarn np"
   },
