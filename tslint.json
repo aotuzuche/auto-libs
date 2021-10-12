@@ -9,6 +9,6 @@
     "no-unused-expression": [true, "allow-fast-null-checks"],
     "arrow-parens": false,
     "no-magic-numbers": false,
-    "cyclomatic-complexity": [true, 30]
+    "cyclomatic-complexity": [true, 50]
   }
 }
