@@ -98,6 +98,8 @@ http.interceptors.request.use(config => {
     }
 
     config.params.requestId = Number(new Date());
+    config.params.uuid = uuid;
+
     if (platform) {
       config.params.h5Platform = platform;
     }
@@ -117,6 +119,8 @@ http.interceptors.request.use(config => {
     }
 
     config.data.requestId = Number(new Date());
+    config.data.uuid = uuid;
+
     if (platform) {
       config.data.h5Platform = platform;
     }
