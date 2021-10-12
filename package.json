@@ -28,7 +28,7 @@
     "prepublishOnly": "yarn clean && yarn prettier && yarn lint && yarn build && yarn np"
   },
   "publishConfig": {
-    "registry": "http://registry.npmjs.org"
+    "registry": "https://registry.npmjs.org"
   },
   "husky": {
     "hooks": {
