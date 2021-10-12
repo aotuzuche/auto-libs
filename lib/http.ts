@@ -44,7 +44,7 @@ if (!uuid) {
 // 目前整体看下来，只有200008这个场景会出现这种情况，其他类型的错误都会被catch掉
 // 在同一批接口中统一传入相同的_xuuids_参数 最好是随机数
 window._cblock_ = {};
-let xuuids: string = '';
+let xuuids = '';
 
 /**
  * 配置axios
