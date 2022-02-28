@@ -46,6 +46,9 @@ if (!uuid) {
 window._cblock_ = {};
 let xuuids = '';
 
+// 登录用的timer
+let toLoginTimer: any = void 0;
+
 /**
  * 配置axios
  */
@@ -146,7 +149,7 @@ http.interceptors.response.use(
     const cc = (config.config as any) || {};
 
     // report
-    report(cc.report !== false && cc.____t && cc.url && cc.method, 'api/m', {
+    report(cc.report === true && cc.____t && cc.url && cc.method, 'api/m', {
       m: cc.method,
       u: cc.url,
       p: window.location.origin + window.location.pathname,
@@ -169,7 +172,12 @@ http.interceptors.response.use(
 
       if (config.status === 401) {
         if (cc.onLogin) {
-          cc.onLogin('200008');
+          if (!toLoginTimer) {
+            cc.onLogin('200008');
+            toLoginTimer = setTimeout(() => {
+              toLoginTimer = void 0;
+            }, 150);
+          }
         } else {
           clearToken();
           if (!xuuids) {
@@ -185,7 +193,7 @@ http.interceptors.response.use(
       }
 
       // report error
-      report(cc.report !== false && cc.url && cc.method, 'api_error/m', {
+      report(cc.report === true && cc.url && cc.method, 'api_error/m', {
         m: cc.method,
         u: cc.url,
         p: window.location.origin + window.location.pathname,
@@ -234,7 +242,7 @@ http.interceptors.response.use(
     }
 
     // report error
-    report(cc.report !== false && cc.url && cc.method && data.resCode === '999999', 'api_error/m', {
+    report(cc.report === true && cc.url && cc.method && data.resCode === '999999', 'api_error/m', {
       m: cc.method,
       u: cc.url,
       p: window.location.origin + window.location.pathname,
@@ -257,7 +265,7 @@ http.interceptors.response.use(
 
     const cc = error.config;
     const res = error.response || {};
-    report(cc && cc.report !== false && res.status, 'api_error/m', {
+    report(cc && cc.report === true && res.status, 'api_error/m', {
       m: cc.method,
       u: cc.url,
       p: window.location.origin + window.location.pathname,
