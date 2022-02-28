@@ -46,9 +46,6 @@ if (!uuid) {
 window._cblock_ = {};
 let xuuids = '';
 
-// 登录用的timer
-let toLoginTimer: any = void 0;
-
 /**
  * 配置axios
  */
@@ -172,12 +169,7 @@ http.interceptors.response.use(
 
       if (config.status === 401) {
         if (cc.onLogin) {
-          if (!toLoginTimer) {
-            cc.onLogin('200008');
-            toLoginTimer = setTimeout(() => {
-              toLoginTimer = void 0;
-            }, 150);
-          }
+          cc.onLogin('200008');
         } else {
           clearToken();
           if (!xuuids) {
