@@ -1,7 +1,9 @@
-const CryptoJSAes = require('crypto-js/aes');
-const CryptoJSEncUtf8 = require('crypto-js/enc-utf8');
-const CryptoJSModeEcb = require('crypto-js/mode-ecb');
-const CryptoJSPadPkcs7 = require('crypto-js/pad-pkcs7');
+import CryptoJSAes from 'crypto-js/aes';
+import CryptoJSEncUtf8 from 'crypto-js/enc-utf8';
+import CryptoJSModeEcb from 'crypto-js/mode-ecb';
+import CryptoJSPadPkcs7 from 'crypto-js/pad-pkcs7';
+// @ts-ignore
+
 // 加密方法
 const Encrypt = {
   AES(data: any, key: string): string {
