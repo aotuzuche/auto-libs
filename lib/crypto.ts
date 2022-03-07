@@ -1,15 +1,17 @@
-import CryptoJS from 'crypto-js';
-
+const CryptoJSAes = require('crypto-js/aes');
+const CryptoJSEncUtf8 = require('crypto-js/enc-utf8');
+const CryptoJSModeEcb = require('crypto-js/mode-ecb');
+const CryptoJSPadPkcs7 = require('crypto-js/pad-pkcs7');
 // 加密方法
 const Encrypt = {
   AES(data: any, key: string): string {
     if (isEmpty(data)) {
       return '';
     }
-    const cip = CryptoJS.enc.Utf8.parse(typeof data === 'object' ? JSON.stringify(data) : data);
-    const encrypted = CryptoJS.AES.encrypt(cip, CryptoJS.enc.Utf8.parse(key), {
-      mode: CryptoJS.mode.ECB,
-      padding: CryptoJS.pad.Pkcs7,
+    const cip = CryptoJSEncUtf8.parse(typeof data === 'object' ? JSON.stringify(data) : data);
+    const encrypted = CryptoJSAes.encrypt(cip, CryptoJSEncUtf8.parse(key), {
+      mode: CryptoJSModeEcb,
+      padding: CryptoJSPadPkcs7,
     });
     return encrypted.toString();
   },
@@ -21,11 +23,11 @@ const Decrypt = {
     if (isEmpty(data)) {
       return '';
     }
-    const decrypt = CryptoJS.AES.decrypt(data, CryptoJS.enc.Utf8.parse(key), {
-      mode: CryptoJS.mode.ECB,
-      padding: CryptoJS.pad.Pkcs7,
+    const decrypt = CryptoJSAes.decrypt(data, CryptoJSEncUtf8.parse(key), {
+      mode: CryptoJSModeEcb,
+      padding: CryptoJSPadPkcs7,
     });
-    return decrypt.toString(CryptoJS.enc.Utf8);
+    return decrypt.toString(CryptoJSEncUtf8);
   },
 };
 

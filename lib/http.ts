@@ -146,7 +146,7 @@ http.interceptors.response.use(
     const cc = (config.config as any) || {};
 
     // report
-    report(cc.report !== false && cc.____t && cc.url && cc.method, 'api/m', {
+    report(cc.report === true && cc.____t && cc.url && cc.method, 'api/m', {
       m: cc.method,
       u: cc.url,
       p: window.location.origin + window.location.pathname,
@@ -185,7 +185,7 @@ http.interceptors.response.use(
       }
 
       // report error
-      report(cc.report !== false && cc.url && cc.method, 'api_error/m', {
+      report(cc.report === true && cc.url && cc.method, 'api_error/m', {
         m: cc.method,
         u: cc.url,
         p: window.location.origin + window.location.pathname,
@@ -234,7 +234,7 @@ http.interceptors.response.use(
     }
 
     // report error
-    report(cc.report !== false && cc.url && cc.method && data.resCode === '999999', 'api_error/m', {
+    report(cc.report === true && cc.url && cc.method && data.resCode === '999999', 'api_error/m', {
       m: cc.method,
       u: cc.url,
       p: window.location.origin + window.location.pathname,
@@ -257,7 +257,7 @@ http.interceptors.response.use(
 
     const cc = error.config;
     const res = error.response || {};
-    report(cc && cc.report !== false && res.status, 'api_error/m', {
+    report(cc && cc.report === true && res.status, 'api_error/m', {
       m: cc.method,
       u: cc.url,
       p: window.location.origin + window.location.pathname,
