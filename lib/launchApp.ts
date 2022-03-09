@@ -16,14 +16,7 @@ export const launchApp = () => {
     param += `&url=${url}&title=${title}`;
   }
 
-  if (
-    type === '1006' ||
-    type === '1007' ||
-    type === '1008' ||
-    type === '1009' ||
-    type === '1019' ||
-    type === '1020'
-  ) {
+  if (['1006', '1007', '1008', '1009', '1019', '1020'].includes(type)) {
     param += `&orderNo=${Search.getDefault('orderNo', '')}`;
   }
 
@@ -36,6 +29,12 @@ export const launchApp = () => {
     const sc = Search.getDefault('sceneCode', '');
     const sn = Search.getDefault('sceneName', '');
     param += `&sceneCode=${sc}&sceneName=${sn}`;
+  }
+
+  if (type === '1021') {
+    const cn = Search.getDefault('carNo', '');
+    const oc = Search.getDefault('isOpenCalendar', '');
+    param += `&carNo=${cn}&isOpenCalendar=${oc}`;
   }
 
   if (Reg.isiOS) {
