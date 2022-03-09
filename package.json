@@ -25,6 +25,7 @@
     "lint-staged": "lint-staged",
     "np": "np --no-cleanup --yolo --no-publish",
     "ps": "sh ./scripts/publish.sh",
+    "push": "sh ./scripts/push.sh",
     "prepublishOnly": "yarn clean && yarn prettier && yarn lint && yarn build && yarn ps"
   },
   "publishConfig": {
