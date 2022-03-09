@@ -1,6 +1,10 @@
 declare module 'weixin-js-sdk';
 declare module 'qs';
 declare module 'crypto-js';
+declare module 'crypto-js/aes';
+declare module 'crypto-js/enc-utf8';
+declare module 'crypto-js/mode-ecb';
+declare module 'crypto-js/pad-pkcs7';
 
 interface Window {
   dpr: number;
