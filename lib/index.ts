@@ -9,7 +9,7 @@ export * from './transfer';
 export * from './setWechatTitle';
 export * from './miniprogram';
 export * from './search';
-export * from './launchApp';
+export * from './app';
 export * from './crypto';
 export { default as Report } from './report';
 export { default as CDN } from './cdn';
