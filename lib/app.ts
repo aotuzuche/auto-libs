@@ -97,7 +97,7 @@ export const App = {
     }
   },
 
-  download: () => {
+  install: () => {
     if (Reg.isWX) {
       location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.Autoyol.auto';
       return;
