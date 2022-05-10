@@ -56,6 +56,11 @@ export const launchApp = () => {
 
 export const App = {
   navigate: () => {
+    if (window.isMiniProgram) {
+      alert('暂不支持在小程序内跳转, 请手动打开「凹凸租车」APP');
+      return;
+    }
+
     const type = Search.getDefault('type', '1000');
     let param = `type=${type}`;
 
