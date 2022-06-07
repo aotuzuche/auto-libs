@@ -186,16 +186,27 @@ const Mini = {
     const search = [];
 
     if (typeof params === 'string') {
-      search.push(`redirectUrl=${encodeURIComponent(params)}`);
+      const url = params.startsWith('http')
+        ? params
+        : window.location.origin + (params.startsWith('/') ? params : '/' + params);
+      search.push(`redirectUrl=${encodeURIComponent(url)}`);
     } else if (params) {
       if (params.redirectUrl) {
-        search.push(`redirectUrl=${encodeURIComponent(params.redirectUrl)}`);
+        const u = params.redirectUrl;
+        const url = u.startsWith('http')
+          ? u
+          : window.location.origin + (u.startsWith('/') ? u : '/' + u);
+        search.push(`redirectUrl=${encodeURIComponent(url)}`);
       }
       if (params.buttonText) {
         search.push(`buttonText=${encodeURIComponent(params.buttonText)}`);
       }
       if (params.cancelUrl) {
-        search.push(`cancelUrl=${encodeURIComponent(params.cancelUrl)}`);
+        const u = params.cancelUrl;
+        const url = u.startsWith('http')
+          ? u
+          : window.location.origin + (u.startsWith('/') ? u : '/' + u);
+        search.push(`cancelUrl=${encodeURIComponent(url)}`);
       }
     }
 
