@@ -182,11 +182,25 @@ const Mini = {
   /**
    * h5调用小程序的授权登录
    */
-  authLogin(redirect?: string) {
-    if (redirect) {
-      Mini.navigateTo(
-        `/pages/pageCommon/fastLogin/index?redirectUrl=${encodeURIComponent(redirect)}`,
-      );
+  authLogin(params?: { redirectUrl?: string; buttonText?: string; cancelUrl?: string } | string) {
+    const search = [];
+
+    if (typeof params === 'string') {
+      search.push(`redirectUrl=${encodeURIComponent(params)}`);
+    } else if (params) {
+      if (params.redirectUrl) {
+        search.push(`redirectUrl=${encodeURIComponent(params.redirectUrl)}`);
+      }
+      if (params.buttonText) {
+        search.push(`buttonText=${encodeURIComponent(params.buttonText)}`);
+      }
+      if (params.cancelUrl) {
+        search.push(`cancelUrl=${encodeURIComponent(params.cancelUrl)}`);
+      }
+    }
+
+    if (search.length) {
+      Mini.navigateTo(`/pages/pageCommon/fastLogin/index?${search.join('&')}`);
     } else {
       Mini.navigateTo('/pages/pageCommon/fastLogin/index');
     }
