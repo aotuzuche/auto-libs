@@ -2,6 +2,8 @@ import Reg from './reg';
 import Search from './search';
 
 export const launchApp = () => {
+  let timer: any = null;
+
   if (Reg.isWX) {
     location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.Autoyol.auto';
     return;
@@ -40,13 +42,21 @@ export const launchApp = () => {
   if (Reg.isiOS) {
     try {
       window.location.href = `Atzuche://www.aotuzuche.com?${param}`;
-      setTimeout(() => {
+      timer = setTimeout(() => {
+        if (document.visibilityState === 'hidden') {
+          timer && clearTimeout(timer);
+          return;
+        }
         window.location.href = 'https://itunes.apple.com/cn/app/id870422896'; // itunes
       }, 3000);
     } catch (_) {}
   } else {
     window.location.href = `intent://www.aotuzuche.com?${param}#Intent;package=com.Autoyol.auto;scheme=Atzuche;launchFlags=3;end;`;
-    setTimeout(() => {
+    timer = setTimeout(() => {
+      if (document.visibilityState === 'hidden') {
+        timer && clearTimeout(timer);
+        return;
+      }
       if (new Date().getTime() - clickedAt < 2000) {
         window.location.href = '//carphoto.aotuzuche.com/appdownload/atzuche_h5.apk';
       }
