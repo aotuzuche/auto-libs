@@ -8,7 +8,14 @@ const Search = {
 
   // 获取search的string
   toString() {
-    return window.location.search.replace(/^\?/, '');
+    const hash = window.location.hash;
+    const hashIndex = hash.indexOf('?');
+    const search =
+      hash && hashIndex > -1
+        ? hash.substring(hashIndex + 1)
+        : window.location.search.replace(/^\?/, '');
+
+    return search;
   },
 
   // map格式转string格式
@@ -83,14 +90,7 @@ const Search = {
 };
 
 export const search = () => {
-  const hash = window.location.hash;
-  const hashIndex = hash.indexOf('?');
-  const search =
-    hash && hashIndex > -1
-      ? hash.substring(hashIndex + 1)
-      : window.location.search.replace(/^\?/, '');
-
-  return qs.parse(search);
+  return qs.parse(Search.toString());
 };
 
 export default Search;
