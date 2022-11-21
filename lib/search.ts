@@ -83,7 +83,13 @@ const Search = {
 };
 
 export const search = () => {
-  const search = window.location.search.replace(/^\?/, '');
+  const hash = window.location.hash;
+  const hashIndex = hash.indexOf('?');
+  const search =
+    hash && hashIndex > -1
+      ? hash.substring(hashIndex + 1)
+      : window.location.search.replace(/^\?/, '');
+
   return qs.parse(search);
 };
 
