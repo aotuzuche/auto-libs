@@ -24,6 +24,11 @@ const Mini = {
       window.jd.miniProgram.navigateBack();
     }
 
+    if (window && window.tt && window.tt.miniProgram && window.tt.miniProgram.navigateBack) {
+      key++;
+      window.tt.miniProgram.navigateBack();
+    }
+
     if (refreshPreWebview) {
       Mini.postMessage({ type: 'refresh_pre_webview' });
     }
@@ -62,6 +67,10 @@ const Mini = {
       window.jd.miniProgram.navigateTo({ url });
     }
 
+    if (window && window.tt && window.tt.miniProgram && window.tt.miniProgram.navigateTo) {
+      window.tt.miniProgram.navigateTo({ url });
+    }
+
     const utm = getUtm();
     Mini.postMessage({ type: 'update_utm', payload: utm });
   },
@@ -86,6 +95,10 @@ const Mini = {
       window.jd.miniProgram.switchTab({ url });
     }
 
+    if (window && window.tt && window.tt.miniProgram && window.tt.miniProgram.switchTab) {
+      window.tt.miniProgram.switchTab({ url });
+    }
+
     const utm = getUtm();
     Mini.postMessage({ type: 'update_utm', payload: utm });
   },
@@ -104,6 +117,10 @@ const Mini = {
 
     if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.postMessage) {
       window.jd.miniProgram.postMessage({ data });
+    }
+
+    if (window && window.tt && window.tt.miniProgram && window.tt.miniProgram.postMessage) {
+      window.tt.miniProgram.postMessage({ data });
     }
   },
 
@@ -125,6 +142,10 @@ const Mini = {
 
     if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.redirectTo) {
       window.jd.miniProgram.redirectTo({ url });
+    }
+
+    if (window && window.tt && window.tt.miniProgram && window.tt.miniProgram.redirectTo) {
+      window.tt.miniProgram.redirectTo({ url });
     }
 
     const utm = getUtm();
@@ -149,6 +170,10 @@ const Mini = {
 
     if (window && window.jd && window.jd.miniProgram && window.jd.miniProgram.reLaunch) {
       window.jd.miniProgram.reLaunch({ url });
+    }
+
+    if (window && window.tt && window.tt.miniProgram && window.tt.miniProgram.reLaunch) {
+      window.tt.miniProgram.reLaunch({ url });
     }
 
     const utm = getUtm();

@@ -3,6 +3,8 @@ export const initMini = () => {
   const isWx = /MicroMessenger/gi.test(ua);
   const isAlipay = /AlipayClient/gi.test(ua);
   const isSwan = /swan/gi.test(ua);
+  const isTT = /toutiaomicroapp/gi.test(ua);
+
   if (isAlipay) {
     document.writeln('<script src="https://appx/web-view.min.js"' + '>' + '<' + '/' + 'script>');
   }
@@ -20,6 +22,16 @@ export const initMini = () => {
       '<script src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"' + '>' + '<' + '/' + 'script>',
     );
   }
+
+  if (isTT) {
+    document.writeln(
+      '<script src="https://lf1-cdn-tos.bytegoofy.com/goofy/developer/jssdk/jssdk-1.1.0.js"' +
+        '>' +
+        '<' +
+        '/' +
+        'script>',
+    );
+  }
 };
 
 interface MiniEnv {
@@ -28,6 +40,7 @@ interface MiniEnv {
   isSwan?: boolean;
   isJD?: boolean;
   isMiniProgram?: boolean;
+  isTT?: boolean;
 }
 
 export const getMiniProgramEnv = (): Promise<MiniEnv> => {
@@ -62,6 +75,13 @@ export const getMiniProgramEnv = (): Promise<MiniEnv> => {
         resolve({
           isSwan: res.smartprogram,
           isMiniProgram: res.smartprogram,
+        });
+      });
+    } else if (window.tt && window.tt.miniProgram.getEnv) {
+      window.tt.miniProgram.getEnv((res: any) => {
+        resolve({
+          isTT: res.miniprogram,
+          isMiniProgram: res.miniprogram,
         });
       });
     } else {

@@ -18,6 +18,7 @@ interface Window {
   atzuche: any;
   NativeJsBridge: any;
   _cblock_: any;
+  tt: any;
 }
 
 interface Window {
@@ -30,4 +31,5 @@ interface Window {
   isMiniProgram: boolean;
   isiOS: boolean;
   isAndroid: boolean;
+  isTT: boolean;
 }
