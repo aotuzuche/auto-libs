@@ -183,12 +183,12 @@ const Mini = {
   /**
    * 打开小程序的webview
    */
-  openWebview(url: string, query?: Record<string, any>) {
+  openWebview(url: string, query?: Record<string, any>, pageWebviewUrl?: string) {
     if (!url) {
       return;
     }
 
-    let baseUrl = '/pages/pageCommon/webView/index';
+    let baseUrl = pageWebviewUrl || '/pages/pageCommon/webView/index';
     const split = url.split('?');
     let params: any = query;
     if (split[1]) {
