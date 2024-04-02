@@ -201,6 +201,11 @@ const Mini = {
       paramsObj: params,
     })}`;
 
+    if (window.isCSH) {
+      window.my.ap.openURL(baseUrl);
+      return;
+    }
+
     Mini.navigateTo(baseUrl);
   },
 

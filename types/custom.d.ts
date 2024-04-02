@@ -32,4 +32,5 @@ interface Window {
   isiOS: boolean;
   isAndroid: boolean;
   isTT: boolean;
+  isCSH: boolean;
 }
