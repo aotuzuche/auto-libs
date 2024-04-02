@@ -202,7 +202,7 @@ const Mini = {
     })}`;
 
     if (window.isCSH) {
-      window.my.ap.openURL(baseUrl);
+      window.location.href = baseUrl;
       return;
     }
 
