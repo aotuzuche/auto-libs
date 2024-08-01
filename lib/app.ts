@@ -22,7 +22,7 @@ export const launchApp = () => {
     param += `&orderNo=${Search.getDefault('orderNo', '')}`;
   }
 
-  if (type === '1015') {
+  if (type === '1015' || type === '1022') {
     param += `&carNo=${Search.getDefault('carNo', '')}`;
   }
 
